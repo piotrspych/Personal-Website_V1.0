@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piotr Spychalski — Engineer &amp; Writer</title>
+  <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio and blog." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <span class="logo-mark">PS</span>
+        <span>Piotr Spychalski</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="hero" id="top">
+    <div class="hero-glow glow-1" aria-hidden="true"></div>
+    <div class="hero-glow glow-2" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-kicker">ENGINEER · MAKER · WRITER</p>
+      <h1 class="hero-title">
+        I build things,<br />
+        then write about it.
+      </h1>
+      <p class="hero-tagline">
+        I'm Piotr — a mechanical engineer who designs real hardware and
+        writes about the process, the failures, and everything learned
+        along the way.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">See my work</a>
+        <a href="#blog" class="btn btn-outline">Read the blog</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== About ===== -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <p class="section-kicker">01 · About</p>
+        <h2 class="section-title">A bit about me</h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I'm a mechanical engineer who loves the full journey of a
+              product — napkin sketch, CAD model, late-night FEA runs, a
+              prototype that doesn't quite fit, and the final part that does.
+            </p>
+            <p>
+              My focus areas are machine design, structural analysis, and
+              design for manufacturing. Outside of CAD, I write about what
+              I'm building, what I'm learning, and the mistakes that taught
+              me the most.
+            </p>
+          </div>
+          <div class="about-stats reveal">
+            <div class="stat">
+              <span class="stat-num">5+</span>
+              <span class="stat-label">Years designing hardware</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">30+</span>
+              <span class="stat-label">Prototypes iterated</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Coffee-powered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Work / Portfolio ===== -->
+    <section class="section section-alt" id="work">
+      <div class="section-inner">
+        <p class="section-kicker">02 · Portfolio</p>
+        <h2 class="section-title">Selected work</h2>
+        <div class="grid-cards">
+          <article class="card reveal">
+            <div class="card-tag">Machine Design</div>
+            <h3>Compact Gearbox Redesign</h3>
+            <p>
+              Redesigned a two-stage spur gearbox to cut weight by 30% while
+              holding torque capacity, using FEA-driven rib placement.
+            </p>
+            <ul class="card-meta">
+              <li>SolidWorks</li><li>FEA</li><li>DFM</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-tag">Prototyping</div>
+            <h3>3D-Printed Robotic Gripper</h3>
+            <p>
+              Compliant two-finger gripper with printed flexures — zero
+              fasteners in the jaw assembly, tuned across 14 prototypes.
+            </p>
+            <ul class="card-meta">
+              <li>Fusion 360</li><li>FDM</li><li>Compliant mechanisms</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-tag">Automation</div>
+            <h3>CAD Automation Scripts</h3>
+            <p>
+              Python toolkit that auto-generates fastener callouts and BOM
+              exports from assembly metadata, saving hours per release.
+            </p>
+            <ul class="card-meta">
+              <li>Python</li><li>Scripting</li><li>BOM</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Blog ===== -->
+    <section class="section" id="blog">
+      <div class="section-inner">
+        <p class="section-kicker">03 · Blog</p>
+        <h2 class="section-title">Latest writing</h2>
+        <div class="grid-cards">
+          <article class="card post-card reveal">
+            <div class="post-date">Coming soon</div>
+            <h3>What 14 failed prototypes taught me</h3>
+            <p>
+              A breakdown of every version of the robotic gripper that
+              didn't work — and why each failure mattered.
+            </p>
+            <a href="#" class="card-link">Read post →</a>
+          </article>
+          <article class="card post-card reveal">
+            <div class="post-date">Coming soon</div>
+            <h3>Hand calcs before CAD, always</h3>
+            <p>
+              Why I still reach for a napkin and a pencil before opening
+              any simulation software.
+            </p>
+            <a href="#" class="card-link">Read post →</a>
+          </article>
+          <article class="card post-card reveal">
+            <div class="post-date">Coming soon</div>
+            <h3>Automating the boring parts of engineering</h3>
+            <p>
+              How a small Python script saved hours of drawing cleanup —
+              and where automation stops being worth it.
+            </p>
+            <a href="#" class="card-link">Read post →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section-alt" id="contact">
+      <div class="section-inner contact-inner">
+        <p class="section-kicker">04 · Contact</p>
+        <h2 class="section-title">Let's talk</h2>
+        <p class="contact-lead">
+          Have a project, a role, or just want to argue about bolt preload?
+          My inbox is open.
+        </p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:piotr@example.com">piotr@example.com</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-outline" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Piotr Spychalski</span>
+      <span class="footer-note">Engineer · Maker · Writer</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
