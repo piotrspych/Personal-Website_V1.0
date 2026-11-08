@@ -7,34 +7,47 @@
   <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio and blog." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="loading.js"></script>
 </head>
 <body>
 
   <!-- ===== Preloader ===== -->
   <div class="preloader" id="preloader">
-    <div class="preloader-inner">
-      <img class="preloader-mark" src="spychalski-emblem.png" alt="Spychalski" />
-      <div class="preloader-bar">
-        <div class="preloader-fill" id="preloaderFill"></div>
-      </div>
-      <div class="preloader-meta">
-        <span class="preloader-label">Loading</span>
-        <span class="preloader-gears" aria-hidden="true">
-          <svg class="gear gear-1" viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
-          <svg class="gear gear-2" viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
-        </span>
+    <div class="preloader-veil" id="preloaderVeil"></div>
+    <canvas id="loadingCanvas"></canvas>
+    <div class="preloader-pill" id="preloaderPill">
+      <canvas id="gearsCanvas" class="preloader-gears"></canvas>
+      <span class="preloader-status" id="preloaderStatus">
+        <span class="preloader-label">Loading...</span>
         <span class="preloader-percent" id="preloaderPercent">0%</span>
-      </div>
+        <span class="preloader-sweep" id="preloaderSweep" aria-hidden="true"></span>
+      </span>
     </div>
   </div>
+  <svg id="eyeMaskSvg" width="0" height="0" aria-hidden="true">
+    <defs>
+      <mask id="eyeMask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+        <rect id="eyeMaskRect" x="0" y="0" width="100%" height="100%" fill="white"></rect>
+        <polygon id="eyeHole" fill="black"></polygon>
+      </mask>
+    </defs>
+  </svg>
 
   <!-- ===== Navigation ===== -->
   <nav class="nav">
     <div class="nav-inner">
       <a href="#top" class="nav-logo">
-        <span class="logo-mark">PS</span>
+        <img class="logo-mark" src="spychalski-mark.png" alt="Spychalski emblem" />
         <span>Piotr Spychalski</span>
       </a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -55,7 +68,7 @@
     <div class="hero-glow glow-2" aria-hidden="true"></div>
 
     <div class="hero-content">
-      <p class="hero-kicker">ENGINEER · MAKER · WRITER</p>
+      <p class="hero-kicker">ENGINEER | STRATEGIST | ANALYTICAL THINKER</p>
       <h1 class="hero-title">
         I build things,<br />
         then write about it.
@@ -122,36 +135,80 @@
         <h2 class="section-title">Selected work</h2>
         <div class="grid-cards">
           <article class="card reveal">
+            <div class="card-tag">Aerospace</div>
+            <h3>Aircraft Glider — 3D Model &amp; Physical Prototype</h3>
+            <p>
+              Designed a glider in CAD and built a flying physical prototype,
+              iterating on wing geometry and balance for stable flight.
+            </p>
+            <ul class="card-meta">
+              <li>CAD</li><li>Aerodynamics</li><li>Prototyping</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-tag">Structural</div>
+            <h3>Bridge Truss Design</h3>
+            <p>
+              Analyzed and optimized a truss bridge, sizing members for load
+              capacity while minimizing material and weight.
+            </p>
+            <ul class="card-meta">
+              <li>Statics</li><li>FEA</li><li>Optimization</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-tag">Energy</div>
+            <h3>Building Energy Analysis</h3>
+            <p>
+              Modeled a building envelope to evaluate heating and cooling loads
+              and identify efficiency improvements.
+            </p>
+            <ul class="card-meta">
+              <li>Thermodynamics</li><li>HVAC</li><li>Modeling</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-tag">Capstone</div>
+            <h3>UAV VTOL Drone — ING Robotic Aviation</h3>
+            <p>
+              Industry-sponsored capstone designing a vertical take-off and
+              landing UAV with ING Robotic Aviation, from concept to prototype.
+            </p>
+            <ul class="card-meta">
+              <li>UAV</li><li>VTOL</li><li>Systems Design</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-tag">Product Design</div>
+            <h3>Electric Coffee Maker Prototype</h3>
+            <p>
+              Built a functional prototype of an electric coffee maker,
+              integrating heating, fluid flow, and user controls.
+            </p>
+            <ul class="card-meta">
+              <li>Product Design</li><li>Electronics</li><li>Prototyping</li>
+            </ul>
+          </article>
+          <article class="card reveal">
             <div class="card-tag">Machine Design</div>
-            <h3>Compact Gearbox Redesign</h3>
+            <h3>Gear Reducer</h3>
             <p>
-              Redesigned a two-stage spur gearbox to cut weight by 30% while
-              holding torque capacity, using FEA-driven rib placement.
+              Designed a gear reduction unit, selecting ratios and sizing gears,
+              shafts, and bearings for durability under load.
             </p>
             <ul class="card-meta">
-              <li>SolidWorks</li><li>FEA</li><li>DFM</li>
+              <li>Gears</li><li>Shafts</li><li>Machine Design</li>
             </ul>
           </article>
           <article class="card reveal">
-            <div class="card-tag">Prototyping</div>
-            <h3>3D-Printed Robotic Gripper</h3>
+            <div class="card-tag">CFD</div>
+            <h3>Turbulent Flow Simulator</h3>
             <p>
-              Compliant two-finger gripper with printed flexures — zero
-              fasteners in the jaw assembly, tuned across 14 prototypes.
+              Ran computational fluid dynamics studies to simulate and
+              visualize turbulent flow and quantify its behavior.
             </p>
             <ul class="card-meta">
-              <li>Fusion 360</li><li>FDM</li><li>Compliant mechanisms</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">Automation</div>
-            <h3>CAD Automation Scripts</h3>
-            <p>
-              Python toolkit that auto-generates fastener callouts and BOM
-              exports from assembly metadata, saving hours per release.
-            </p>
-            <ul class="card-meta">
-              <li>Python</li><li>Scripting</li><li>BOM</li>
+              <li>CFD</li><li>Fluid Dynamics</li><li>Simulation</li>
             </ul>
           </article>
         </div>
@@ -205,7 +262,7 @@
           My inbox is open.
         </p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:piotr@example.com">piotr@example.com</a>
+          <a class="btn btn-primary" href="mailto:piotr.spychalski12@gmail.com">piotr.spychalski12@gmail.com</a>
           <a class="btn btn-outline" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn btn-outline" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
         </div>
@@ -216,7 +273,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <span>© <span id="year"></span> Piotr Spychalski</span>
-      <span class="footer-note">Engineer · Maker · Writer</span>
+      <span class="footer-note">Engineer | Strategist | Analytical Thinker</span>
     </div>
   </footer>
 
