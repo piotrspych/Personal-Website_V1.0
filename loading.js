@@ -142,12 +142,10 @@ addLights(gearsScene);
 const loader = new GLTFLoader();
 const tipL = new THREE.Vector3();
 const tipR = new THREE.Vector3();
-const bottom = new THREE.Vector3();
 let lockup = null;
 let mixer = null;
 let tipOffset = new THREE.Vector3();
 let halfWidth = 1;
-let bottomLocal = new THREE.Vector3(0, -1.08, 0);
 let startedAt = 0;
 let last = 0;
 let finished = false;
@@ -202,16 +200,14 @@ function updateStreak() {
   streak.style.setProperty("--x", `${s.x - text.left - 8}px`);
 }
 
-function placePill() {
-  bottom.copy(bottomLocal);
-  lockup.localToWorld(bottom);
-  const s = projectToScreen(bottom);
-  pill.style.top = `${s.y + 20}px`;
-}
-
-function finish() {
+function finish(immediate) {
   if (finished) return;
   finished = true;
+  if (immediate) {
+    preloader.style.transition = "none";
+    preloader.remove();
+    return;
+  }
   preloader.classList.add("is-done");
   setTimeout(() => preloader.remove(), 600);
 }
@@ -236,6 +232,11 @@ function frame(now) {
   }
 
   lockup.rotation.y = spinAngle(t);
+  if (t >= 11.4) {
+    finish(true);
+    return;
+  }
+
   camera.position.set(0, 0, 6.66);
 
   if (t < 9) {
@@ -254,7 +255,7 @@ function frame(now) {
     if (t < 10) {
       const u = (t - 9.6) / 0.4;
       camera.position.z = 6.66 + 0.24 * smoothstep(u);
-    } else if (t < 11.4) {
+    } else {
       const u = (t - 10) / 1.4;
       const s = smoothstep(Math.min(1, u / 0.75));
       camera.position.x = 0.086 * s;
@@ -263,13 +264,14 @@ function frame(now) {
       const d0 = 6.9 - zt;
       const de = 0.004;
       camera.position.z = zt + d0 * Math.exp(Math.log(de / d0) * u ** 1.5);
+      // Past the eye: drop the loader before this frame is drawn, so the emblem never snaps back.
+      if (camera.position.z <= 0.02) {
+        finish(true);
+        return;
+      }
       updateEyeHole();
     }
   }
-
-  if (t < 9) updateStreak();
-  if (t < 9.6) placePill();
-  if (t >= 11.4) finish();
 
   eyeUniform.value.copy(lockup.matrixWorld).invert();
   renderer.render(scene, camera);
@@ -306,7 +308,6 @@ loader.load("spychalski-lockup-3d-v2.glb", (gltf) => {
   lockup.worldToLocal(center);
   halfWidth = size.x / 2;
   tipOffset.copy(center);
-  bottomLocal.set(center.x, center.y - size.y / 2, center.z);
   begin();
 });
 

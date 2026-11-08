@@ -58,6 +58,7 @@ html { scroll-behavior: smooth; }
 .preloader-pill {
   position: absolute;
   left: 50%;
+  top: calc(50% + 52px);
   z-index: 2;
   display: flex;
   align-items: center;
