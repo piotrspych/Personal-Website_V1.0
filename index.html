@@ -7,9 +7,9 @@
   <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=4" />
   <script type="importmap">
   {
     "imports": {
@@ -82,7 +82,7 @@
     </nav>
 
     <div class="hero-content container">
-      <p class="label reveal"><svg><use href="#i-spark"/></svg>Framer Developer</p>
+      <p class="label reveal"><svg><use href="#i-spark"/></svg>Strategist • Engineer • Designer</p>
       <h1 class="hero-title reveal">Hi, I'm Piotr :)</h1>
       <p class="hero-title hero-serif reveal">Mechanical Engineer by Study</p>
       <p class="hero-text reveal">Welcome to my portfolio website, where I showcase my projects, describe a bit of who I am as a person, and my newly formed interests.</p>
@@ -369,10 +369,45 @@
               <li><svg><use href="#i-check"/></svg>Budget estimation</li>
               <li><svg><use href="#i-check"/></svg>Clear action plan</li>
             </ul>
-            <a href="#contact" class="btn btn-gold">
-              <span class="roll" data-text="Schedule a call"><span>Schedule a call</span></span>
-              <svg class="ico"><use href="#i-calendar"/></svg>
-            </a>
+            <div class="call-picker" id="callPicker">
+              <button type="button" class="btn btn-gold" id="callToggle" aria-expanded="false" aria-controls="callBook" aria-haspopup="dialog">
+                <span class="roll" data-text="Schedule a call"><span>Schedule a call</span></span>
+                <svg class="ico"><use href="#i-calendar"/></svg>
+              </button>
+              <form class="call-book" id="callBook">
+                <label class="call-book-field">
+                  <span>Name</span>
+                  <input type="text" name="name" placeholder="Your name" required autocomplete="name" />
+                </label>
+                <label class="call-book-field">
+                  <span>Email</span>
+                  <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+                </label>
+                <div class="call-book-card">
+                  <p class="call-book-card-title">Select a preferred date and time</p>
+                  <div class="call-book-panel">
+                    <p class="call-book-kicker">Select a date</p>
+                    <div class="call-book-head">
+                      <button type="button" class="call-book-nav" id="calPrev" aria-label="Previous month">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                      </button>
+                      <span class="call-book-month" id="calTitle">November 2026</span>
+                      <button type="button" class="call-book-nav" id="calNext" aria-label="Next month">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      </button>
+                    </div>
+                    <div class="call-book-grid" id="calGrid" role="grid" aria-label="Select a preferred date and time"></div>
+                  </div>
+                  <div class="call-book-panel">
+                    <p class="call-book-kicker">Available times</p>
+                    <div class="call-book-times" id="calTimes"></div>
+                  </div>
+                  <button type="submit" class="call-book-submit">Submit appointment request</button>
+                  <p class="call-book-hint" id="calHint">Choose an available date and time</p>
+                  <p class="call-book-tz">Times shown in America/Toronto. Sending this emails Piotr first — it is added to his calendar only if he accepts.</p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -562,7 +597,7 @@
           <input type="email" name="email" placeholder="Enter Email" required aria-label="Your email" />
           <button type="submit">Send</button>
         </form>
-        <p class="footer-credit">Designed &amp; Developed by Piotr Spychalski<br />Powered by Framer &amp; Webflow</p>
+        <p class="footer-credit">Designed &amp; Developed by Piotr Spychalski</p>
       </div>
       <div class="footer-side">
         <ul class="footer-nav">
@@ -583,6 +618,6 @@
     <div class="container footer-line"></div>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
