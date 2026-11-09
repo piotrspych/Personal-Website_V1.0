@@ -1003,31 +1003,26 @@ button:hover .ico { transform: translate(2px, -2px); }
   overflow: hidden;
 }
 
+.collab-count .big-num,
+.collab-count .card-sub { position: relative; z-index: 1; }
+
 .collab-count .card-sub { margin-top: 16px; }
 
 .collage {
   position: absolute;
-  top: 165px;
-  right: -40px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transform: rotate(-10deg);
-  transform-origin: right top;
+  inset: 0;
+  pointer-events: none;
 }
 
-.collage-row { display: flex; gap: 12px; }
-.collage-row:nth-child(2) { margin-left: -80px; }
-.collage-row:nth-child(3) { margin-left: -30px; }
-
-.ph-tile {
-  flex: none;
-  width: 174px;
-  height: 132px;
-  border-radius: 14px;
+.collage img {
+  position: absolute;
+  top: -45px;
+  right: -21px;
+  width: auto;
+  height: 562px;
+  max-width: none;
+  clip-path: inset(33% 0 0 0);
 }
-
-.ph-tile::after { content: none; }
 
 .collab-call {
   position: relative;
