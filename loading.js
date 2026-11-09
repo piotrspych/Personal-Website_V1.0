@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
+const skipIntro = document.documentElement.classList.contains("skip-intro");
 const preloader = document.getElementById("preloader");
 const veil = document.getElementById("preloaderVeil");
 const canvas = document.getElementById("loadingCanvas");
@@ -13,6 +14,10 @@ const streak = document.getElementById("preloaderSweep");
 const eyeMask = document.getElementById("eyeMask");
 const eyeMaskRect = document.getElementById("eyeMaskRect");
 const eyeHole = document.getElementById("eyeHole");
+if (skipIntro) {
+  preloader.remove();
+  history.replaceState(null, "", location.pathname + location.hash);
+}
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // Emblem height in the scene. 0 puts it at the centre of the background ripple.
@@ -311,7 +316,7 @@ loader.load("spychalski-lockup-3d-v2.glb", (gltf) => {
   halfWidth = size.x / 2;
   tipOffset.copy(center);
   setupNavEmblem(lockup);
-  begin();
+  if (!skipIntro) begin();
 });
 
 // Small always-spinning copy of the emblem in the page's nav bar.
@@ -361,7 +366,7 @@ function setupNavEmblem(source) {
   requestAnimationFrame(spin);
 }
 
-loader.load("gears-3d-meshing.glb", (gltf) => {
+if (!skipIntro) loader.load("gears-3d-meshing.glb", (gltf) => {
   const model = gltf.scene;
   model.rotation.x = deg(10);
   model.rotation.y = deg(-30);

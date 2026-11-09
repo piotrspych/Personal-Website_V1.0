@@ -16,6 +16,7 @@
 }
 
 html { scroll-behavior: smooth; }
+html.skip-intro .preloader { display: none; }
 
 /* ===== Preloader ===== */
 .preloader {
@@ -373,10 +374,65 @@ button:hover .ico { transform: translate(2px, -2px); }
   height: 52px;
 }
 
-.nav-links {
+.icon-nav {
   display: flex;
-  gap: 34px;
-  font-size: 16px;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid #242424;
+  border-radius: 100px;
+  background: linear-gradient(rgba(23, 23, 23, 0.8), rgba(13, 13, 13, 0.8));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.icon-nav a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: rgb(133, 133, 133);
+}
+
+.icon-nav a svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-nav a span {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #171717;
+  color: var(--gold);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.icon-nav a:hover,
+.icon-nav a:focus-visible {
+  color: var(--gold);
+  background: rgba(152, 120, 88, 0.16);
+}
+
+.icon-nav a:hover span,
+.icon-nav a:focus-visible span {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .hero-content {
@@ -1634,7 +1690,9 @@ button:hover .ico { transform: translate(2px, -2px); }
 @media (max-width: 900px) {
   .h2 { font-size: 44px; line-height: 52px; }
   .hero-title { font-size: 48px; line-height: 56px; }
-  .nav-links { display: none; }
+  .icon-nav { gap: 2px; padding: 6px; }
+  .icon-nav a { width: 30px; height: 30px; }
+  .icon-nav a svg { width: 18px; height: 18px; }
   .ph-hero { left: auto; right: 24px; width: 46vw; opacity: 0.35; }
 
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1682,5 +1740,8 @@ button:hover .ico { transform: translate(2px, -2px); }
   .stats { grid-template-columns: 1fr; gap: 24px; }
   .stat + .stat { padding-left: 0; }
   .stat + .stat::before { display: none; }
-  .nav .btn { height: 44px; padding: 0 18px; font-size: 16px; }
+  .nav .btn { height: 44px; padding: 0 14px; font-size: 15px; }
+  .icon-nav { gap: 0; padding: 4px; }
+  .icon-nav a { width: 26px; height: 26px; }
+  .icon-nav a svg { width: 16px; height: 16px; }
 }

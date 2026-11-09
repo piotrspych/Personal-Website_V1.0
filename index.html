@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>if (new URLSearchParams(location.search).has("home")) document.documentElement.classList.add("skip-intro");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Piotr Spychalski — Engineer &amp; Writer</title>
   <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio." />
@@ -9,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=9" />
   <script type="importmap">
   {
     "imports": {
@@ -19,7 +20,7 @@
   }
   </script>
   <script src="commit-grid.js" defer></script>
-  <script type="module" src="loading.js?v=2"></script>
+  <script type="module" src="loading.js?v=3"></script>
 </head>
 <body>
 
@@ -69,12 +70,28 @@
 
     <nav class="nav container">
       <a href="#home" class="logo-emblem" aria-label="Spychalski — back to top"><canvas id="navEmblem"></canvas></a>
-      <ul class="nav-links">
-        <li><a href="#work"><span class="roll" data-text="Work"><span>Work</span></span></a></li>
-        <li><a href="#services"><span class="roll" data-text="Services"><span>Services</span></span></a></li>
-        <li><a href="#about"><span class="roll" data-text="About"><span>About</span></span></a></li>
-        <li><a href="#contact"><span class="roll" data-text="Contact"><span>Contact</span></span></a></li>
-      </ul>
+      <div class="icon-nav">
+        <a href="#work" aria-label="Work">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M 0 9 L 0 8.25 C 0 7.007 1.007 6 2.25 6 L 17.25 6 C 18.493 6 19.5 7.007 19.5 8.25 L 19.5 9 M 10.811 2.561 L 8.689 0.439 C 8.408 0.158 8.027 0 7.629 0 L 2.25 0 C 1.007 0 0 1.007 0 2.25 L 0 14.25 C 0 15.493 1.007 16.5 2.25 16.5 L 17.25 16.5 C 18.493 16.5 19.5 15.493 19.5 14.25 L 19.5 5.25 C 19.5 4.007 18.493 3 17.25 3 L 11.871 3 C 11.473 3 11.092 2.842 10.811 2.561 Z" transform="translate(2.25 3.75)"/></svg>
+          <span>Work</span>
+        </a>
+        <a href="#services" aria-label="Services">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25ZM13.5 6A2.25 2.25 0 0 1 15.75 3.75H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25Z"/></svg>
+          <span>Services</span>
+        </a>
+        <a href="#about" aria-label="About">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M 7.5 3.75 C 7.5 5.821 5.821 7.5 3.75 7.5 C 1.679 7.5 0 5.821 0 3.75 C 0 1.679 1.679 0 3.75 0 C 5.821 0 7.5 1.679 7.5 3.75 Z" transform="translate(8.25 2.25)"/><path d="M 0 7.368 C 0.07 3.287 3.401 0 7.499 0 C 11.597 0 14.928 3.287 14.998 7.369 C 12.715 8.416 10.175 9 7.499 9 C 4.823 9 2.283 8.416 0 7.368 Z" transform="translate(4.501 12.75)"/></svg>
+          <span>About</span>
+        </a>
+        <a href="#contact" aria-label="Contact">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+          <span>Contact</span>
+        </a>
+        <a href="resume.html" aria-label="Resume">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M 9 3.75 L 10.5 3.75 M 9 6.75 L 10.5 6.75 M 3 9.75 L 10.5 9.75 M 3 12.75 L 10.5 12.75 M 13.5 3.75 L 16.875 3.75 C 17.496 3.75 18 4.254 18 4.875 L 18 14.25 C 18 15.493 16.993 16.5 15.75 16.5 M 13.5 3.75 L 13.5 14.25 C 13.5 15.493 14.507 16.5 15.75 16.5 M 13.5 3.75 L 13.5 1.125 C 13.5 0.504 12.996 0 12.375 0 L 1.125 0 C 0.504 0 0 0.504 0 1.125 L 0 14.25 C 0 15.493 1.007 16.5 2.25 16.5 L 15.75 16.5 M 3 3.75 L 6 3.75 L 6 6.75 L 3 6.75 Z" transform="translate(3 3.75)"/></svg>
+          <span>Resume</span>
+        </a>
+      </div>
       <a href="#contact" class="btn btn-gold">
         <span class="roll" data-text="Let's Talk"><span>Let's Talk</span></span>
         <svg class="ico"><use href="#i-arrow"/></svg>
