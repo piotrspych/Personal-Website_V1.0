@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="styles.css?v=19" />
   <script type="importmap">
   {
     "imports": {
@@ -255,51 +255,21 @@
         </div>
 
         <div class="slider reveal">
-          <div class="slider-track" id="workTrack">
-            <article class="slide">
-              <div class="ph ph-project ph-grad-1" data-label="Project image"></div>
-              <div class="slide-info">
-                <h3>Performance Marketing Website</h3>
-                <p>A premium agency website focused on generating leads, increasing conversions, and driving growth.</p>
-                <dl class="slide-meta">
-                  <div><dt>Client</dt><dd>AdScent</dd></div>
-                  <div><dt>Service</dt><dd>Framer Development</dd></div>
-                </dl>
-              </div>
-            </article>
-            <article class="slide">
-              <div class="ph ph-project ph-grad-2" data-label="Project image"></div>
-              <div class="slide-info">
-                <h3>Creative Portfolio Platform</h3>
-                <p>A bold portfolio experience designed to showcase creative work through immersive visuals and interaction.</p>
-                <dl class="slide-meta">
-                  <div><dt>Client</dt><dd>Portrixe®</dd></div>
-                  <div><dt>Service</dt><dd>Brand Website Design &amp; Development</dd></div>
-                </dl>
-              </div>
-            </article>
-            <article class="slide">
-              <div class="ph ph-project ph-grad-3" data-label="Project image"></div>
-              <div class="slide-info">
-                <h3>Modern Creative Agency Website</h3>
-                <p>A modern agency website built in Webflow, featuring bold visuals, smooth interactions, and focused conversions.</p>
-                <dl class="slide-meta">
-                  <div><dt>Client</dt><dd>Lunexis Studio</dd></div>
-                  <div><dt>Service</dt><dd>Webflow Design &amp; Development</dd></div>
-                </dl>
-              </div>
-            </article>
-            <article class="slide">
-              <div class="ph ph-project ph-grad-4" data-label="Project image"></div>
-              <div class="slide-info">
-                <h3>Fintech Product Experience</h3>
-                <p>A clean fintech platform designed to simplify financial services and create a seamless journey.</p>
-                <dl class="slide-meta">
-                  <div><dt>Client</dt><dd>Monex</dd></div>
-                  <div><dt>Service</dt><dd>Product Design &amp; Development</dd></div>
-                </dl>
-              </div>
-            </article>
+          <div class="work-layout">
+            <div class="stack" id="workStack">
+              <button type="button" class="stack-card ph ph-grad-1" data-label="Project image" data-title="Performance Marketing Website" data-text="A premium agency website focused on generating leads, increasing conversions, and driving growth." data-client="AdScent" data-service="Framer Development" aria-label="Performance Marketing Website"></button>
+              <button type="button" class="stack-card ph ph-grad-2" data-label="Project image" data-title="Creative Portfolio Platform" data-text="A bold portfolio experience designed to showcase creative work through immersive visuals and interaction." data-client="Portrixe®" data-service="Brand Website Design &amp; Development" aria-label="Creative Portfolio Platform"></button>
+              <button type="button" class="stack-card ph ph-grad-3" data-label="Project image" data-title="Modern Creative Agency Website" data-text="A modern agency website built in Webflow, featuring bold visuals, smooth interactions, and focused conversions." data-client="Lunexis Studio" data-service="Webflow Design &amp; Development" aria-label="Modern Creative Agency Website"></button>
+              <button type="button" class="stack-card ph ph-grad-4" data-label="Project image" data-title="Fintech Product Experience" data-text="A clean fintech platform designed to simplify financial services and create a seamless journey." data-client="Monex" data-service="Product Design &amp; Development" aria-label="Fintech Product Experience"></button>
+            </div>
+            <div class="slide-info">
+              <h3 id="workTitle">Performance Marketing Website</h3>
+              <p id="workText">A premium agency website focused on generating leads, increasing conversions, and driving growth.</p>
+              <dl class="slide-meta">
+                <div><dt>Client</dt><dd id="workClient">AdScent</dd></div>
+                <div><dt>Service</dt><dd id="workService">Framer Development</dd></div>
+              </dl>
+            </div>
           </div>
           <div class="slider-controls">
             <div class="slider-arrows">
@@ -658,6 +628,6 @@
   </div>
 
   <script src="languages.js?v=1"></script>
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>

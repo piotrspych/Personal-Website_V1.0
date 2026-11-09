@@ -50,18 +50,47 @@ function accordion(itemSelector, buttonSelector) {
 accordion(".service", ".service-head");
 accordion(".faq-item", ".faq-q");
 
-// Project slider.
-const track = document.getElementById("workTrack");
-const slideCount = track.children.length;
+// Cinematic filmstrip. The front picture is full; neighbors peek in dimmed. The side panel follows.
+const cards = [...document.querySelectorAll("#workStack .stack-card")];
+const workBits = ["workTitle", "workText", "workClient", "workService"].map((id) => document.getElementById(id));
 let slide = 0;
 
+cards.forEach((card, index) => {
+  const count = document.createElement("span");
+  count.className = "stack-count";
+  count.textContent = `${String(index + 1).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+  card.append(count);
+});
+
 function showSlide(i) {
-  slide = (i + slideCount) % slideCount;
-  track.style.transform = `translateX(calc(${-slide} * (100% + 10px)))`;
+  const n = cards.length;
+  slide = (i + n) % n;
+  cards.forEach((card, index) => {
+    let d = index - slide;
+    if (d > n / 2) d -= n;
+    if (d < -n / 2) d += n;
+    const abs = Math.min(Math.abs(d), 2);
+    const dir = Math.sign(d);
+    const x = dir * [0, 16, 130][abs];
+    card.style.transform = `translate(-50%, -50%) translateX(${x}%) scale(${abs ? 0.92 : 1})`;
+    card.style.opacity = abs > 1 ? "0" : "1";
+    card.style.filter = abs === 0 ? "none" : "brightness(0.5)";
+    card.style.zIndex = String(20 - abs);
+    card.style.pointerEvents = abs > 1 ? "none" : "auto";
+    if (index === slide) card.setAttribute("aria-current", "true");
+    else card.removeAttribute("aria-current");
+  });
+  const active = cards[slide];
+  workBits[0].textContent = active.dataset.title;
+  workBits[1].textContent = active.dataset.text;
+  workBits[2].textContent = active.dataset.client;
+  workBits[3].textContent = active.dataset.service;
 }
 
+cards.forEach((card, index) => card.addEventListener("click", () => showSlide(index)));
 document.getElementById("workPrev").addEventListener("click", () => showSlide(slide - 1));
 document.getElementById("workNext").addEventListener("click", () => showSlide(slide + 1));
+showSlide(0);
 
 // Review slider.
 const reviews = [
