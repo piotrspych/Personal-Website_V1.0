@@ -7,9 +7,9 @@
   <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=7" />
   <script type="importmap">
   {
     "imports": {
@@ -370,43 +370,29 @@
               <li><svg><use href="#i-check"/></svg>Clear action plan</li>
             </ul>
             <div class="call-picker" id="callPicker">
-              <button type="button" class="btn btn-gold" id="callToggle" aria-expanded="false" aria-controls="callBook" aria-haspopup="dialog">
+              <button type="button" class="btn btn-gold" id="callToggle" aria-expanded="false" aria-controls="callCal">
                 <span class="roll" data-text="Schedule a call"><span>Schedule a call</span></span>
                 <svg class="ico"><use href="#i-calendar"/></svg>
               </button>
-              <form class="call-book" id="callBook">
-                <label class="call-book-field">
-                  <span>Name</span>
-                  <input type="text" name="name" placeholder="Your name" required autocomplete="name" />
-                </label>
-                <label class="call-book-field">
-                  <span>Email</span>
-                  <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
-                </label>
-                <div class="call-book-card">
-                  <p class="call-book-card-title">Select a preferred date and time</p>
-                  <div class="call-book-panel">
-                    <p class="call-book-kicker">Select a date</p>
-                    <div class="call-book-head">
-                      <button type="button" class="call-book-nav" id="calPrev" aria-label="Previous month">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                      </button>
-                      <span class="call-book-month" id="calTitle">November 2026</span>
-                      <button type="button" class="call-book-nav" id="calNext" aria-label="Next month">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                      </button>
-                    </div>
-                    <div class="call-book-grid" id="calGrid" role="grid" aria-label="Select a preferred date and time"></div>
+              <div class="glass-cal" id="callCal">
+                <div class="glass-cal-glow" aria-hidden="true"></div>
+                <div class="glass-cal-head">
+                  <p class="glass-cal-title">Calendar</p>
+                  <div class="glass-cal-nav">
+                    <button type="button" id="calPrev" aria-label="Previous month">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <span id="calTitle">November 2026</span>
+                    <button type="button" id="calNext" aria-label="Next month">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
                   </div>
-                  <div class="call-book-panel">
-                    <p class="call-book-kicker">Available times</p>
-                    <div class="call-book-times" id="calTimes"></div>
-                  </div>
-                  <button type="submit" class="call-book-submit">Submit appointment request</button>
-                  <p class="call-book-hint" id="calHint">Choose an available date and time</p>
-                  <p class="call-book-tz">Times shown in America/Toronto. Sending this emails Piotr first — it is added to his calendar only if he accepts.</p>
                 </div>
-              </form>
+                <div class="glass-cal-week">
+                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                </div>
+                <div class="glass-cal-grid" id="calGrid"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -618,6 +604,32 @@
     <div class="container footer-line"></div>
   </footer>
 
-  <script src="script.js?v=5"></script>
+  <div class="cal-overlay" id="calOverlay" hidden>
+    <form class="glass-sheet" id="callBook">
+      <div class="glass-sheet-bar">
+        <button type="button" class="glass-close" id="calClose">Close</button>
+        <p id="calWhen">Pick a time</p>
+      </div>
+      <label class="glass-field">
+        <span>Name</span>
+        <input type="text" name="name" placeholder="Your name" required autocomplete="name" />
+      </label>
+      <label class="glass-field">
+        <span>Email</span>
+        <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+      </label>
+      <label class="glass-field">
+        <span>Short description (optional)</span>
+        <textarea name="description" rows="3" maxlength="400" placeholder="What would you like to talk about?"></textarea>
+      </label>
+      <p class="glass-kicker">Available times</p>
+      <div class="glass-times" id="calTimes"></div>
+      <button type="submit" class="glass-submit">Submit appointment request</button>
+      <p class="glass-hint" id="calHint">Choose a time.</p>
+      <p class="glass-hint">An email will be sent to Piotr in order to accept the appointment into his Google Calendar</p>
+    </form>
+  </div>
+
+  <script src="script.js?v=8"></script>
 </body>
 </html>
