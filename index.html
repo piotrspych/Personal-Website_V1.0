@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Piotr Spychalski — Engineer &amp; Writer</title>
-  <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio and blog." />
+  <meta name="description" content="Personal site of Piotr Spychalski — mechanical engineering portfolio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=2" />
   <script type="importmap">
   {
     "imports": {
@@ -17,7 +18,7 @@
     }
   }
   </script>
-  <script type="module" src="loading.js"></script>
+  <script type="module" src="loading.js?v=2"></script>
 </head>
 <body>
 
@@ -43,240 +44,544 @@
     </defs>
   </svg>
 
-  <!-- ===== Navigation ===== -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#top" class="nav-logo">
-        <img class="logo-mark" src="spychalski-mark.png" alt="Spychalski emblem" />
-        <span>Piotr Spychalski</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+  <!-- ===== Shared icons ===== -->
+  <svg width="0" height="0" class="icon-defs" aria-hidden="true">
+    <symbol id="i-spark" viewBox="0 0 8 8"><path fill="#FB4504" d="M8 4a2.107 2.107 0 0 0-1.906-2.094A2.107 2.107 0 0 0 4 0a2.107 2.107 0 0 0-2.094 1.906A2.107 2.107 0 0 0 0 4c0 1.093.838 1.994 1.906 2.094A2.107 2.107 0 0 0 4 8a2.107 2.107 0 0 0 2.094-1.906A2.107 2.107 0 0 0 8 4m-4.223-.223a1.69 1.69 0 0 1-1.45-1.45c.753.1 1.35.697 1.45 1.45M3.654 2.58c.016-.347.136-.675.346-.947.21.272.33.6.346.947A2.1 2.1 0 0 0 4 3.089a2.1 2.1 0 0 0-.346-.51M2.58 3.654q.227.21.509.346-.281.136-.51.346A1.67 1.67 0 0 1 1.634 4c.272-.21.6-.33.947-.346m1.197.569c-.1.753-.697 1.35-1.45 1.45.1-.753.697-1.35 1.45-1.45M4 4.91q.136.281.346.51A1.67 1.67 0 0 1 4 6.366c-.21-.272-.33-.6-.346-.947q.21-.227.346-.509m.223-.688c.753.1 1.35.697 1.45 1.45a1.69 1.69 0 0 1-1.45-1.45m1.197.123A2.1 2.1 0 0 0 4.911 4q.281-.136.51-.346c.346.016.674.136.946.346-.272.21-.6.33-.947.346m-1.197-.569c.1-.753.697-1.35 1.45-1.45-.1.753-.697 1.35-1.45 1.45M4 .415c.865 0 1.579.654 1.677 1.493a2.1 2.1 0 0 0-.953.346 2.1 2.1 0 0 0-.577-1.082L4 1.025l-.147.147c-.3.3-.498.674-.577 1.082a2.1 2.1 0 0 0-.953-.346A1.69 1.69 0 0 1 4 .415M.415 4a1.69 1.69 0 0 1 1.493-1.677c.036.35.159.675.346.953a2.1 2.1 0 0 0-1.083.577L1.025 4l.146.147c.3.3.675.498 1.083.577a2.1 2.1 0 0 0-.346.953A1.69 1.69 0 0 1 .415 4M4 7.585a1.69 1.69 0 0 1-1.677-1.493c.35-.036.675-.159.953-.346.079.408.277.782.577 1.082L4 6.975l.147-.147c.3-.3.498-.674.577-1.082.278.187.603.31.953.346A1.69 1.69 0 0 1 4 7.585m2.092-1.908a2.1 2.1 0 0 0-.346-.953 2.1 2.1 0 0 0 1.082-.577L6.975 4l-.147-.147c-.3-.3-.674-.498-1.082-.577a2.1 2.1 0 0 0 .346-.953A1.69 1.69 0 0 1 7.585 4a1.69 1.69 0 0 1-1.493 1.677"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6m0 9V6H9"/></symbol>
+    <symbol id="i-left" viewBox="0 0 49 49"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M32.833 24.5H16.167m6.25 6.25-6.25-6.25 6.25-6.25"/></symbol>
+    <symbol id="i-right" viewBox="0 0 49 49"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.167 24.5h16.666m-6.25-6.25 6.25 6.25-6.25 6.25"/></symbol>
+    <symbol id="i-check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#fff"/><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m6 10.2 2.6 2.6L14 7.4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9Z"/></symbol>
+    <symbol id="i-reg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M15 29V11h6.2a5 5 0 0 1 0 10H15m6 0 5 8"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.75 3h3.07l-6.71 7.67L22 21h-6.18l-4.84-6.33L5.44 21H2.37l7.18-8.2L2 3h6.34l4.37 5.78L17.75 3Zm-1.08 16.17h1.7L7.4 4.74H5.58l11.09 14.43Z"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.88h-2.34v7A10 10 0 0 0 12 2Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2Zm5-8.1a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM12 3.6c2.7 0 3 0 4.1.06 2.7.12 4 1.42 4.1 4.1.06 1.07.07 1.4.07 4.1s0 3.04-.07 4.1c-.12 2.7-1.4 4-4.1 4.13-1.07.05-1.4.06-4.1.06s-3.04 0-4.1-.06c-2.7-.13-4-1.43-4.1-4.13C3.6 15.04 3.6 14.7 3.6 12s0-3.03.06-4.1c.13-2.7 1.42-4 4.1-4.1C8.96 3.6 9.3 3.6 12 3.6ZM12 2c-2.72 0-3.06 0-4.12.06-3.64.17-5.65 2.18-5.82 5.82C2 8.94 2 9.28 2 12s0 3.06.06 4.12c.17 3.64 2.18 5.65 5.82 5.82C8.94 22 9.28 22 12 22s3.06 0 4.12-.06c3.63-.17 5.66-2.18 5.82-5.82C22 15.06 22 14.72 22 12s0-3.06-.06-4.12c-.16-3.63-2.18-5.65-5.82-5.82C15.06 2 14.72 2 12 2Z"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 2H3.55A1.55 1.55 0 0 0 2 3.55v16.9C2 21.3 2.7 22 3.55 22h16.9c.85 0 1.55-.7 1.55-1.55V3.55C22 2.7 21.3 2 20.45 2ZM8 19H5V9.5h3V19ZM6.5 8.2a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5ZM19 19h-3v-4.6c0-1.1 0-2.5-1.52-2.5s-1.76 1.2-1.76 2.42V19h-3V9.5h2.88v1.3h.04a3.15 3.15 0 0 1 2.84-1.56c3.04 0 3.6 2 3.6 4.6V19Z"/></symbol>
+  </svg>
 
   <!-- ===== Hero ===== -->
-  <header class="hero" id="top">
-    <div class="hero-glow glow-1" aria-hidden="true"></div>
-    <div class="hero-glow glow-2" aria-hidden="true"></div>
-
-    <div class="hero-content">
-      <p class="hero-kicker">ENGINEER | STRATEGIST | ANALYTICAL THINKER</p>
-      <h1 class="hero-title">
-        I build things,<br />
-        then write about it.
-      </h1>
-      <p class="hero-tagline">
-        I'm Piotr — a mechanical engineer who designs real hardware and
-        writes about the process, the failures, and everything learned
-        along the way.
-      </p>
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">See my work</a>
-        <a href="#blog" class="btn btn-outline">Read the blog</a>
-      </div>
+  <header class="hero" id="home">
+    <div class="flames" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
     </div>
+    <div class="ph ph-hero" data-label="Photo placeholder"></div>
 
-    <div class="scroll-hint" aria-hidden="true">
-      <span>SCROLL</span>
-      <div class="scroll-line"></div>
+    <nav class="nav container">
+      <a href="#home" class="logo"><em>RK</em> Abir</a>
+      <ul class="nav-links">
+        <li><a href="#work"><span class="roll" data-text="Work"><span>Work</span></span></a></li>
+        <li><a href="#services"><span class="roll" data-text="Services"><span>Services</span></span></a></li>
+        <li><a href="#about"><span class="roll" data-text="About"><span>About</span></span></a></li>
+        <li><a href="#contact"><span class="roll" data-text="Contact"><span>Contact</span></span></a></li>
+      </ul>
+      <a href="#contact" class="btn btn-orange">
+        <span class="roll" data-text="Let's Talk"><span>Let's Talk</span></span>
+        <svg class="ico"><use href="#i-arrow"/></svg>
+      </a>
+    </nav>
+
+    <div class="hero-content container">
+      <p class="label reveal"><svg><use href="#i-spark"/></svg>Framer Developer</p>
+      <h1 class="hero-title reveal">Hi, I'm Piotr :)</h1>
+      <p class="hero-title hero-serif reveal">Mechanical Engineer by Study</p>
+      <p class="hero-text reveal">Welcome to my portfolio website, where I showcase my projects, describe a bit of who I am as a person, and my newly formed interests.</p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-white">
+          <span class="roll" data-text="Let's Build Together"><span>Let's Build Together</span></span>
+          <svg class="ico"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="#work" class="btn-link">
+          <span class="roll" data-text="Explore Projects"><span>Explore Projects</span></span>
+        </a>
+      </div>
     </div>
   </header>
 
   <main>
     <!-- ===== About ===== -->
-    <section class="section" id="about">
-      <div class="section-inner">
-        <p class="section-kicker">01 · About</p>
-        <h2 class="section-title">A bit about me</h2>
-        <div class="about-grid">
-          <div class="about-text reveal">
-            <p>
-              I'm a mechanical engineer who loves the full journey of a
-              product — napkin sketch, CAD model, late-night FEA runs, a
-              prototype that doesn't quite fit, and the final part that does.
-            </p>
-            <p>
-              My focus areas are machine design, structural analysis, and
-              design for manufacturing. Outside of CAD, I write about what
-              I'm building, what I'm learning, and the mistakes that taught
-              me the most.
-            </p>
-          </div>
-          <div class="about-stats reveal">
-            <div class="stat">
-              <span class="stat-num">5+</span>
-              <span class="stat-label">Years designing hardware</span>
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-side">
+          <p class="label reveal"><svg><use href="#i-spark"/></svg>About Me</p>
+          <div class="ph ph-about reveal" data-label="Photo"></div>
+        </div>
+        <div class="about-main">
+          <h2 class="h2 reveal">I'm a Framer Developer crafting<br />meaningful <em>digital experiences.</em></h2>
+          <div class="stats">
+            <div class="stat reveal">
+              <p class="stat-num"><span data-count="6">0</span>+</p>
+              <p class="stat-label">Years of Experience</p>
             </div>
-            <div class="stat">
-              <span class="stat-num">30+</span>
-              <span class="stat-label">Prototypes iterated</span>
+            <div class="stat reveal">
+              <p class="stat-num">$<span data-count="2">0</span>+</p>
+              <p class="stat-label">Billion of Project Managed</p>
             </div>
-            <div class="stat">
-              <span class="stat-num">100%</span>
-              <span class="stat-label">Coffee-powered</span>
+            <div class="stat reveal">
+              <p class="stat-num"><span data-count="3">0</span>+</p>
+              <p class="stat-label">Projects Delivered</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Work / Portfolio ===== -->
-    <section class="section section-alt" id="work">
-      <div class="section-inner">
-        <p class="section-kicker">02 · Portfolio</p>
-        <h2 class="section-title">Selected work</h2>
-        <div class="grid-cards">
-          <article class="card reveal">
-            <div class="card-tag">Aerospace</div>
-            <h3>Aircraft Glider — 3D Model &amp; Physical Prototype</h3>
-            <p>
-              Designed a glider in CAD and built a flying physical prototype,
-              iterating on wing geometry and balance for stable flight.
-            </p>
-            <ul class="card-meta">
-              <li>CAD</li><li>Aerodynamics</li><li>Prototyping</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">Structural</div>
-            <h3>Bridge Truss Design</h3>
-            <p>
-              Analyzed and optimized a truss bridge, sizing members for load
-              capacity while minimizing material and weight.
-            </p>
-            <ul class="card-meta">
-              <li>Statics</li><li>FEA</li><li>Optimization</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">Energy</div>
-            <h3>Building Energy Analysis</h3>
-            <p>
-              Modeled a building envelope to evaluate heating and cooling loads
-              and identify efficiency improvements.
-            </p>
-            <ul class="card-meta">
-              <li>Thermodynamics</li><li>HVAC</li><li>Modeling</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">Capstone</div>
-            <h3>UAV VTOL Drone — ING Robotic Aviation</h3>
-            <p>
-              Industry-sponsored capstone designing a vertical take-off and
-              landing UAV with ING Robotic Aviation, from concept to prototype.
-            </p>
-            <ul class="card-meta">
-              <li>UAV</li><li>VTOL</li><li>Systems Design</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">Product Design</div>
-            <h3>Electric Coffee Maker Prototype</h3>
-            <p>
-              Built a functional prototype of an electric coffee maker,
-              integrating heating, fluid flow, and user controls.
-            </p>
-            <ul class="card-meta">
-              <li>Product Design</li><li>Electronics</li><li>Prototyping</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">Machine Design</div>
-            <h3>Gear Reducer</h3>
-            <p>
-              Designed a gear reduction unit, selecting ratios and sizing gears,
-              shafts, and bearings for durability under load.
-            </p>
-            <ul class="card-meta">
-              <li>Gears</li><li>Shafts</li><li>Machine Design</li>
-            </ul>
-          </article>
-          <article class="card reveal">
-            <div class="card-tag">CFD</div>
-            <h3>Turbulent Flow Simulator</h3>
-            <p>
-              Ran computational fluid dynamics studies to simulate and
-              visualize turbulent flow and quantify its behavior.
-            </p>
-            <ul class="card-meta">
-              <li>CFD</li><li>Fluid Dynamics</li><li>Simulation</li>
-            </ul>
-          </article>
+    <!-- ===== Services ===== -->
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-head-row">
+          <div>
+            <p class="label reveal"><svg><use href="#i-spark"/></svg>Services</p>
+            <h2 class="h2 reveal">My <em>services</em></h2>
+            <p class="lead reveal">Helping brands build modern, high-performing websites that combine strategy, design, and seamless user experiences.</p>
+          </div>
+          <a href="#contact" class="btn-link reveal">
+            <span class="roll" data-text="Book A Call"><span>Book A Call</span></span>
+            <svg class="ico"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+
+        <div class="service-list">
+          <div class="service">
+            <button class="service-head" type="button" aria-expanded="false">
+              <h3>Framer <em>Development</em></h3>
+            </button>
+            <div class="service-body"><div class="service-inner">
+              <div class="service-text">
+                <p>I build fast, responsive, and conversion-focused websites in Framer that help brands stand out online.</p>
+                <ul>
+                  <li>Custom Framer Development</li>
+                  <li>Responsive Layouts</li>
+                  <li>CMS Integration</li>
+                  <li>Performance Optimization</li>
+                  <li>SEO Best Practices</li>
+                </ul>
+              </div>
+              <div class="ph ph-service" data-label="Service image"></div>
+            </div></div>
+          </div>
+          <div class="service">
+            <button class="service-head" type="button" aria-expanded="false">
+              <h3>Landing Page <em>Design</em></h3>
+            </button>
+            <div class="service-body"><div class="service-inner">
+              <div class="service-text">
+                <p>Strategic landing pages designed to capture attention, communicate value, and increase conversions.</p>
+                <ul>
+                  <li>Conversion-Focused Design</li>
+                  <li>Custom Visual Direction</li>
+                  <li>Mobile Optimization</li>
+                  <li>Clear User Flows</li>
+                  <li>CTA Optimization</li>
+                </ul>
+              </div>
+              <div class="ph ph-service" data-label="Service image"></div>
+            </div></div>
+          </div>
+          <div class="service">
+            <button class="service-head" type="button" aria-expanded="false">
+              <h3>Website <em>Redesign</em></h3>
+            </button>
+            <div class="service-body"><div class="service-inner">
+              <div class="service-text">
+                <p>Transforming outdated websites into modern digital experiences that improve engagement and strengthen brand presence.</p>
+                <ul>
+                  <li>UX &amp; UI Improvements</li>
+                  <li>Modern Visual Design</li>
+                  <li>Content Structure Review</li>
+                  <li>Performance Enhancement</li>
+                  <li>Responsive Experience</li>
+                </ul>
+              </div>
+              <div class="ph ph-service" data-label="Service image"></div>
+            </div></div>
+          </div>
+          <div class="service">
+            <button class="service-head" type="button" aria-expanded="false">
+              <h3>Webflow <em>Development</em></h3>
+            </button>
+            <div class="service-body"><div class="service-inner">
+              <div class="service-text">
+                <p>Developing scalable and visually polished Webflow websites tailored to your business goals.</p>
+                <ul>
+                  <li>Custom Webflow Development</li>
+                  <li>CMS Setup</li>
+                  <li>Responsive Design</li>
+                  <li>Animations &amp; Interactions</li>
+                  <li>SEO Optimization</li>
+                </ul>
+              </div>
+              <div class="ph ph-service" data-label="Service image"></div>
+            </div></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Blog ===== -->
-    <section class="section" id="blog">
-      <div class="section-inner">
-        <p class="section-kicker">03 · Blog</p>
-        <h2 class="section-title">Latest writing</h2>
-        <div class="grid-cards">
-          <article class="card post-card reveal">
-            <div class="post-date">Coming soon</div>
-            <h3>What 14 failed prototypes taught me</h3>
-            <p>
-              A breakdown of every version of the robotic gripper that
-              didn't work — and why each failure mattered.
-            </p>
-            <a href="#" class="card-link">Read post →</a>
-          </article>
-          <article class="card post-card reveal">
-            <div class="post-date">Coming soon</div>
-            <h3>Hand calcs before CAD, always</h3>
-            <p>
-              Why I still reach for a napkin and a pencil before opening
-              any simulation software.
-            </p>
-            <a href="#" class="card-link">Read post →</a>
-          </article>
-          <article class="card post-card reveal">
-            <div class="post-date">Coming soon</div>
-            <h3>Automating the boring parts of engineering</h3>
-            <p>
-              How a small Python script saved hours of drawing cleanup —
-              and where automation stops being worth it.
-            </p>
-            <a href="#" class="card-link">Read post →</a>
-          </article>
+    <!-- ===== Work ===== -->
+    <section class="section work" id="work">
+      <div class="container">
+        <div class="section-head center">
+          <p class="label reveal"><svg><use href="#i-spark"/></svg>Work</p>
+          <h2 class="h2 reveal">My latest <em>work</em></h2>
+          <p class="lead reveal">A selection of recent projects showcasing my approach to design, development, and digital problem-solving.</p>
+        </div>
+
+        <div class="slider reveal">
+          <div class="slider-track" id="workTrack">
+            <article class="slide">
+              <div class="ph ph-project ph-grad-1" data-label="Project image"></div>
+              <div class="slide-info">
+                <h3>Performance Marketing Website</h3>
+                <p>A premium agency website focused on generating leads, increasing conversions, and driving growth.</p>
+                <dl class="slide-meta">
+                  <div><dt>Client</dt><dd>AdScent</dd></div>
+                  <div><dt>Service</dt><dd>Framer Development</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="slide">
+              <div class="ph ph-project ph-grad-2" data-label="Project image"></div>
+              <div class="slide-info">
+                <h3>Creative Portfolio Platform</h3>
+                <p>A bold portfolio experience designed to showcase creative work through immersive visuals and interaction.</p>
+                <dl class="slide-meta">
+                  <div><dt>Client</dt><dd>Portrixe®</dd></div>
+                  <div><dt>Service</dt><dd>Brand Website Design &amp; Development</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="slide">
+              <div class="ph ph-project ph-grad-3" data-label="Project image"></div>
+              <div class="slide-info">
+                <h3>Modern Creative Agency Website</h3>
+                <p>A modern agency website built in Webflow, featuring bold visuals, smooth interactions, and focused conversions.</p>
+                <dl class="slide-meta">
+                  <div><dt>Client</dt><dd>Lunexis Studio</dd></div>
+                  <div><dt>Service</dt><dd>Webflow Design &amp; Development</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="slide">
+              <div class="ph ph-project ph-grad-4" data-label="Project image"></div>
+              <div class="slide-info">
+                <h3>Fintech Product Experience</h3>
+                <p>A clean fintech platform designed to simplify financial services and create a seamless journey.</p>
+                <dl class="slide-meta">
+                  <div><dt>Client</dt><dd>Monex</dd></div>
+                  <div><dt>Service</dt><dd>Product Design &amp; Development</dd></div>
+                </dl>
+              </div>
+            </article>
+          </div>
+          <div class="slider-controls">
+            <div class="slider-arrows">
+              <button class="arrow arrow-outline" type="button" id="workPrev" aria-label="Previous project"><svg><use href="#i-left"/></svg></button>
+              <button class="arrow arrow-outline" type="button" id="workNext" aria-label="Next project"><svg><use href="#i-right"/></svg></button>
+            </div>
+            <a href="#work" class="btn-link">
+              <span class="roll" data-text="View Details"><span>View Details</span></span>
+              <svg class="ico"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Contact ===== -->
-    <section class="section section-alt" id="contact">
-      <div class="section-inner contact-inner">
-        <p class="section-kicker">04 · Contact</p>
-        <h2 class="section-title">Let's talk</h2>
-        <p class="contact-lead">
-          Have a project, a role, or just want to argue about bolt preload?
-          My inbox is open.
-        </p>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:piotr.spychalski12@gmail.com">piotr.spychalski12@gmail.com</a>
-          <a class="btn btn-outline" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-outline" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <!-- ===== Get in touch banner ===== -->
+    <section class="idea">
+      <div class="idea-bg" aria-hidden="true"></div>
+      <div class="container idea-inner">
+        <div>
+          <h2 class="h2 reveal">Have an idea?<br />Let's get <em>in touch</em></h2>
+          <p class="idea-text reveal">Building premium Framer websites that help brands stand out, connect with audiences, and grow confidently.</p>
+        </div>
+        <a href="#contact" class="circle-btn reveal">
+          <span class="roll" data-text="Get in Touch"><span>Get in Touch</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section class="section experience">
+      <div class="container">
+        <div class="section-head center">
+          <p class="label reveal"><svg><use href="#i-spark"/></svg>Experience</p>
+          <h2 class="h2 reveal">Take a look at<br />my past <em>experience</em></h2>
+          <p class="lead reveal">Helping brands build premium digital experiences through Framer, Webflow, and modern web development.</p>
+        </div>
+        <div class="exp-grid">
+          <div class="exp reveal">
+            <div class="exp-top"><h4>RK Abir Studio</h4><span>Feb 2024 - Present</span></div>
+            <p class="exp-role">Framer &amp; Webflow Developer</p>
+            <p class="exp-text">Designing and developing premium websites that combine performance, visual excellence, and seamless user experiences.</p>
+          </div>
+          <div class="exp reveal">
+            <div class="exp-top"><h4>Freelance Projects</h4><span>Feb 2023 - Present</span></div>
+            <p class="exp-role">Framer &amp; Webflow Specialist</p>
+            <p class="exp-text">Collaborating with clients globally to create high-converting websites focused on performance, usability, and visual excellence.</p>
+          </div>
+          <div class="exp reveal">
+            <div class="exp-top"><h4>Creative Agency</h4><span>Jun 2023 - Present</span></div>
+            <p class="exp-role">Web Designer &amp; No-Code Developer</p>
+            <p class="exp-text">Built marketing websites, landing pages, and digital products using modern design and no-code development tools.</p>
+          </div>
+          <div class="exp reveal">
+            <div class="exp-top"><h4>Independent Creator</h4><span>Feb 2021 - Present</span></div>
+            <p class="exp-role">UI Designer &amp; Frontend Builder</p>
+            <p class="exp-text">Exploring creative web experiences, refining design systems, and building products that balance aesthetics and usability.</p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ===== Collaboration ===== -->
+    <section class="section collab">
+      <div class="container">
+        <div class="section-head center">
+          <p class="label reveal"><svg><use href="#i-spark"/></svg>Collaboration</p>
+          <h2 class="h2 reveal">Ready to build<br />your <em>next project?</em></h2>
+          <p class="lead reveal">Let's create a fast, modern, and conversion-focused website that helps your brand stand out.</p>
+        </div>
+        <div class="collab-cards">
+          <div class="card collab-count reveal">
+            <p class="big-num"><span data-count="290">0</span>+</p>
+            <p class="card-sub">Projects Successfully Delivered</p>
+            <div class="collage" aria-hidden="true">
+              <div class="collage-row">
+                <span class="ph ph-tile ph-grad-1"></span><span class="ph ph-tile ph-grad-2"></span><span class="ph ph-tile ph-grad-3"></span><span class="ph ph-tile ph-grad-4"></span><span class="ph ph-tile ph-grad-1"></span>
+              </div>
+              <div class="collage-row">
+                <span class="ph ph-tile ph-grad-3"></span><span class="ph ph-tile ph-grad-4"></span><span class="ph ph-tile ph-grad-1"></span><span class="ph ph-tile ph-grad-2"></span><span class="ph ph-tile ph-grad-3"></span>
+              </div>
+              <div class="collage-row">
+                <span class="ph ph-tile ph-grad-2"></span><span class="ph ph-tile ph-grad-1"></span><span class="ph ph-tile ph-grad-4"></span><span class="ph ph-tile ph-grad-3"></span><span class="ph ph-tile ph-grad-2"></span>
+              </div>
+            </div>
+          </div>
+          <div class="card collab-call reveal">
+            <h3 class="card-title">Book a free 30 min strategy call</h3>
+            <hr class="dashed" />
+            <p class="card-sub">What you'll get</p>
+            <ul class="checklist">
+              <li><svg><use href="#i-check"/></svg>What you'll get</li>
+              <li><svg><use href="#i-check"/></svg>Website strategy</li>
+              <li><svg><use href="#i-check"/></svg>Budget estimation</li>
+              <li><svg><use href="#i-check"/></svg>Clear action plan</li>
+            </ul>
+            <a href="#contact" class="btn btn-orange">
+              <span class="roll" data-text="Schedule a call"><span>Schedule a call</span></span>
+              <svg class="ico"><use href="#i-calendar"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Process ===== -->
+    <section class="section process">
+      <div class="container">
+        <p class="label reveal"><svg><use href="#i-spark"/></svg>Process</p>
+        <h2 class="h2 reveal">My <em>Process</em></h2>
+        <p class="lead reveal">A proven workflow that transforms ideas into high-performing digital experiences.</p>
+        <div class="process-grid">
+          <div class="step reveal">
+            <div class="ph ph-step" data-label="3D image"></div>
+            <h4>Research</h4>
+            <p>Understanding business goals, audience needs, and opportunities to build a strong strategic foundation.</p>
+          </div>
+          <div class="step reveal">
+            <div class="ph ph-step" data-label="3D image"></div>
+            <h4>Design</h4>
+            <p>Crafting intuitive, visually engaging experiences that balance usability, branding, and conversion goals.</p>
+          </div>
+          <div class="step reveal">
+            <div class="ph ph-step" data-label="3D image"></div>
+            <h4>Development</h4>
+            <p>Building fast, responsive websites in Framer and Webflow with performance and scalability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pricing ===== -->
+    <section class="section pricing">
+      <div class="container">
+        <div class="section-head center">
+          <p class="label reveal"><svg><use href="#i-spark"/></svg>Pricing</p>
+          <h2 class="h2 reveal">Pricing &amp; <em>Engagements</em></h2>
+          <p class="lead reveal">Flexible engagement options tailored for startups, founders, and growing brands.</p>
+        </div>
+        <div class="plans">
+          <div class="card plan reveal">
+            <h3 class="plan-name">Standard <em>Plan</em></h3>
+            <p class="plan-for">For startups and businesses with a ready design.</p>
+            <p class="plan-price">$35 <span>/ Hour</span></p>
+            <hr />
+            <p class="plan-inc">What's Included</p>
+            <ul class="dots">
+              <li>Framer Development</li>
+              <li>Responsive Optimization</li>
+              <li>Basic Animations</li>
+              <li>SEO Essentials</li>
+              <li>Fast Turnaround</li>
+            </ul>
+            <a href="#contact" class="btn btn-orange btn-block">
+              <span class="roll" data-text="Start a Project"><span>Start a Project</span></span>
+              <svg class="ico"><use href="#i-arrow"/></svg>
+            </a>
+            <p class="plan-note">Ideal for design-ready projects that need fast, reliable development with responsive optimization, SEO, and smooth animations.</p>
+          </div>
+          <div class="card plan reveal">
+            <h3 class="plan-name">Premium <em>Plan</em></h3>
+            <p class="plan-for">For brands seeking design and development solutions.</p>
+            <p class="plan-price">$75 <span>/ Hour</span></p>
+            <hr />
+            <p class="plan-inc">What's Included</p>
+            <ul class="dots">
+              <li>Custom Strategy &amp; Planning</li>
+              <li>Design + Development</li>
+              <li>Advanced Animations</li>
+              <li>Custom Integrations</li>
+              <li>Dedicated Support</li>
+            </ul>
+            <a href="#contact" class="btn btn-orange btn-block">
+              <span class="roll" data-text="Start a Project"><span>Start a Project</span></span>
+              <svg class="ico"><use href="#i-arrow"/></svg>
+            </a>
+            <p class="plan-note">Perfect for ambitious brands requiring a premium digital experience with strategy, scalability, and long-term growth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq">
+      <div class="container">
+        <div class="section-head center">
+          <p class="label reveal"><svg><use href="#i-spark"/></svg>Pricing</p>
+          <h2 class="h2 reveal">Frequently<br />asked <em>question</em></h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item is-open">
+            <button class="faq-q" type="button" aria-expanded="true">
+              <span>What's your background and how did you get started in this field?</span>
+              <i class="faq-toggle" aria-hidden="true"></i>
+            </button>
+            <div class="faq-a"><div><p>I started as a self-taught web designer and gradually specialized in Framer and Webflow development, helping brands build modern digital experiences.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>What services do you offer?</span>
+              <i class="faq-toggle" aria-hidden="true"></i>
+            </button>
+            <div class="faq-a"><div><p>I provide Framer Development, Webflow Development, Landing Page Design, Website Redesign, SEO optimization, and custom website solutions.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>What makes you different from others in your industry?</span>
+              <i class="faq-toggle" aria-hidden="true"></i>
+            </button>
+            <div class="faq-a"><div><p>Focus on performance, clean design, responsive development, and user experience to create websites that deliver real business results.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>Do you work with clients remotely or only in person?</span>
+              <i class="faq-toggle" aria-hidden="true"></i>
+            </button>
+            <div class="faq-a"><div><p>I work remotely with clients worldwide, ensuring smooth communication, transparent processes, and timely project delivery.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>Can I see examples of your past work or projects?</span>
+              <i class="faq-toggle" aria-hidden="true"></i>
+            </button>
+            <div class="faq-a"><div><p>Yes, you can explore my portfolio section to view selected Framer and Webflow projects built for startups and growing brands.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <section class="section reviews">
+      <div class="container">
+        <p class="label reveal"><svg><use href="#i-spark"/></svg>Feedbacks</p>
+        <h2 class="h2 reveal">Why Clients <em>Trust Me</em></h2>
+        <p class="lead reveal">Helping startups and brands launch faster with thoughtful design and reliable development.</p>
+        <div class="review-grid">
+          <div class="ph ph-person reveal" id="reviewPhoto" data-label="Client photo"></div>
+          <div class="card review reveal">
+            <p class="review-tag">Review</p>
+            <p class="review-quote" id="reviewQuote">"Abir delivered exactly what we needed, creating a premium website that exceeded expectations, improved engagement, strengthened our brand presence, and conversions."</p>
+            <div class="review-foot">
+              <div>
+                <p class="review-name" id="reviewName">Luciter Jason</p>
+                <p class="review-role" id="reviewRole">Ceo ai Qtube</p>
+              </div>
+              <div class="slider-arrows">
+                <button class="arrow arrow-solid" type="button" id="reviewPrev" aria-label="Previous review"><svg><use href="#i-left"/></svg></button>
+                <button class="arrow arrow-solid" type="button" id="reviewNext" aria-label="Next review"><svg><use href="#i-right"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="card facts reveal">
+            <p class="facts-title">Facts &amp; Numbers</p>
+            <div>
+              <p class="big-num"><span data-count="98">0</span>%</p>
+              <p class="facts-text">Projects delivered successfully with a strong focus on quality, performance, and user experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Marquee ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Let's build <em>together</em><svg><use href="#i-reg"/></svg></span>
+        <span>Let's build <em>together</em><svg><use href="#i-reg"/></svg></span>
+        <span>Let's build <em>together</em><svg><use href="#i-reg"/></svg></span>
+        <span>Let's build <em>together</em><svg><use href="#i-reg"/></svg></span>
+        <span>Let's build <em>together</em><svg><use href="#i-reg"/></svg></span>
+        <span>Let's build <em>together</em><svg><use href="#i-reg"/></svg></span>
+      </div>
+    </div>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <span>© <span id="year"></span> Piotr Spychalski</span>
-      <span class="footer-note">Engineer | Strategist | Analytical Thinker</span>
+  <!-- ===== Footer ===== -->
+  <footer class="footer" id="contact">
+    <div class="flames flames-footer" aria-hidden="true">
+      <span></span><span></span><span></span>
     </div>
+    <div class="container footer-grid">
+      <div class="footer-main">
+        <a href="#home" class="logo"><em>RK</em> Abir<sup>®</sup></a>
+        <h2 class="h2 footer-title">Let's work <em>together!</em></h2>
+        <a class="footer-email" href="mailto:hello.rkabir.dev@gmail.com">hello.rkabir.dev@gmail.com</a>
+        <form class="footer-form" action="mailto:hello.rkabir.dev@gmail.com" method="post" enctype="text/plain">
+          <input type="email" name="email" placeholder="Enter Email" required aria-label="Your email" />
+          <button type="submit">Send</button>
+        </form>
+        <p class="footer-credit">Designed &amp; Developed by RK Abir<br />Powered by Framer &amp; Webflow</p>
+      </div>
+      <div class="footer-side">
+        <ul class="footer-nav">
+          <li><a href="#home"><span>→</span>Home<b>01</b></a></li>
+          <li><a href="#about"><span>→</span>About<b>02</b></a></li>
+          <li><a href="#services"><span>→</span>Services<b>03</b></a></li>
+          <li><a href="#work"><span>→</span>Projects<b>04</b></a></li>
+          <li><a href="#contact"><span>→</span>Contact<b>05</b></a></li>
+        </ul>
+        <div class="socials">
+          <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-in"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-line"></div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
