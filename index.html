@@ -18,13 +18,14 @@
     }
   }
   </script>
+  <script src="commit-grid.js" defer></script>
   <script type="module" src="loading.js?v=2"></script>
 </head>
 <body>
 
   <!-- ===== Preloader ===== -->
   <div class="preloader" id="preloader">
-    <div class="preloader-veil" id="preloaderVeil"></div>
+    <div class="preloader-veil" id="preloaderVeil"><canvas id="gridCanvas"></canvas></div>
     <canvas id="loadingCanvas"></canvas>
     <div class="preloader-pill" id="preloaderPill">
       <canvas id="gearsCanvas" class="preloader-gears"></canvas>
@@ -46,14 +47,14 @@
 
   <!-- ===== Shared icons ===== -->
   <svg width="0" height="0" class="icon-defs" aria-hidden="true">
-    <symbol id="i-spark" viewBox="0 0 8 8"><path fill="#FB4504" d="M8 4a2.107 2.107 0 0 0-1.906-2.094A2.107 2.107 0 0 0 4 0a2.107 2.107 0 0 0-2.094 1.906A2.107 2.107 0 0 0 0 4c0 1.093.838 1.994 1.906 2.094A2.107 2.107 0 0 0 4 8a2.107 2.107 0 0 0 2.094-1.906A2.107 2.107 0 0 0 8 4m-4.223-.223a1.69 1.69 0 0 1-1.45-1.45c.753.1 1.35.697 1.45 1.45M3.654 2.58c.016-.347.136-.675.346-.947.21.272.33.6.346.947A2.1 2.1 0 0 0 4 3.089a2.1 2.1 0 0 0-.346-.51M2.58 3.654q.227.21.509.346-.281.136-.51.346A1.67 1.67 0 0 1 1.634 4c.272-.21.6-.33.947-.346m1.197.569c-.1.753-.697 1.35-1.45 1.45.1-.753.697-1.35 1.45-1.45M4 4.91q.136.281.346.51A1.67 1.67 0 0 1 4 6.366c-.21-.272-.33-.6-.346-.947q.21-.227.346-.509m.223-.688c.753.1 1.35.697 1.45 1.45a1.69 1.69 0 0 1-1.45-1.45m1.197.123A2.1 2.1 0 0 0 4.911 4q.281-.136.51-.346c.346.016.674.136.946.346-.272.21-.6.33-.947.346m-1.197-.569c.1-.753.697-1.35 1.45-1.45-.1.753-.697 1.35-1.45 1.45M4 .415c.865 0 1.579.654 1.677 1.493a2.1 2.1 0 0 0-.953.346 2.1 2.1 0 0 0-.577-1.082L4 1.025l-.147.147c-.3.3-.498.674-.577 1.082a2.1 2.1 0 0 0-.953-.346A1.69 1.69 0 0 1 4 .415M.415 4a1.69 1.69 0 0 1 1.493-1.677c.036.35.159.675.346.953a2.1 2.1 0 0 0-1.083.577L1.025 4l.146.147c.3.3.675.498 1.083.577a2.1 2.1 0 0 0-.346.953A1.69 1.69 0 0 1 .415 4M4 7.585a1.69 1.69 0 0 1-1.677-1.493c.35-.036.675-.159.953-.346.079.408.277.782.577 1.082L4 6.975l.147-.147c.3-.3.498-.674.577-1.082.278.187.603.31.953.346A1.69 1.69 0 0 1 4 7.585m2.092-1.908a2.1 2.1 0 0 0-.346-.953 2.1 2.1 0 0 0 1.082-.577L6.975 4l-.147-.147c-.3-.3-.674-.498-1.082-.577a2.1 2.1 0 0 0 .346-.953A1.69 1.69 0 0 1 7.585 4a1.69 1.69 0 0 1-1.493 1.677"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 8 8"><path fill="#987858" d="M8 4a2.107 2.107 0 0 0-1.906-2.094A2.107 2.107 0 0 0 4 0a2.107 2.107 0 0 0-2.094 1.906A2.107 2.107 0 0 0 0 4c0 1.093.838 1.994 1.906 2.094A2.107 2.107 0 0 0 4 8a2.107 2.107 0 0 0 2.094-1.906A2.107 2.107 0 0 0 8 4m-4.223-.223a1.69 1.69 0 0 1-1.45-1.45c.753.1 1.35.697 1.45 1.45M3.654 2.58c.016-.347.136-.675.346-.947.21.272.33.6.346.947A2.1 2.1 0 0 0 4 3.089a2.1 2.1 0 0 0-.346-.51M2.58 3.654q.227.21.509.346-.281.136-.51.346A1.67 1.67 0 0 1 1.634 4c.272-.21.6-.33.947-.346m1.197.569c-.1.753-.697 1.35-1.45 1.45.1-.753.697-1.35 1.45-1.45M4 4.91q.136.281.346.51A1.67 1.67 0 0 1 4 6.366c-.21-.272-.33-.6-.346-.947q.21-.227.346-.509m.223-.688c.753.1 1.35.697 1.45 1.45a1.69 1.69 0 0 1-1.45-1.45m1.197.123A2.1 2.1 0 0 0 4.911 4q.281-.136.51-.346c.346.016.674.136.946.346-.272.21-.6.33-.947.346m-1.197-.569c.1-.753.697-1.35 1.45-1.45-.1.753-.697 1.35-1.45 1.45M4 .415c.865 0 1.579.654 1.677 1.493a2.1 2.1 0 0 0-.953.346 2.1 2.1 0 0 0-.577-1.082L4 1.025l-.147.147c-.3.3-.498.674-.577 1.082a2.1 2.1 0 0 0-.953-.346A1.69 1.69 0 0 1 4 .415M.415 4a1.69 1.69 0 0 1 1.493-1.677c.036.35.159.675.346.953a2.1 2.1 0 0 0-1.083.577L1.025 4l.146.147c.3.3.675.498 1.083.577a2.1 2.1 0 0 0-.346.953A1.69 1.69 0 0 1 .415 4M4 7.585a1.69 1.69 0 0 1-1.677-1.493c.35-.036.675-.159.953-.346.079.408.277.782.577 1.082L4 6.975l.147-.147c.3-.3.498-.674.577-1.082.278.187.603.31.953.346A1.69 1.69 0 0 1 4 7.585m2.092-1.908a2.1 2.1 0 0 0-.346-.953 2.1 2.1 0 0 0 1.082-.577L6.975 4l-.147-.147c-.3-.3-.674-.498-1.082-.577a2.1 2.1 0 0 0 .346-.953A1.69 1.69 0 0 1 7.585 4a1.69 1.69 0 0 1-1.493 1.677"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6m0 9V6H9"/></symbol>
     <symbol id="i-left" viewBox="0 0 49 49"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M32.833 24.5H16.167m6.25 6.25-6.25-6.25 6.25-6.25"/></symbol>
     <symbol id="i-right" viewBox="0 0 49 49"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.167 24.5h16.666m-6.25-6.25 6.25 6.25-6.25 6.25"/></symbol>
     <symbol id="i-check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#fff"/><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="m6 10.2 2.6 2.6L14 7.4"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9Z"/></symbol>
     <symbol id="i-reg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M15 29V11h6.2a5 5 0 0 1 0 10H15m6 0 5 8"/></symbol>
-    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M17.75 3h3.07l-6.71 7.67L22 21h-6.18l-4.84-6.33L5.44 21H2.37l7.18-8.2L2 3h6.34l4.37 5.78L17.75 3Zm-1.08 16.17h1.7L7.4 4.74H5.58l11.09 14.43Z"/></symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></symbol>
     <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-1.56 19.88v-7H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.88h-2.34v7A10 10 0 0 0 12 2Z"/></symbol>
     <symbol id="i-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2Zm5-8.1a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM12 3.6c2.7 0 3 0 4.1.06 2.7.12 4 1.42 4.1 4.1.06 1.07.07 1.4.07 4.1s0 3.04-.07 4.1c-.12 2.7-1.4 4-4.1 4.13-1.07.05-1.4.06-4.1.06s-3.04 0-4.1-.06c-2.7-.13-4-1.43-4.1-4.13C3.6 15.04 3.6 14.7 3.6 12s0-3.03.06-4.1c.13-2.7 1.42-4 4.1-4.1C8.96 3.6 9.3 3.6 12 3.6ZM12 2c-2.72 0-3.06 0-4.12.06-3.64.17-5.65 2.18-5.82 5.82C2 8.94 2 9.28 2 12s0 3.06.06 4.12c.17 3.64 2.18 5.65 5.82 5.82C8.94 22 9.28 22 12 22s3.06 0 4.12-.06c3.63-.17 5.66-2.18 5.82-5.82C22 15.06 22 14.72 22 12s0-3.06-.06-4.12c-.16-3.63-2.18-5.65-5.82-5.82C15.06 2 14.72 2 12 2Z"/></symbol>
     <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 2H3.55A1.55 1.55 0 0 0 2 3.55v16.9C2 21.3 2.7 22 3.55 22h16.9c.85 0 1.55-.7 1.55-1.55V3.55C22 2.7 21.3 2 20.45 2ZM8 19H5V9.5h3V19ZM6.5 8.2a1.75 1.75 0 1 1 0-3.5 1.75 1.75 0 0 1 0 3.5ZM19 19h-3v-4.6c0-1.1 0-2.5-1.52-2.5s-1.76 1.2-1.76 2.42V19h-3V9.5h2.88v1.3h.04a3.15 3.15 0 0 1 2.84-1.56c3.04 0 3.6 2 3.6 4.6V19Z"/></symbol>
@@ -74,7 +75,7 @@
         <li><a href="#about"><span class="roll" data-text="About"><span>About</span></span></a></li>
         <li><a href="#contact"><span class="roll" data-text="Contact"><span>Contact</span></span></a></li>
       </ul>
-      <a href="#contact" class="btn btn-orange">
+      <a href="#contact" class="btn btn-gold">
         <span class="roll" data-text="Let's Talk"><span>Let's Talk</span></span>
         <svg class="ico"><use href="#i-arrow"/></svg>
       </a>
@@ -368,7 +369,7 @@
               <li><svg><use href="#i-check"/></svg>Budget estimation</li>
               <li><svg><use href="#i-check"/></svg>Clear action plan</li>
             </ul>
-            <a href="#contact" class="btn btn-orange">
+            <a href="#contact" class="btn btn-gold">
               <span class="roll" data-text="Schedule a call"><span>Schedule a call</span></span>
               <svg class="ico"><use href="#i-calendar"/></svg>
             </a>
@@ -425,7 +426,7 @@
               <li>SEO Essentials</li>
               <li>Fast Turnaround</li>
             </ul>
-            <a href="#contact" class="btn btn-orange btn-block">
+            <a href="#contact" class="btn btn-gold btn-block">
               <span class="roll" data-text="Start a Project"><span>Start a Project</span></span>
               <svg class="ico"><use href="#i-arrow"/></svg>
             </a>
@@ -444,7 +445,7 @@
               <li>Custom Integrations</li>
               <li>Dedicated Support</li>
             </ul>
-            <a href="#contact" class="btn btn-orange btn-block">
+            <a href="#contact" class="btn btn-gold btn-block">
               <span class="roll" data-text="Start a Project"><span>Start a Project</span></span>
               <svg class="ico"><use href="#i-arrow"/></svg>
             </a>
@@ -572,7 +573,7 @@
           <li><a href="#contact"><span>→</span>Contact<b>05</b></a></li>
         </ul>
         <div class="socials">
-          <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><svg><use href="#i-x"/></svg></a>
+          <a href="https://github.com/piotrspych" target="_blank" rel="noopener" aria-label="GitHub"><svg><use href="#i-gh"/></svg></a>
           <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
           <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
           <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg><use href="#i-in"/></svg></a>

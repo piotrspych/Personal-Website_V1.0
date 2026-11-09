@@ -15,6 +15,8 @@ const eyeMaskRect = document.getElementById("eyeMaskRect");
 const eyeHole = document.getElementById("eyeHole");
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Emblem height in the scene. 0 puts it at the centre of the background ripple.
+const EMBLEM_Y = 0;
 const EYE = [
   [0.0024, 0.2141],
   [0.086, 0.2414],
@@ -259,7 +261,7 @@ function frame(now) {
       const u = (t - 10) / 1.4;
       const s = smoothstep(Math.min(1, u / 0.75));
       camera.position.x = 0.086 * s;
-      camera.position.y = 0.796 * s;
+      camera.position.y = (0.2138 + EMBLEM_Y) * s;
       const zt = -0.04;
       const d0 = 6.9 - zt;
       const de = 0.004;
@@ -289,7 +291,7 @@ function begin() {
 
 loader.load("spychalski-lockup-3d-v2.glb", (gltf) => {
   lockup = gltf.scene;
-  lockup.position.set(0, 0.583, 0);
+  lockup.position.set(0, EMBLEM_Y, 0);
   const seen = new Set();
   lockup.traverse((obj) => {
     if (!obj.isMesh) return;
