@@ -263,3 +263,64 @@ document.getElementById("reviewNext").addEventListener("click", () => showReview
     else open(false);
   });
 })();
+
+(() => {
+  const root = document.querySelector(".lang");
+  if (!root) return;
+  const btn = root.querySelector(".lang-btn");
+  const menu = root.querySelector(".lang-menu");
+  const label = root.querySelector(".lang-label");
+  const flag = root.querySelector(".lang-flag");
+  if (typeof SITE_LANGS === "undefined") return;
+  const flagSrc = (cc) => cc.startsWith("http") ? cc : `https://flagcdn.com/w40/${cc}.png`;
+  for (const [code, name, native, cc] of SITE_LANGS) {
+    const src = flagSrc(cc);
+    const li = document.createElement("li");
+    const item = document.createElement("button");
+    item.type = "button";
+    item.setAttribute("role", "option");
+    item.dataset.lang = code;
+    item.dataset.name = name;
+    item.dataset.flag = src;
+    item.setAttribute("aria-selected", code === "en" ? "true" : "false");
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "";
+    img.width = 26;
+    img.height = 17;
+    item.append(img, document.createTextNode(name));
+    if (native && native !== name) {
+      const sub = document.createElement("span");
+      sub.className = "lang-native";
+      sub.dir = "auto";
+      sub.textContent = native;
+      item.append(sub);
+    }
+    li.append(item);
+    menu.append(li);
+  }
+  const setOpen = (on) => {
+    root.classList.toggle("is-open", on);
+    btn.setAttribute("aria-expanded", String(on));
+    menu.hidden = !on;
+  };
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(menu.hidden);
+  });
+  menu.addEventListener("click", (e) => {
+    const item = e.target.closest("[data-lang]");
+    if (!item) return;
+    e.stopPropagation();
+    label.textContent = item.dataset.name;
+    flag.src = item.dataset.flag;
+    menu.querySelectorAll("[data-lang]").forEach((el) => {
+      el.setAttribute("aria-selected", el === item ? "true" : "false");
+    });
+    setOpen(false);
+  });
+  document.addEventListener("click", () => setOpen(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+})();

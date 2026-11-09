@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=13" />
   <script type="importmap">
   {
     "imports": {
@@ -92,10 +92,20 @@
           <span>Resume</span>
         </a>
       </div>
-      <a href="#contact" class="btn btn-gold">
-        <span class="roll" data-text="Let's Talk"><span>Let's Talk</span></span>
-        <svg class="ico"><use href="#i-arrow"/></svg>
-      </a>
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-gold">
+          <span class="roll" data-text="Let's Talk"><span>Let's Talk</span></span>
+          <svg class="ico"><use href="#i-arrow"/></svg>
+        </a>
+        <div class="lang">
+          <button type="button" class="lang-btn" aria-expanded="false" aria-haspopup="listbox" aria-label="Language">
+            <img class="lang-flag" src="https://flagcdn.com/w40/us.png" alt="" width="28" height="18" />
+            <span class="lang-label">English</span>
+            <svg class="lang-chev" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 1.5 8 8l6.5-6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="lang-menu" role="listbox" hidden></ul>
+        </div>
+      </div>
     </nav>
 
     <div class="hero-content container">
@@ -647,6 +657,7 @@
     </form>
   </div>
 
-  <script src="script.js?v=8"></script>
+  <script src="languages.js?v=1"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
