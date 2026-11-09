@@ -308,8 +308,56 @@ loader.load("spychalski-lockup-3d-v2.glb", (gltf) => {
   lockup.worldToLocal(center);
   halfWidth = size.x / 2;
   tipOffset.copy(center);
+  setupNavEmblem(lockup);
   begin();
 });
+
+// Small always-spinning copy of the emblem in the page's nav bar.
+function setupNavEmblem(source) {
+  const navCanvas = document.getElementById("navEmblem");
+  if (!navCanvas) return;
+  const navRenderer = new THREE.WebGLRenderer({ canvas: navCanvas, antialias: true, alpha: true });
+  navRenderer.setClearColor(0x000000, 0);
+  navRenderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  navRenderer.setSize(navCanvas.clientWidth || 52, navCanvas.clientHeight || 52, false);
+  navRenderer.outputColorSpace = THREE.SRGBColorSpace;
+  navRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+  const navScene = new THREE.Scene();
+  navScene.environment = new THREE.PMREMGenerator(navRenderer).fromScene(new RoomEnvironment(), 0.04).texture;
+  addLights(navScene);
+
+  // Fresh materials: the loader's copies cut a hole in the eye, which this one must not.
+  const model = source.clone(true);
+  model.position.set(0, 0, 0);
+  model.rotation.set(0, 0, 0);
+  model.traverse((obj) => {
+    if (obj.isMesh) {
+      obj.material = Array.isArray(obj.material)
+        ? obj.material.map((m) => m.clone())
+        : obj.material.clone();
+    }
+  });
+  navScene.add(model);
+  model.updateMatrixWorld(true);
+
+  const box = new THREE.Box3().setFromObject(model);
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3());
+  const navCamera = new THREE.PerspectiveCamera(30, 1, 0.01, 50);
+  const dist = (Math.max(size.x, size.y) / 2 / Math.tan(deg(15))) * 1.08;
+  navCamera.position.set(center.x, center.y, center.z + dist);
+  navCamera.lookAt(center);
+
+  const spinStart = performance.now();
+  const spin = (now) => {
+    requestAnimationFrame(spin);
+    if (navCanvas.getBoundingClientRect().bottom < 0) return;
+    model.rotation.y = reduceMotion ? 0 : deg((90 * (now - spinStart)) / 1000);
+    navRenderer.render(navScene, navCamera);
+  };
+  requestAnimationFrame(spin);
+}
 
 loader.load("gears-3d-meshing.glb", (gltf) => {
   const model = gltf.scene;

@@ -344,6 +344,18 @@ a:hover .ico { transform: translate(2px, -2px); }
 
 .logo sup { font-size: 0.55em; }
 
+.footer-wordmark img {
+  display: block;
+  height: 22px;
+  margin: 4px 0 5px;
+}
+
+.logo-emblem canvas {
+  display: block;
+  width: 52px;
+  height: 52px;
+}
+
 .nav-links {
   display: flex;
   gap: 34px;
@@ -1202,7 +1214,7 @@ a:hover .ico { transform: translate(2px, -2px); }
   position: relative;
   display: flex;
   justify-content: space-between;
-  gap: 60px;
+  gap: 40px;
 }
 
 .footer-title { margin-top: 14px; }
@@ -1214,7 +1226,7 @@ a:hover .ico { transform: translate(2px, -2px); }
   font-size: 62px;
   line-height: 74.4px;
   letter-spacing: -0.032em;
-  word-break: break-word;
+  white-space: nowrap;
 }
 
 .footer-form {
@@ -1261,8 +1273,7 @@ a:hover .ico { transform: translate(2px, -2px); }
 .footer-side {
   display: flex;
   flex-direction: column;
-  width: 346px;
-  flex: none;
+  flex: 0 1 346px;
 }
 
 .footer-nav { margin-top: -14px; }
@@ -1368,9 +1379,9 @@ a:hover .ico { transform: translate(2px, -2px); }
 
   .marquee-track > span { font-size: 64px; line-height: 80px; }
   .footer-grid { flex-direction: column; }
-  .footer-side { width: 100%; gap: 32px; }
+  .footer-side { flex: none; width: 100%; gap: 32px; }
   .footer-title em { font-size: 52px; }
-  .footer-email { font-size: 32px; line-height: 40px; }
+  .footer-email { font-size: 32px; line-height: 40px; white-space: normal; word-break: break-word; }
 }
 
 @media (max-width: 560px) {
