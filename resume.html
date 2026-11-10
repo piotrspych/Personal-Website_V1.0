@@ -8,14 +8,17 @@
     html, body { height: 100%; margin: 0; background: #0d0d0d; color: #fff; font-family: Inter, system-ui, sans-serif; }
     header { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
     a { color: #b08f6c; text-decoration: none; }
-    .dl { background: #987858; color: #fff; height: 36px; padding: 0 16px; border-radius: 999px; display: grid; place-items: center; }
+    .dl, .back { height: 36px; padding: 0 16px; border-radius: 999px; display: grid; place-items: center; }
+    .dl { background: #987858; color: #fff; }
     .dl:hover { background: #b08f6c; }
+    .back { border: 1px solid #987858; color: #fff; }
+    .back:hover { background: rgba(152, 120, 88, 0.2); }
     iframe { display: block; width: 100%; height: calc(100% - 56px); border: 0; background: #fff; }
   </style>
 </head>
 <body>
   <header>
-    <a href="index.html?home=1">Back</a>
+    <a class="back" href="index.html?home=1" target="_top">← Back to home</a>
     <a class="dl" href="Piotr_Spychalski_Resume.pdf" download="Piotr_Spychalski_Resume.pdf">Download PDF</a>
   </header>
   <iframe src="Piotr_Spychalski_Resume.pdf" title="Piotr Spychalski resume"></iframe>
