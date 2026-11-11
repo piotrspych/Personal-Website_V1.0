@@ -369,22 +369,23 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 /* Brand mark (top left): spinning emblem + name | role, Geist / Geist Mono. */
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+@media (min-width: 1181px) { .brand { margin-left: -28px; } }
 .brand .logo-emblem { display: block; flex: none; }
 .brand-name {
   font-family: "Geist", var(--inter);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--white);
   white-space: nowrap;
 }
-.brand-divider { flex: none; width: 1px; height: 16px; background: rgba(255, 255, 255, 0.28); }
+.brand-divider { flex: none; width: 1px; height: 14px; background: rgba(255, 255, 255, 0.28); }
 .brand-sub {
-  max-width: 210px;
+  max-width: 180px;
   font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.12em;
@@ -396,8 +397,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .logo-emblem canvas {
   display: block;
-  width: 52px;
-  height: 52px;
+  width: 40px;
+  height: 40px;
 }
 
 .icon-nav {
