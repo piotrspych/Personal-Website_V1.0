@@ -599,7 +599,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 .stat { position: relative; }
-.stat + .stat { padding-left: 100px; }
+.stat + .stat { padding-left: 64px; }
 
 .stat + .stat::before {
   content: "";
@@ -613,9 +613,10 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .stat-num {
   font-family: var(--serif);
-  font-size: 62px;
-  line-height: 68.2px;
+  font-size: 52px;
+  line-height: 58px;
   letter-spacing: -0.042em;
+  white-space: nowrap;
 }
 
 .stat-label {
