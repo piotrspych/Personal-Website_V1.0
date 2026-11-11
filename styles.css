@@ -980,7 +980,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 /* View Details: expands full role details under the card. */
 .experience .exp-grid,
-.cases .exp-grid { align-items: start; }
+
 
 .exp-item {
   border-radius: 16px;
@@ -1099,15 +1099,13 @@ button:hover .ico { transform: translate(2px, -2px); }
 .case-link:focus-visible { color: var(--gold-light); background: rgba(152, 120, 88, 0.08); }
 .case-link i { font-style: normal; color: var(--gold); }
 
-/* Holographic case study cards: tilt + rainbow foil + glare that follow the cursor. */
-.cases .exp-grid { perspective: 1200px; }
-.cases .exp-item { transform-style: preserve-3d; transition: border-color 0.4s ease, transform 0.5s ease, box-shadow 0.5s ease; }
+/* Holographic case study cards: tilt + gold foil + glare that follow the cursor. */
 .cases .exp-item.is-tilting {
-  transition: border-color 0.4s ease, box-shadow 0.5s ease;
   box-shadow: 0 30px 60px -24px rgba(152, 120, 88, 0.5), 0 0 80px -20px rgba(226, 196, 156, 0.3);
 }
 
-.holo-card { --mx: 50%; --my: 50%; --hue: 180deg; overflow: hidden; }
+.holo-card { --mx: 50%; --my: 50%; --hue: 180deg; overflow: hidden; transition: transform 0.5s ease; }
+.exp-item.is-tilting .holo-card { transition: none; }
 
 .holo-foil,
 .holo-glare {
@@ -1150,8 +1148,92 @@ button:hover .ico { transform: translate(2px, -2px); }
 .holo-card:hover .holo-foil { opacity: 0.35; }
 .holo-card:hover .holo-glare { opacity: 0.55; }
 
+/* ===== Case studies 3D carousel: cards sit on a ring that turns to bring one to the front. ===== */
+.cases { overflow-x: clip; }
+.case-carousel { margin-top: 56px; }
+
+.case-stage {
+  position: relative;
+  height: 400px;
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.case-stage.is-dragging { cursor: grabbing; }
+
+.case-ring {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: var(--slide-w, 320px);
+  margin-left: calc(var(--slide-w, 320px) / -2);
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+.case-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #0b0a09;
+  transition: opacity 0.6s ease, border-color 0.4s ease, box-shadow 0.5s ease;
+}
+
+.case-slide .exp-card { z-index: 0; }
+.case-slide:not(.is-front) { cursor: pointer; }
+.case-slide:not(.is-front) > * { pointer-events: none; }
+
+/* In the ring, View Details opens over the image instead of growing the card. */
+.case-slide .exp-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  display: block;
+  z-index: 5;
+  overflow-y: auto;
+  background: linear-gradient(160deg, #1a1610, #0d0d0d);
+  visibility: hidden;
+}
+
+.case-slide.is-open .exp-panel { visibility: visible; }
+.case-slide.is-open .exp-card { visibility: hidden; }
+.case-slide .exp-panel-in,
+.case-slide.is-open .exp-panel-in { padding: 4px 20px 20px; border: 0; overflow: visible; }
+
+.case-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.case-dots { display: flex; gap: 10px; }
+
+.case-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+
+.case-dots button[aria-selected="true"] { width: 28px; background: var(--gold); }
+
 @media (prefers-reduced-motion: reduce) {
-  .cases .exp-item { transform: none !important; }
+  .holo-card { transform: none !important; }
+  .case-ring { transition-duration: 0.01s; }
 }
 
 .case-ph span { font-family: var(--serif); font-size: 26px; color: var(--gold); }

@@ -365,23 +365,129 @@ document.getElementById("reviewNext").addEventListener("click", () => showReview
   });
 })();
 
-// Case studies: holographic tilt. The card leans toward the cursor and the foil/glare follow it.
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.querySelectorAll(".cases .exp-item").forEach((item) => {
-    const card = item.querySelector(".holo-card");
-    card.addEventListener("pointermove", (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      card.style.setProperty("--mx", `${x * 100}%`);
-      card.style.setProperty("--my", `${y * 100}%`);
-      card.style.setProperty("--hue", `${x * 360}deg`);
-      item.style.transform = `rotateX(${(0.5 - y) * 12}deg) rotateY(${(x - 0.5) * 14}deg)`;
-      item.classList.add("is-tilting");
-    });
-    card.addEventListener("pointerleave", () => {
-      item.style.transform = "";
-      item.classList.remove("is-tilting");
-    });
+// Case studies: holographic tilt. The image area leans toward the cursor and the foil/glare follow it.
+const reduceMotionCases = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".cases .exp-item").forEach((item) => {
+  const card = item.querySelector(".holo-card");
+  card.addEventListener("pointermove", (e) => {
+    if (!item.classList.contains("is-front")) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    card.style.setProperty("--mx", `${x * 100}%`);
+    card.style.setProperty("--my", `${y * 100}%`);
+    card.style.setProperty("--hue", `${x * 360}deg`);
+    if (!reduceMotionCases) card.style.transform = `rotateX(${(0.5 - y) * 10}deg) rotateY(${(x - 0.5) * 12}deg)`;
+    item.classList.add("is-tilting");
   });
-}
+  card.addEventListener("pointerleave", () => {
+    card.style.transform = "";
+    item.classList.remove("is-tilting");
+  });
+});
+
+// Case studies 3D carousel: cards sit on a ring; arrows, dots, swipe and auto-rotate turn it.
+(() => {
+  const root = document.querySelector(".case-carousel");
+  if (!root) return;
+  const stage = root.querySelector(".case-stage");
+  const ring = root.querySelector(".case-ring");
+  const slides = [...ring.querySelectorAll(".case-slide")];
+  const dotsWrap = root.querySelector(".case-dots");
+  const n = slides.length;
+  const step = 360 / n;
+  let index = 0;
+  let radius = 0;
+
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-label", `Case study ${i + 1}`);
+    b.addEventListener("click", () => go(i));
+    dotsWrap.append(b);
+    return b;
+  });
+
+  function closePanel(item) {
+    if (!item.classList.contains("is-open")) return;
+    item.classList.remove("is-open");
+    const btn = item.querySelector(".exp-toggle");
+    btn.setAttribute("aria-expanded", "false");
+    btn.querySelector("span").textContent = "View Details";
+  }
+
+  function layout() {
+    const w = Math.min(320, stage.clientWidth * 0.72);
+    ring.style.setProperty("--slide-w", `${w}px`);
+    radius = Math.round(w / 2 / Math.tan(Math.PI / n)) + 40;
+    slides.forEach((s, i) => { s.style.transform = `rotateY(${i * step}deg) translateZ(${radius}px)`; });
+    render();
+  }
+
+  function render() {
+    ring.style.transform = `translateZ(${-radius}px) rotateY(${-index * step}deg)`;
+    const front = ((index % n) + n) % n;
+    slides.forEach((s, i) => {
+      const d = Math.min((i - front + n) % n, (front - i + n) % n);
+      s.classList.toggle("is-front", d === 0);
+      s.style.opacity = d === 0 ? "1" : d === 1 ? "0.5" : "0.15";
+      s.setAttribute("aria-hidden", String(d !== 0));
+      s.inert = d !== 0;
+      if (d !== 0) closePanel(s);
+    });
+    dots.forEach((b, i) => b.setAttribute("aria-selected", String(i === front)));
+  }
+
+  // Index keeps counting past n so the ring always turns the short way.
+  function go(target) {
+    const front = ((index % n) + n) % n;
+    let delta = target - front;
+    if (delta > n / 2) delta -= n;
+    if (delta < -n / 2) delta += n;
+    index += delta;
+    render();
+  }
+  const next = () => { index += 1; render(); };
+  const prev = () => { index -= 1; render(); };
+
+  root.querySelector(".case-next").addEventListener("click", next);
+  root.querySelector(".case-prev").addEventListener("click", prev);
+  slides.forEach((s, i) => s.addEventListener("click", () => { if (!s.classList.contains("is-front")) go(i); }));
+  root.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") next();
+    if (e.key === "ArrowLeft") prev();
+  });
+
+  // Swipe / drag.
+  let startX = null;
+  stage.addEventListener("pointerdown", (e) => {
+    if (e.target.closest("button, a")) return;
+    startX = e.clientX;
+    stage.classList.add("is-dragging");
+  });
+  window.addEventListener("pointerup", (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    stage.classList.remove("is-dragging");
+    if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+  });
+
+  // Auto-rotate; pauses while hovered, focused, a panel is open, or off-screen.
+  let paused = false;
+  let visible = false;
+  root.addEventListener("pointerenter", () => { paused = true; });
+  root.addEventListener("pointerleave", () => { paused = false; });
+  root.addEventListener("focusin", () => { paused = true; });
+  root.addEventListener("focusout", () => { paused = false; });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(root);
+  if (!reduceMotionCases) {
+    setInterval(() => {
+      if (!paused && visible && !root.querySelector(".case-slide.is-open")) next();
+    }, 4500);
+  }
+
+  window.addEventListener("resize", layout);
+  layout();
+})();
