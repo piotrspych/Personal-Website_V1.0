@@ -1070,7 +1070,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 /* ===== Case Studies (reuses the Experience hover cards) ===== */
-.cases .exp-card { height: 240px; }
+.cases .exp-card { height: 360px; }
 
 .case-ph {
   width: 72%;
@@ -1154,8 +1154,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .case-stage {
   position: relative;
-  height: 400px;
-  perspective: 1200px;
+  height: 520px;
+  perspective: 1400px;
   perspective-origin: 50% 40%;
   touch-action: pan-y;
   cursor: grab;
@@ -1195,7 +1195,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   top: 0;
   left: 0;
   right: 0;
-  height: 240px;
+  height: 360px;
   display: block;
   z-index: 5;
   overflow-y: auto;
