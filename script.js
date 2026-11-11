@@ -11,7 +11,7 @@ function countUp(el) {
   const duration = 1400;
   const tick = (now) => {
     const t = Math.min(1, (now - start) / duration);
-    el.textContent = Math.round(target * (1 - (1 - t) ** 3));
+    el.textContent = Math.round(target * (1 - (1 - t) ** 3)).toLocaleString("fr-CA"); // 10 000 style grouping
     if (t < 1) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
