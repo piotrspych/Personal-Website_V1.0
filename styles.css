@@ -1099,6 +1099,55 @@ button:hover .ico { transform: translate(2px, -2px); }
 .case-link:focus-visible { color: var(--gold-light); background: rgba(152, 120, 88, 0.08); }
 .case-link i { font-style: normal; color: var(--gold); }
 
+/* Holographic case study cards: tilt + rainbow foil + glare that follow the cursor. */
+.cases .exp-grid { perspective: 1200px; }
+.cases .exp-item { transform-style: preserve-3d; transition: border-color 0.4s ease, transform 0.5s ease, box-shadow 0.5s ease; }
+.cases .exp-item.is-tilting {
+  transition: border-color 0.4s ease, box-shadow 0.5s ease;
+  box-shadow: 0 30px 60px -24px rgba(152, 120, 88, 0.45), 0 0 80px -20px rgba(120, 180, 255, 0.25);
+}
+
+.holo-card { --mx: 50%; --my: 50%; --hue: 180deg; overflow: hidden; }
+
+.holo-foil,
+.holo-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Iridescent sheen: a soft rainbow band that slides with the cursor. */
+.holo-foil {
+  inset: -30%;
+  mix-blend-mode: screen;
+  opacity: 0.22;
+  filter: blur(18px) saturate(1.3);
+  background:
+    linear-gradient(calc(110deg + var(--hue) / 6),
+      transparent 20%,
+      rgba(255, 0, 140, 0.55) 32%, rgba(80, 160, 255, 0.55) 42%,
+      rgba(90, 255, 180, 0.5) 52%, rgba(255, 220, 90, 0.5) 62%,
+      rgba(255, 0, 140, 0.45) 72%, transparent 84%);
+  background-size: 200% 200%;
+  background-position: var(--mx) var(--my);
+}
+
+.holo-glare {
+  mix-blend-mode: screen;
+  opacity: 0;
+  background:
+    radial-gradient(300px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.3), transparent 60%),
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 7px);
+}
+
+.exp-item.is-tilting .holo-foil { opacity: 0.75; }
+.exp-item.is-tilting .holo-glare { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cases .exp-item { transform: none !important; }
+}
+
 .case-ph span { font-family: var(--serif); font-size: 26px; color: var(--gold); }
 .case-ph small { font-size: 12px; color: rgba(255, 255, 255, 0.45); }
 

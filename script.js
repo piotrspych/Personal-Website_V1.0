@@ -364,3 +364,24 @@ document.getElementById("reviewNext").addEventListener("click", () => showReview
     if (e.key === "Escape") setOpen(false);
   });
 })();
+
+// Case studies: holographic tilt. The card leans toward the cursor and the foil/glare follow it.
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.querySelectorAll(".cases .exp-item").forEach((item) => {
+    const card = item.querySelector(".holo-card");
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      card.style.setProperty("--mx", `${x * 100}%`);
+      card.style.setProperty("--my", `${y * 100}%`);
+      card.style.setProperty("--hue", `${x * 360}deg`);
+      item.style.transform = `rotateX(${(0.5 - y) * 12}deg) rotateY(${(x - 0.5) * 14}deg)`;
+      item.classList.add("is-tilting");
+    });
+    card.addEventListener("pointerleave", () => {
+      item.style.transform = "";
+      item.classList.remove("is-tilting");
+    });
+  });
+}
