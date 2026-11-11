@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Piotr Spychalski</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    html, body { min-height: 100%; margin: 0; background: #010000; color: #fff; font-family: Inter, system-ui, sans-serif; }
+    header { height: 56px; display: flex; align-items: center; padding: 0 20px; }
+    a { text-decoration: none; }
+    .back { height: 36px; padding: 0 16px; border-radius: 999px; display: grid; place-items: center; border: 1px solid #987858; color: #fff; }
+    .back:hover { background: rgba(152, 120, 88, 0.2); }
+    main { max-width: 900px; margin: 0 auto; padding: 12vh 24px; text-align: center; }
+    .label { color: #987858; font-size: 16px; }
+    h1 { margin: 12px 0 0; font-weight: 400; font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.03em; color: rgba(255, 255, 255, 0.9); }
+    h1 em { font-family: "DM Serif Display", serif; color: #b08f6c; }
+    p { margin-top: 20px; color: #8a8a8a; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="back" href="index.html?home=1#cases">← Back to case studies</a>
+  </header>
+  <main>
+    <p class="label">Case Study <span id="num">01</span></p>
+    <h1>Project <em>Title</em></h1>
+    <p>Full case study coming soon.</p>
+  </main>
+  <script>
+    // Which project: case-study.html?p=1 … p=6
+    const n = parseInt(new URLSearchParams(location.search).get("p"), 10) || 1;
+    document.getElementById("num").textContent = String(n).padStart(2, "0");
+  </script>
+</body>
+</html>
