@@ -976,6 +976,24 @@ button:hover .ico { transform: translate(2px, -2px); }
 .exp-text { margin-top: 8px; font-size: 12px; line-height: 17px; color: var(--grey); }
 .exp-todo { font-style: italic; opacity: 0.6; }
 
+/* ===== Case Studies (reuses the Experience hover cards) ===== */
+.cases .exp-card { height: 260px; }
+
+.case-ph {
+  width: 72%;
+  height: 62%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #1b1b1b, #0c0c0c);
+}
+
+.case-ph span { font-family: var(--serif); font-size: 26px; color: var(--gold); }
+.case-ph small { font-size: 12px; color: rgba(255, 255, 255, 0.45); }
+
 /* ===== Cards (shared) ===== */
 .card {
   background: var(--card);
@@ -1551,7 +1569,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 /* ===== Testimonials ===== */
-.reviews .lead { max-width: 404px; }
+.reviews .lead { max-width: 720px; }
 
 .review-grid {
   display: grid;
