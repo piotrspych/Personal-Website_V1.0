@@ -50,6 +50,17 @@ function accordion(itemSelector, buttonSelector) {
 accordion(".service", ".service-head");
 accordion(".faq-item", ".faq-q");
 
+// Experience: "View Details" opens each card's full details independently.
+document.querySelectorAll(".exp-item").forEach((item) => {
+  const btn = item.querySelector(".exp-toggle");
+  const label = btn.querySelector("span");
+  btn.addEventListener("click", () => {
+    const open = item.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", String(open));
+    label.textContent = open ? "Hide Details" : "View Details";
+  });
+});
+
 // Cinematic filmstrip. The front picture is full; neighbors peek in dimmed. The side panel follows.
 const cards = [...document.querySelectorAll("#workStack .stack-card")];
 const workBits = ["workTitle", "workText", "workClient", "workService"].map((id) => document.getElementById(id));

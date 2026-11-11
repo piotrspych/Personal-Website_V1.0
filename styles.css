@@ -976,6 +976,96 @@ button:hover .ico { transform: translate(2px, -2px); }
 .exp-text { margin-top: 8px; font-size: 12px; line-height: 17px; color: var(--grey); }
 .exp-todo { font-style: italic; opacity: 0.6; }
 
+/* View Details: expands full role details under the card. */
+.experience .exp-grid { align-items: start; }
+
+.exp-item {
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+
+.exp-item:hover,
+.exp-item.is-open { border-color: rgba(152, 120, 88, 0.55); }
+
+.exp-item .exp-card { border: 0; border-radius: 0; background: none; }
+.exp-item .exp-card:hover,
+.exp-item .exp-card:focus-visible,
+.exp-item .exp-card:active { transform: none; }
+
+.exp-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: none;
+  color: var(--white-90);
+  font: 500 14px var(--inter);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.exp-toggle:hover,
+.exp-item.is-open .exp-toggle { color: var(--gold-light); }
+.exp-toggle i { font-style: normal; color: var(--gold); transition: transform 0.35s ease; }
+.exp-item.is-open .exp-toggle i { transform: rotate(90deg); }
+
+.exp-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s ease;
+}
+
+.exp-item.is-open .exp-panel { grid-template-rows: 1fr; }
+
+.exp-panel-in {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  border-top: 1px dashed transparent;
+  transition: padding 0.45s ease, border-color 0.45s ease;
+}
+
+.exp-item.is-open .exp-panel-in {
+  padding: 4px 20px 20px;
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.exp-panel-in h5 { margin-top: 14px; font-size: 15px; font-weight: 500; }
+.exp-panel-in small {
+  display: block;
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.exp-bullets { margin-top: 10px; list-style: none; display: grid; gap: 8px; }
+.exp-bullets li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--grey);
+}
+
+.exp-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
 /* ===== Case Studies (reuses the Experience hover cards) ===== */
 .cases .exp-card { height: 260px; }
 
