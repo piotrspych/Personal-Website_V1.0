@@ -492,22 +492,28 @@ document.querySelectorAll(".cases .exp-item").forEach((item) => {
   layout();
 })();
 
-// Quote images rise into place as the section scrolls into view (scroll-linked, staggered).
+// Quote section: pinned on screen while you scroll through it.
+// Step 1: the quote fades up as the section arrives. Step 2: keep scrolling and the images rise from the bottom of the screen.
 (() => {
-  const media = document.querySelector(".quote-media");
-  if (!media || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const imgs = [...media.querySelectorAll(".quote-img")];
-  const offsets = [140, 220, 300]; // px each image starts below its resting spot
+  const section = document.querySelector(".quote");
+  if (!section || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const copy = section.querySelector(".quote-copy");
+  const imgs = [...section.querySelectorAll(".quote-img")];
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  const ease = (t) => 1 - (1 - t) ** 3;
   const update = () => {
-    const r = media.getBoundingClientRect();
+    const r = section.getBoundingClientRect();
     const vh = innerHeight;
-    // 0 when the images' top reaches the bottom of the screen, 1 once it is 25% up the screen.
-    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.75)));
+    // Quote: fades in while the section's top travels from 70% of the screen up to the top.
+    const q = ease(clamp((vh * 0.7 - r.top) / (vh * 0.7)));
+    copy.style.opacity = String(q);
+    copy.style.transform = `translateY(${(1 - q) * 32}px)`;
+    // Images: only after the quote has settled, across the pinned scroll distance, one after another.
+    const pinned = clamp(-r.top / (r.height - vh));
     imgs.forEach((img, i) => {
-      const local = Math.min(1, Math.max(0, p * 1.25 - i * 0.12));
-      const ease = 1 - (1 - local) ** 3;
-      img.style.transform = `translateY(${(1 - ease) * offsets[i]}px)`;
-      img.style.opacity = String(0.15 + 0.85 * ease);
+      const t = ease(clamp((pinned - 0.12 - i * 0.16) / 0.38));
+      img.style.opacity = String(t);
+      img.style.transform = `translateY(${(1 - t) * vh * 0.9}px)`;
     });
   };
   addEventListener("scroll", update, { passive: true });

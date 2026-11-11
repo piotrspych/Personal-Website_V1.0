@@ -2165,6 +2165,26 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 /* ===== Quote ===== */
+/* Pinned while you scroll: first the quote fades in, then the images rise from the bottom. */
+.quote { position: relative; height: 260vh; }
+.quote-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.quote-sticky > .container { width: 100%; }
+.js .quote-copy { opacity: 0; transform: translateY(32px); }
+.js .quote-img { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .quote { height: auto; padding: 60px 0; }
+  .quote-sticky { position: static; height: auto; }
+  .js .quote-copy, .js .quote-img { opacity: 1; transform: none; }
+}
+
 .quote-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
