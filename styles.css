@@ -2192,7 +2192,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   height: 460px;
 }
 
-.quote-img { border-radius: 16px; }
+.quote-img { border-radius: 16px; will-change: transform, opacity; }
 .quote-img-1 { grid-row: 1 / 3; }
 
 

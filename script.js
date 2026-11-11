@@ -491,3 +491,26 @@ document.querySelectorAll(".cases .exp-item").forEach((item) => {
   window.addEventListener("resize", layout);
   layout();
 })();
+
+// Quote images rise into place as the section scrolls into view (scroll-linked, staggered).
+(() => {
+  const media = document.querySelector(".quote-media");
+  if (!media || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const imgs = [...media.querySelectorAll(".quote-img")];
+  const offsets = [140, 220, 300]; // px each image starts below its resting spot
+  const update = () => {
+    const r = media.getBoundingClientRect();
+    const vh = innerHeight;
+    // 0 when the images' top reaches the bottom of the screen, 1 once it is 25% up the screen.
+    const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.75)));
+    imgs.forEach((img, i) => {
+      const local = Math.min(1, Math.max(0, p * 1.25 - i * 0.12));
+      const ease = 1 - (1 - local) ** 3;
+      img.style.transform = `translateY(${(1 - ease) * offsets[i]}px)`;
+      img.style.opacity = String(0.15 + 0.85 * ease);
+    });
+  };
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", update);
+  update();
+})();
