@@ -977,7 +977,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 .exp-todo { font-style: italic; opacity: 0.6; }
 
 /* View Details: expands full role details under the card. */
-.experience .exp-grid { align-items: start; }
+.experience .exp-grid,
+.cases .exp-grid { align-items: start; }
 
 .exp-item {
   border-radius: 16px;
@@ -1067,7 +1068,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 /* ===== Case Studies (reuses the Experience hover cards) ===== */
-.cases .exp-card { height: 260px; }
+.cases .exp-card { height: 240px; }
 
 .case-ph {
   width: 72%;
