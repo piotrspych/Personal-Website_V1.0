@@ -1681,6 +1681,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .checklist li + li { margin-top: 12.5px; }
 .checklist svg { width: 20px; height: 20px; flex: none; }
+.card-title .gold { color: var(--gold-light); }
 .collab-call .checklist li { align-items: flex-start; font-size: 16px; line-height: 22px; }
 .collab-call .checklist svg { margin-top: 1px; }
 
