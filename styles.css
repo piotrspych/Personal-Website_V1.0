@@ -2164,7 +2164,42 @@ button:hover .ico { transform: translate(2px, -2px); }
   .review-grid { grid-template-columns: 1fr 1.4fr 1fr; }
 }
 
+/* ===== Quote ===== */
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.quote-text {
+  margin-top: 20px;
+  font-size: 44px;
+  line-height: 1.22;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--white-90);
+}
+
+.quote-text em { font-family: var(--serif); color: var(--gold-light); }
+.quote-by { margin-top: 28px; font-size: 16px; color: var(--grey); }
+
+.quote-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 460px;
+}
+
+.quote-img { border-radius: 16px; }
+.quote-img-1 { grid-row: 1 / 3; }
+
+
 @media (max-width: 900px) {
+  .quote-grid { grid-template-columns: 1fr; gap: 40px; }
+  .quote-text { font-size: 30px; }
+  .quote-media { height: 360px; }
   .icon-nav { position: static; transform: none; }
   .h2 { font-size: 44px; line-height: 52px; }
   .hero-title { font-size: 48px; line-height: 56px; }
