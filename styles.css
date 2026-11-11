@@ -901,69 +901,79 @@ button:hover .ico { transform: translate(2px, -2px); }
 .experience { padding-top: 120px; }
 
 .exp-grid {
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 120px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   margin-top: 64px;
 }
 
-.exp-grid::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--line);
+/* Logo first; details fade in on hover, keyboard focus, or tap. */
+.exp-card {
+  position: relative;
+  height: 220px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.4s ease, transform 0.4s ease;
 }
 
-.exp { position: relative; padding-bottom: 44px; }
-.exp:nth-child(n + 3) { padding: 46px 0 0; }
-
-.exp:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: calc(200% + 120px);
-  height: 1px;
-  background: var(--line);
+.exp-card:hover,
+.exp-card:focus-visible,
+.exp-card:active {
+  border-color: rgba(152, 120, 88, 0.55);
+  transform: translateY(-4px);
 }
 
-.exp-top {
+.exp-logo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.4s ease;
+}
+
+.exp-plate {
+  width: 68%;
+  height: 56%;
+  display: grid;
+  place-items: center;
+  padding: 0 20px;
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.exp-plate img { display: block; max-width: 100%; max-height: 70%; }
+
+.exp-detail {
+  position: absolute;
+  inset: 0;
+  padding: 16px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(160deg, #1a1610, #0d0d0d);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.exp-top h4 {
-  font-size: 32px;
-  line-height: 38.4px;
-  font-weight: 400;
-  letter-spacing: -0.0156em;
-}
+.exp-card:hover .exp-detail,
+.exp-card:focus .exp-detail,
+.exp-card:active .exp-detail { opacity: 1; }
 
-.exp-top span {
-  margin-top: 21px;
-  flex: none;
-  font-size: 18px;
-  line-height: 25.2px;
-  letter-spacing: -0.02em;
-  color: var(--grey);
-}
+.exp-card:hover .exp-logo,
+.exp-card:focus .exp-logo,
+.exp-card:active .exp-logo { opacity: 0; }
 
-.exp-role,
-.exp-text {
-  font-size: 16px;
-  line-height: 22.4px;
-  letter-spacing: -0.01em;
-  color: var(--grey);
-}
-
-.exp-role { margin-top: 8px; }
-.exp-text { margin-top: 24px; }
+.exp-detail h4 { font-size: 17px; line-height: 22px; font-weight: 500; }
+.exp-date { margin-top: 4px; font-size: 12px; color: var(--gold); }
+.exp-role { margin-top: 4px; font-size: 13px; color: var(--white-90); }
+.exp-text { margin-top: 8px; font-size: 12px; line-height: 17px; color: var(--grey); }
+.exp-todo { font-style: italic; opacity: 0.6; }
 
 /* ===== Cards (shared) ===== */
 .card {
@@ -1841,8 +1851,6 @@ button:hover .ico { transform: translate(2px, -2px); }
   .circle-btn { width: 150px; height: 150px; }
 
   .exp-grid { grid-template-columns: 1fr; }
-  .exp-grid::before, .exp:nth-child(1)::after { display: none; }
-  .exp, .exp:nth-child(n + 3) { padding: 32px 0; border-bottom: 1px solid var(--line); }
 
   .collab-cards { flex-direction: column; align-items: stretch; }
   .collab-count, .collab-call { width: 100%; }
