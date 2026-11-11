@@ -1222,21 +1222,67 @@ button:hover .ico { transform: translate(2px, -2px); }
   z-index: 20;
   width: 40px;
   height: 40px;
+  border: 0;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: none;
   color: var(--white);
   cursor: pointer;
   transform: translateY(-50%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  isolation: isolate;
 }
 
-.case-arrow:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2); }
+/* Frosted glass face sits above the glow (glow -2, face -1, chevron on top). */
+.case-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), rgba(10, 9, 8, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.case-arrow svg { position: relative; z-index: 1; transition: color 0.3s ease; }
+.case-arrow:hover::before { background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), rgba(10, 9, 8, 0.85); border-color: rgba(226, 196, 156, 0.45); }
+.case-arrow:hover svg { color: #f3dfc0; }
+
+/* Gold glow behind each arrow: three drifting blobs, blurred, gently breathing. */
+.glow {
+  position: absolute;
+  inset: -10px;
+  z-index: -2;
+  border-radius: 50%;
+  overflow: hidden;
+  filter: blur(6px);
+  opacity: 0.55;
+  transform: scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  animation: glow-breathe 4.5s ease-in-out infinite;
+}
+
+.glow i { position: absolute; inset: 0; border-radius: 50%; mix-blend-mode: screen; }
+.glow i:nth-child(1) { background: radial-gradient(circle at 35% 40%, #e2c49c 0%, rgba(226, 196, 156, 0.4) 35%, transparent 65%); animation: glow-blob-a 7.5s ease-in-out infinite; }
+.glow i:nth-child(2) { background: radial-gradient(circle at 65% 55%, #987858 0%, rgba(152, 120, 88, 0.45) 35%, transparent 65%); animation: glow-blob-b 9s ease-in-out infinite; }
+.glow i:nth-child(3) { background: radial-gradient(circle at 50% 70%, #fff0d6 0%, rgba(255, 240, 214, 0.3) 30%, transparent 60%); animation: glow-blob-c 6s ease-in-out infinite; }
+
+.case-arrow:hover .glow,
+.case-arrow:focus-visible .glow { opacity: 1; transform: scale(1.1); }
+
+@keyframes glow-breathe { 0%, 100% { filter: blur(6px) brightness(1); } 50% { filter: blur(6px) brightness(1.2); } }
+@keyframes glow-blob-a { 0%, 100% { transform: translate(-12%, -8%) rotate(0deg); } 50% { transform: translate(10%, 8%) rotate(180deg); } }
+@keyframes glow-blob-b { 0%, 100% { transform: translate(10%, 6%) rotate(0deg); } 50% { transform: translate(-10%, -6%) rotate(-180deg); } }
+@keyframes glow-blob-c { 0%, 100% { transform: translate(0, 10%) scale(1); } 50% { transform: translate(0, -10%) scale(1.15); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .glow, .glow i { animation: none; }
+}
 .case-arrow:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
 .case-prev { left: 12px; }
 .case-next { right: 12px; }
