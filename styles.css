@@ -1352,6 +1352,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 .collab-count .card-sub { position: relative; z-index: 1; }
 
 .collab-count .card-sub { margin-top: 16px; font-size: 18px; line-height: 24px; white-space: nowrap; }
+.collab-count .big-num .plus { margin-left: 0.14em; }
 .collab-count .big-num small { font-family: var(--inter); font-size: 22px; letter-spacing: 0; color: var(--grey); }
 
 .collage {
