@@ -1215,11 +1215,9 @@ button:hover .ico { transform: translate(2px, -2px); }
   margin-top: 8px;
 }
 
-/* Carousel arrows: frosted glass circles on the stage edges. */
-.case-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 20;
+/* Glow arrows: frosted glass circle + gold glow (used by the Work slider and Case Studies carousel). */
+.glow-arrow {
+  position: relative;
   width: 40px;
   height: 40px;
   border: 0;
@@ -1230,12 +1228,14 @@ button:hover .ico { transform: translate(2px, -2px); }
   background: none;
   color: var(--white);
   cursor: pointer;
-  transform: translateY(-50%);
   isolation: isolate;
 }
 
+/* Case Studies: arrows sit on the stage edges. */
+.case-arrow { position: absolute; top: 50%; z-index: 20; transform: translateY(-50%); }
+
 /* Frosted glass face sits above the glow (glow -2, face -1, chevron on top). */
-.case-arrow::before {
+.glow-arrow::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1248,9 +1248,9 @@ button:hover .ico { transform: translate(2px, -2px); }
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.case-arrow svg { position: relative; z-index: 1; transition: color 0.3s ease; }
-.case-arrow:hover::before { background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), rgba(10, 9, 8, 0.85); border-color: rgba(226, 196, 156, 0.45); }
-.case-arrow:hover svg { color: #f3dfc0; }
+.glow-arrow svg { position: relative; z-index: 1; width: 16px; height: 16px; transition: color 0.3s ease; }
+.glow-arrow:hover::before { background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), rgba(10, 9, 8, 0.85); border-color: rgba(226, 196, 156, 0.45); }
+.glow-arrow:hover svg { color: #f3dfc0; }
 
 /* Gold glow behind each arrow: three drifting blobs, blurred, gently breathing. */
 .glow {
@@ -1272,8 +1272,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 .glow i:nth-child(2) { background: radial-gradient(circle at 65% 55%, #987858 0%, rgba(152, 120, 88, 0.45) 35%, transparent 65%); animation: glow-blob-b 9s ease-in-out infinite; }
 .glow i:nth-child(3) { background: radial-gradient(circle at 50% 70%, #fff0d6 0%, rgba(255, 240, 214, 0.3) 30%, transparent 60%); animation: glow-blob-c 6s ease-in-out infinite; }
 
-.case-arrow:hover .glow,
-.case-arrow:focus-visible .glow { opacity: 1; transform: scale(1.1); }
+.glow-arrow:hover .glow,
+.glow-arrow:focus-visible .glow { opacity: 1; transform: scale(1.1); }
 
 @keyframes glow-breathe { 0%, 100% { filter: blur(6px) brightness(1); } 50% { filter: blur(6px) brightness(1.2); } }
 @keyframes glow-blob-a { 0%, 100% { transform: translate(-12%, -8%) rotate(0deg); } 50% { transform: translate(10%, 8%) rotate(180deg); } }
@@ -1283,7 +1283,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 @media (prefers-reduced-motion: reduce) {
   .glow, .glow i { animation: none; }
 }
-.case-arrow:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+.glow-arrow:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
 .case-prev { left: 12px; }
 .case-next { right: 12px; }
 
