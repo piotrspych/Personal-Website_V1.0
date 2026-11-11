@@ -1414,6 +1414,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 
 .collab-call .btn { margin-top: 0; }
+.footer-picker { margin-top: 20px; max-width: 460px; }
+.footer-picker .glass-cal { z-index: 5; }
 
 .glass-cal {
   display: none;

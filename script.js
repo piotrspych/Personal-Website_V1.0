@@ -203,9 +203,21 @@ document.getElementById("reviewNext").addEventListener("click", () => showReview
     return `https://calendar.google.com/calendar/render?${params}`;
   }
 
-  function open(on) {
-    picker.classList.toggle("is-open", on);
-    toggle.setAttribute("aria-expanded", String(on));
+  // The same calendar serves "Schedule a call" (Collaboration) and "Book Chemistry Call" (footer):
+  // opening it from a button moves it under that button.
+  const cal = document.getElementById("callCal");
+  let host = picker;
+  let hostToggle = toggle;
+  function open(on, h = host, btn = hostToggle) {
+    if (h !== host) {
+      host.classList.remove("is-open");
+      hostToggle.setAttribute("aria-expanded", "false");
+      h.appendChild(cal);
+      host = h;
+      hostToggle = btn;
+    }
+    h.classList.toggle("is-open", on);
+    btn.setAttribute("aria-expanded", String(on));
     if (on) render();
     else closeOverlay();
   }
@@ -239,7 +251,13 @@ document.getElementById("reviewNext").addEventListener("click", () => showReview
     ).join("") + `<button type="button" class="glass-slot is-none${time === "No time preference" ? " is-selected" : ""}" data-time="No time preference">No time preference</button>`;
   }
 
-  toggle.addEventListener("click", () => open(!picker.classList.contains("is-open")));
+  const isOpenAt = (h) => host === h && h.classList.contains("is-open");
+  toggle.addEventListener("click", () => open(!isOpenAt(picker), picker, toggle));
+  const footerPicker = document.getElementById("footerPicker");
+  const footerToggle = document.getElementById("footerCallToggle");
+  if (footerPicker && footerToggle) {
+    footerToggle.addEventListener("click", () => open(!isOpenAt(footerPicker), footerPicker, footerToggle));
+  }
   document.getElementById("calPrev").addEventListener("click", () => {
     view.setMonth(view.getMonth() - 1);
     render();
