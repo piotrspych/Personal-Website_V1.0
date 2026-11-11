@@ -637,6 +637,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .section-head-row .lead { max-width: 490px; }
 .section-head-row > .btn-link { margin-bottom: 40px; }
+.skills-mark { flex: none; width: min(420px, 34vw); height: auto; margin-bottom: 44px; }
+@media (prefers-reduced-motion: reduce) { .skills-mark { content: url("spychalski-type-3d-still.png"); } }
 
 .service-list { margin-top: 67px; }
 
@@ -1964,6 +1966,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 
   .section-head-row { flex-direction: column; align-items: flex-start; }
   .section-head-row > .btn-link { margin-bottom: 0; }
+  .skills-mark { width: min(320px, 80vw); margin: 24px 0 0; }
   .service h3 { font-size: 30px; line-height: 36px; }
   .service-inner { flex-direction: column; gap: 0; }
   .ph-service { position: static; width: 100%; height: auto; aspect-ratio: 450 / 232; margin: 0 0 40px; }
