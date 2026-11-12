@@ -672,6 +672,11 @@ button:hover .ico { transform: translate(2px, -2px); }
   white-space: nowrap;
 }
 
+/* Stat hover colours: 6+ and 3+ go gold, +$2 Billion goes bright green. */
+.stat-num { display: inline-block; cursor: default; transition: color 0.3s ease, text-shadow 0.3s ease; }
+.stat-num:hover { color: var(--gold-light); text-shadow: 0 0 24px rgba(176, 143, 108, 0.45); }
+.stats .stat:nth-child(2) .stat-num:hover { color: #00ff00; text-shadow: 0 0 24px rgba(0, 255, 0, 0.45); }
+
 .stat-label {
   margin-top: 16px;
   font-size: 18px;
