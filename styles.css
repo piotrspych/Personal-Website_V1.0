@@ -2191,23 +2191,16 @@ button:hover .ico { transform: translate(2px, -2px); }
   white-space: nowrap;
 }
 .footer-time time { color: var(--white); }
-.live-dot {
-  position: relative;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #c9a064;
+/* Spinning globe: the meridians sweep across the face so the globe appears to turn. */
+.globe { width: 13px; height: 13px; flex: none; fill: none; stroke: #c9a064; stroke-width: 1.6; stroke-linecap: round; overflow: visible; }
+.globe .m1, .globe .m2 { transform-box: fill-box; transform-origin: center; animation: globe-turn 3s linear infinite; }
+.globe .m2 { animation-delay: -1.5s; }
+@keyframes globe-turn {
+  0% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0); opacity: 0.4; }
+  100% { transform: scaleX(-1); opacity: 1; }
 }
-.live-dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: #c9a064;
-  animation: live-ping 1.6s ease-out infinite;
-}
-@keyframes live-ping { 0% { opacity: 0.8; transform: scale(0.4); } 100% { opacity: 0; transform: scale(2.6); } }
-@media (prefers-reduced-motion: reduce) { .live-dot::after { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .globe .m1, .globe .m2 { animation: none; } }
 @media (max-width: 900px) { .footer-time { position: static; transform: none; margin-top: 24px; } }
 
 .footer-side {
