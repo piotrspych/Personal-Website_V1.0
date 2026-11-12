@@ -1041,8 +1041,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 .exp-todo { font-style: italic; opacity: 0.6; }
 
 /* View Details: expands full role details under the card. */
-.experience .exp-grid,
-
+.experience .exp-grid { align-items: start; column-gap: 36px; }
 
 .exp-item {
   border-radius: 16px;
