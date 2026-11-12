@@ -17,28 +17,43 @@ function countUp(el) {
   requestAnimationFrame(tick);
 }
 
-// Odometer counters: every digit gets its own rolling column. Columns further right
-// spin through more full turns, so the long number reads like a fast-spinning meter.
+// Odometer: the value climbs from 0 to the target over ~4s on a log scale, so digits
+// appear one place at a time ($0 → $10 → … → $2,000,000,000). Each digit is a strip
+// 0-9 plus a trailing 0, so 9 → 0 wraps smoothly; position = (value / 10^place) mod 10.
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.querySelectorAll(".odo").forEach((el) => {
   if (reduceMotion) return;
-  const text = el.dataset.odo;
-  el.setAttribute("aria-label", text);
-  const digits = [...text].filter((c) => /\d/.test(c)).length;
-  let i = 0;
-  el.innerHTML = [...text].map((c) => {
-    if (!/\d/.test(c)) return `<span aria-hidden="true">${c}</span>`;
-    const turns = 1 + Math.round((i++ / Math.max(1, digits - 1)) * 4); // 1 turn on the left, up to 5 on the right
-    const seq = Array.from({ length: turns * 10 + Number(c) + 1 }, (_, n) => n % 10);
-    return `<span class="odo-col" aria-hidden="true"><span class="odo-strip" data-steps="${seq.length - 1}">${seq.map((n) => `<span>${n}</span>`).join("")}</span></span>`;
-  }).join("");
-  if (el.dataset.odoMs) el.style.setProperty("--odo-ms", el.dataset.odoMs + "ms");
+  el.setAttribute("aria-label", el.dataset.odo);
+  el.innerHTML = [...el.dataset.odo].map((c) => /\d/.test(c)
+    ? `<span class="odo-col" aria-hidden="true"><span class="odo-strip">${[0,1,2,3,4,5,6,7,8,9,0].map((n) => `<span>${n}</span>`).join("")}</span></span>`
+    : `<span class="odo-sep" aria-hidden="true">${c}</span>`).join("");
+  renderOdo(el, 0);
 });
-function rollOdo(el) {
-  el.querySelectorAll(".odo-strip").forEach((s, k) => {
-    s.style.transitionDelay = k * 40 + "ms";
-    s.style.transform = `translateY(calc(-${s.dataset.steps} * 1lh))`;
+function renderOdo(el, v) {
+  const cols = [...el.querySelectorAll(".odo-col")];
+  let prevShown = false;
+  [...el.children].forEach((node) => {
+    if (node.classList.contains("odo-sep")) { node.hidden = !prevShown; return; }
+    const place = cols.length - 1 - cols.indexOf(node);
+    const shown = place === 0 || v >= 10 ** place;
+    node.hidden = !shown;
+    prevShown = shown;
+    node.firstChild.style.transform = `translateY(calc(${-((v / 10 ** place) % 10)} * 1lh))`;
   });
+}
+function rollOdo(el) {
+  if (reduceMotion) return;
+  const target = Number(el.dataset.odo.replace(/\D/g, ""));
+  const ms = Number(el.dataset.odoMs || 4000);
+  const top = Math.log10(target + 1);
+  const start = performance.now();
+  const tick = (now) => {
+    const t = Math.min(1, (now - start) / ms);
+    const e = 1 - (1 - t) ** 2; // ease-out: quick start, settles onto the final value
+    renderOdo(el, t < 1 ? 10 ** (top * e) - 1 : target);
+    if (t < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
 }
 
 const observer = new IntersectionObserver(
