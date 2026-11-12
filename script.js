@@ -17,12 +17,37 @@ function countUp(el) {
   requestAnimationFrame(tick);
 }
 
+// Odometer counters: every digit gets its own rolling column. Columns further right
+// spin through more full turns, so the long number reads like a fast-spinning meter.
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".odo").forEach((el) => {
+  if (reduceMotion) return;
+  const text = el.dataset.odo;
+  el.setAttribute("aria-label", text);
+  const digits = [...text].filter((c) => /\d/.test(c)).length;
+  let i = 0;
+  el.innerHTML = [...text].map((c) => {
+    if (!/\d/.test(c)) return `<span aria-hidden="true">${c}</span>`;
+    const turns = 1 + Math.round((i++ / Math.max(1, digits - 1)) * 4); // 1 turn on the left, up to 5 on the right
+    const seq = Array.from({ length: turns * 10 + Number(c) + 1 }, (_, n) => n % 10);
+    return `<span class="odo-col" aria-hidden="true"><span class="odo-strip" data-steps="${seq.length - 1}">${seq.map((n) => `<span>${n}</span>`).join("")}</span></span>`;
+  }).join("");
+  if (el.dataset.odoMs) el.style.setProperty("--odo-ms", el.dataset.odoMs + "ms");
+});
+function rollOdo(el) {
+  el.querySelectorAll(".odo-strip").forEach((s, k) => {
+    s.style.transitionDelay = k * 40 + "ms";
+    s.style.transform = `translateY(calc(-${s.dataset.steps} * 1lh))`;
+  });
+}
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add("is-visible");
       entry.target.querySelectorAll("[data-count]").forEach(countUp);
+      entry.target.querySelectorAll(".odo").forEach(rollOdo);
       observer.unobserve(entry.target);
     });
   },
