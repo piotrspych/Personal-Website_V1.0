@@ -538,3 +538,15 @@ document.querySelectorAll(".cases .exp-item").forEach((item) => {
   addEventListener("resize", update);
   update();
 })();
+
+// Footer: live Ottawa time (America/Toronto) and the current year.
+(() => {
+  const el = document.getElementById("ottawaTime");
+  const yr = document.getElementById("copyYear");
+  if (yr) yr.textContent = String(new Date().getFullYear());
+  if (!el) return;
+  const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", hour: "2-digit", minute: "2-digit", hour12: false });
+  const tick = () => { el.textContent = fmt.format(new Date()); };
+  tick();
+  setInterval(tick, 15000);
+})();
