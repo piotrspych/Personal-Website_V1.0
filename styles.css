@@ -2106,14 +2106,16 @@ button:hover .ico { transform: translate(2px, -2px); }
 .footer-title { margin-top: 14px; }
 .footer-title em { font-size: 72px; color: var(--gold); }
 
-.footer-email {
-  display: block;
-  margin-top: 7px;
-  font-size: 62px;
-  line-height: 74.4px;
-  letter-spacing: -0.032em;
-  white-space: nowrap;
+.footer-contact {
+  margin-top: 10px;
+  font-size: 28px;
+  line-height: 38px;
+  letter-spacing: -0.02em;
 }
+.footer-contact + .footer-contact { margin-top: 4px; }
+.footer-contact span { color: var(--gold-light); }
+.footer-contact a { color: var(--white); transition: color 0.3s ease; }
+.footer-contact a:hover { color: var(--gold-light); }
 
 .footer-form {
   display: flex;
@@ -2324,7 +2326,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   .footer-grid { flex-direction: column; }
   .footer-side { flex: none; width: 100%; gap: 32px; }
   .footer-title em { font-size: 52px; }
-  .footer-email { font-size: 32px; line-height: 40px; white-space: normal; word-break: break-word; }
+  .footer-contact { font-size: 20px; line-height: 28px; word-break: break-word; }
 }
 
 @media (max-width: 560px) {
