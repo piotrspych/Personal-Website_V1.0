@@ -2396,3 +2396,6 @@ button:hover .ico { transform: translate(2px, -2px); }
   .icon-nav a { width: 22px; height: 22px; }
   .icon-nav a svg { width: 14px; height: 14px; }
 }
+
+/* About stats: each number centred over its description. */
+.stats > .stat { text-align: center; padding-left: 16px; padding-right: 16px; }
