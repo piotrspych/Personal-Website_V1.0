@@ -2439,7 +2439,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 .ticker:hover .ticker-track { animation-play-state: paused; }
 .ticker-set { display: flex; align-items: center; gap: 40px; padding-right: 40px; }
 @keyframes ticker { to { transform: translateX(-50%); } }
-.tick-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); flex: none; }
+.tick-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex: none; }
 /* Placeholder slot; swap for <img class="logo-slot-img"> when logos arrive. */
 .logo-slot {
   display: grid;
