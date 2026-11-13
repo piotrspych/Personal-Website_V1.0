@@ -2286,7 +2286,6 @@ button:hover .ico { transform: translate(2px, -2px); }
   align-items: center;
   overflow: hidden;
 }
-.quote-sticky > .container { width: 100%; }
 .js .quote-copy { opacity: 0; transform: translateY(32px); }
 .js .quote-img { opacity: 0; }
 
@@ -2305,8 +2304,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .quote-text {
   margin-top: 20px;
-  font-size: 44px;
-  line-height: 1.22;
+  font-size: 30px;
+  line-height: 1.3;
   font-weight: 400;
   letter-spacing: -0.03em;
   color: var(--white-90);
@@ -2329,8 +2328,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 @media (max-width: 900px) {
   .quote-grid { grid-template-columns: 1fr; gap: 40px; }
-  .quote-text { font-size: 30px; }
-  .quote-media { height: 360px; }
+  .quote-text { font-size: 22px; }
+  .quote-media { height: 300px; }
   .icon-nav { position: static; transform: none; }
   .h2 { font-size: 44px; line-height: 52px; }
   .hero-title { font-size: 48px; line-height: 56px; }
