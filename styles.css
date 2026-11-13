@@ -2297,7 +2297,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 
 .quote-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 72px;
   align-items: center;
 }
@@ -2314,22 +2314,21 @@ button:hover .ico { transform: translate(2px, -2px); }
 .quote-text em { font-family: var(--serif); color: var(--gold-light); }
 .quote-by { margin-top: 28px; font-size: 16px; color: var(--grey); }
 
-.quote-media {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 16px;
-  height: 460px;
+/* Looping closed-loop system video (rises in on scroll via .quote-img). */
+.quote-img { will-change: transform, opacity; }
+.quote-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #07090c;
 }
-
-.quote-img { border-radius: 16px; will-change: transform, opacity; }
-.quote-img-1 { grid-row: 1 / 3; }
 
 
 @media (max-width: 900px) {
   .quote-grid { grid-template-columns: 1fr; gap: 40px; }
   .quote-text { font-size: 22px; }
-  .quote-media { height: 300px; }
   .icon-nav { position: static; transform: none; }
   .h2 { font-size: 44px; line-height: 52px; }
   .hero-title { font-size: 48px; line-height: 56px; }
