@@ -614,6 +614,9 @@ button:hover .ico { transform: translate(2px, -2px); }
   letter-spacing: -0.0416em;
 }
 
+/* One-sentence hero statement: longer than the old two-line title, so smaller type. */
+.hero-statement { max-width: 620px; font-size: 44px; line-height: 1.2; }
+
 .hero-text {
   margin-top: 16px;
   max-width: 550px;
@@ -2345,6 +2348,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   .icon-nav { position: static; transform: none; }
   .h2 { font-size: 44px; line-height: 52px; }
   .hero-title { font-size: 48px; line-height: 56px; }
+  .hero-statement { font-size: 32px; line-height: 1.2; }
   .icon-nav { gap: 2px; padding: 6px; }
   .icon-nav a { width: 30px; height: 30px; }
   .icon-nav a svg { width: 18px; height: 18px; }
