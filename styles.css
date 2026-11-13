@@ -1772,6 +1772,10 @@ button:hover .ico { transform: translate(2px, -2px); }
   border-radius: 20px;
 }
 
+/* Process step with a looping 3D video instead of a placeholder. */
+.step-media { overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #07090c; }
+.step-media video { display: block; width: 100%; height: 100%; object-fit: cover; scale: 1.15; }
+
 .step h4 {
   margin-top: 74px;
   font-size: 24px;
