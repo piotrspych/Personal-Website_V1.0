@@ -2409,13 +2409,13 @@ button:hover .ico { transform: translate(2px, -2px); }
 /* About stats: each number centred over its description. */
 .stats > .stat { text-align: center; padding-left: 16px; padding-right: 16px; }
 
-/* ===== Stakeholders ticker: cream band, mono label left, logos scrolling right ===== */
+/* ===== Stakeholders ticker: blends into the black page, gold mono label left, logos scrolling right ===== */
 .stakeholders {
   display: flex;
   align-items: center;
   gap: 40px;
   padding: 64px 56px;
-  background: #f3efe6;
+  background: var(--black, #010000);
   overflow: clip;
 }
 .stakeholders-label {
@@ -2426,7 +2426,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   line-height: 1.4;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #8e9189;
+  color: var(--gold-light);
 }
 .ticker {
   flex: 1;
@@ -2446,13 +2446,13 @@ button:hover .ico { transform: translate(2px, -2px); }
   place-items: center;
   width: 160px;
   height: 56px;
-  border: 1px dashed rgba(21, 26, 24, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   font-family: "Geist", var(--inter, sans-serif);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  color: rgba(21, 26, 24, 0.55);
+  color: rgba(255, 255, 255, 0.5);
   white-space: nowrap;
 }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
