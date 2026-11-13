@@ -2314,15 +2314,19 @@ button:hover .ico { transform: translate(2px, -2px); }
 .quote-text em { font-family: var(--serif); color: var(--gold-light); }
 .quote-by { margin-top: 28px; font-size: 16px; color: var(--grey); }
 
-/* Looping closed-loop system video (rises in on scroll via .quote-img). */
+/* Looping closed-loop system video (rises in on scroll via .quote-img).
+   No frame: contrast() crushes the video's navy backdrop to the page black,
+   and a soft radial mask fades its edges so the diagram sits in the page. */
 .quote-img { will-change: transform, opacity; }
+.quote-copy { position: relative; z-index: 1; } /* keep the quote above the enlarged video's faded edge */
 .quote-video {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #07090c;
+  filter: contrast(1.22);
+  scale: 1.35; /* the video has wide empty margins; enlarge the diagram itself */
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at center, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 72% at center, #000 62%, transparent 100%);
 }
 
 
