@@ -204,7 +204,8 @@ function updateStreak() {
   const near = tipL.z > tipR.z ? tipL : tipR;
   const s = projectToScreen(near);
   const text = statusEl.getBoundingClientRect();
-  streak.style.setProperty("--x", `${s.x - text.left - 8}px`);
+  // --x is inherited by the label, whose shimmer highlight rides along with the emblem.
+  statusEl.style.setProperty("--x", `${s.x - text.left - 8}px`);
 }
 
 function finish(immediate) {

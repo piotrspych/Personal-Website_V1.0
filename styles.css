@@ -103,7 +103,18 @@ html.skip-intro .preloader { display: none; }
   line-height: 18px;
 }
 
-.preloader-label { color: #f1f2f4; }
+/* "Loading..." shimmer: dim text with a bright band centred on --x (the emblem's tip, set in loading.js),
+   so the word lights up as the emblem sweeps past. */
+.preloader-label {
+  color: transparent;
+  background: linear-gradient(100deg,
+    rgba(241, 242, 244, 0.6) calc(var(--x, -60px) - 18px),
+    #fff0d6 calc(var(--x, -60px) + 8px),
+    rgba(241, 242, 244, 0.6) calc(var(--x, -60px) + 34px));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.preloader-sweep { display: none; }
 
 .preloader-percent {
   color: rgba(241, 242, 244, 0.6);
@@ -118,15 +129,9 @@ html.skip-intro .preloader { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .preloader-gears { animation: none; }
-  .preloader-sweep {
-    animation: pill-sweep 2s cubic-bezier(0.44, 0, 0, 1) infinite;
-  }
+  .preloader-label { color: #f1f2f4; background: none; }
 }
 
-@keyframes pill-sweep {
-  from { transform: translateX(-30px) rotate(30deg); }
-  to { transform: translateX(140px) rotate(30deg); }
-}
 
 /* ===== Page base ===== */
 body {
