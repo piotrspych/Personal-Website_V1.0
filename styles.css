@@ -99,7 +99,7 @@ html.skip-intro .preloader { display: none; }
 .preloader-percent {
   font-family: Inter, system-ui, sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 18px;
 }
 
@@ -117,7 +117,7 @@ html.skip-intro .preloader { display: none; }
 .preloader-sweep { display: none; }
 
 .preloader-percent {
-  color: rgba(241, 242, 244, 0.6);
+  color: rgba(241, 242, 244, 0.75);
   font-variant-numeric: tabular-nums;
 }
 
