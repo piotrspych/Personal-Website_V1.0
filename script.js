@@ -590,3 +590,29 @@ document.querySelectorAll(".cases .exp-item").forEach((item) => {
   tick();
   setInterval(tick, 15000);
 })();
+
+// Certificates focus slider: rotates every 3.5s (paused on hover/focus or reduced motion); click a side tile to focus it.
+(() => {
+  const root = document.getElementById("certSlider");
+  if (!root) return;
+  const slides = [...root.querySelectorAll(".cert-slide")];
+  const n = slides.length;
+  let i = 0;
+  const show = (k) => {
+    i = (k + n) % n;
+    slides.forEach((s, j) => {
+      const d = (j - i + n) % n;
+      s.classList.toggle("is-active", d === 0);
+      s.classList.toggle("is-next", d === 1);
+      s.classList.toggle("is-prev", d === n - 1);
+      s.setAttribute("aria-hidden", String(d !== 0));
+    });
+  };
+  slides.forEach((s, j) => s.addEventListener("click", () => show(j)));
+  show(0);
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let paused = false;
+  root.addEventListener("mouseenter", () => (paused = true));
+  root.addEventListener("mouseleave", () => (paused = false));
+  setInterval(() => { if (!paused && !document.hidden) show(i + 1); }, 3500);
+})();
