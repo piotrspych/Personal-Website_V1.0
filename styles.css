@@ -362,21 +362,21 @@ button:hover .ico { transform: translate(2px, -2px); }
   left: calc(50% + 110px);
   width: min(480px, 34vw);
   top: 150px;
-  bottom: 150px;
+  bottom: 160px;
   border-radius: 24px;
   place-items: center; /* label stays clear of the name across the bottom */
 }
 
-/* Signature slot centred under the hero photo. */
-.ph-signature {
+/* White signature centred under the hero photo; transparent PNG so it sits straight on the page black. */
+.hero-signature {
   position: absolute;
   z-index: 1;
   left: calc(50% + 110px + min(480px, 34vw) / 2);
-  bottom: 48px;
-  width: 260px;
-  height: 72px;
-  border-radius: 14px;
+  bottom: 22px;
+  height: 118px;
+  width: auto;
   transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .nav {
@@ -2424,7 +2424,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   .icon-nav a { width: 30px; height: 30px; }
   .icon-nav a svg { width: 18px; height: 18px; }
   .ph-hero { left: auto; right: 24px; width: 46vw; opacity: 0.35; }
-  .ph-signature { display: none; }
+  .hero-signature { display: none; }
 
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .about-main { padding-top: 0; }
