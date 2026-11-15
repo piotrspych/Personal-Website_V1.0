@@ -197,6 +197,7 @@ function updateEyeHole() {
 }
 
 function updateStreak() {
+  lockup.updateMatrixWorld();
   tipL.set(tipOffset.x - halfWidth, tipOffset.y, tipOffset.z);
   tipR.set(tipOffset.x + halfWidth, tipOffset.y, tipOffset.z);
   lockup.localToWorld(tipL);
@@ -251,6 +252,7 @@ function frame(now) {
     percentEl.textContent = `${percentAt(t)}%`;
     streak.style.opacity = "1";
     pill.style.opacity = "1";
+    updateStreak();
     veil.style.mask = "";
     veil.style.webkitMask = "";
   } else if (t < 9.6) {
