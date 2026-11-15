@@ -372,8 +372,8 @@ button:hover .ico { transform: translate(2px, -2px); }
   position: absolute;
   z-index: 1;
   left: calc(50% + 110px + min(480px, 34vw) / 2);
-  bottom: 22px;
-  height: 118px;
+  bottom: 34px;
+  height: 92px;
   width: auto;
   transform: translateX(-50%);
   pointer-events: none;
