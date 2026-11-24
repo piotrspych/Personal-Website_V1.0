@@ -370,10 +370,12 @@ button:hover .ico { transform: translate(2px, -2px); }
 /* Black-and-white portrait filling the hero photo box (cut-out on a dark card). */
 .hero-portrait {
   overflow: hidden;
-  background: linear-gradient(160deg, #1b1b1b, #0a0a0a);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent; /* the page black (and its glow) shows through, so the cut-out blends in */
 }
-.hero-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; transform: translateY(6%); } /* headroom above the hair */
+.hero-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; transform: translateY(6%);
+  /* headroom above the hair; bottom edge fades into the page instead of a hard cut */
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 94%);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 94%); }
 
 /* White signature centred under the hero photo; transparent PNG so it sits straight on the page black. */
 .hero-signature {
