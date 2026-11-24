@@ -1807,10 +1807,65 @@ button:hover .ico { transform: translate(2px, -2px); }
 /* Step number in the card's top-left corner. */
 .step-num { position: absolute; top: 14px; left: 18px; z-index: 1; font-family: var(--serif); font-size: 22px; color: var(--gold); }
 
-/* No frame: contrast() crushes the video's navy backdrop (already darkest at its edges) to the page black. */
-.step-media { overflow: hidden; border-radius: 0; background: var(--black, #010000); }
-/* brightness() lifts the text and pill (black stays black) so they read clearly. */
-.step-media video { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.25) brightness(1.2); }
+
+/* Research card: original "digital twin" scene — wireframe turbine (spinning blades, layered
+   for depth) floating over a holo pad, a scan beam sweeping it, and a live-looking gold readout. */
+.step-twin { overflow: hidden; perspective: 800px; background: radial-gradient(55% 55% at 45% 45%, rgba(40, 110, 255, 0.16), transparent 70%), var(--bg); }
+.twin-floor {
+  position: absolute; inset: 40% -20% -30%;
+  transform: rotateX(62deg);
+  background-image: linear-gradient(rgba(120, 150, 200, 0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 150, 200, 0.14) 1px, transparent 1px);
+  background-size: 20px 20px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent); mask-image: radial-gradient(closest-side, #000 55%, transparent);
+}
+.twin-pad {
+  position: absolute; left: 42%; bottom: 12%; width: 56%; height: 15%; border-radius: 50%;
+  transform: translateX(-50%);
+  border: 1px solid rgba(77, 149, 255, 0.7);
+  background: radial-gradient(closest-side, rgba(77, 149, 255, 0.35), transparent);
+  box-shadow: 0 0 24px rgba(59, 140, 255, 0.45);
+}
+.twin-engine {
+  position: absolute; left: 42%; top: 10%; width: 50%; aspect-ratio: 1;
+  transform: translateX(-50%) rotateY(-36deg);
+  transform-style: preserve-3d;
+  animation: twin-float 5s ease-in-out infinite;
+}
+.twin-layer { position: absolute; inset: 0; }
+.twin-layer.l1 { transform: translateZ(16px); }
+.twin-layer.l2 { transform: translateZ(0); opacity: 0.45; }
+.twin-layer.l3 { transform: translateZ(-16px); opacity: 0.25; }
+.twin-fan { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 5px rgba(59, 140, 255, 0.6)); }
+.twin-fan * { vector-effect: non-scaling-stroke; stroke-width: 1; }
+.fan-rings circle { fill: none; stroke: rgba(77, 149, 255, 0.75); }
+.fan-blades path { fill: rgba(77, 149, 255, 0.18); stroke: #6aa7ff; }
+.fan-blades { animation: gear-spin 2.4s linear infinite; }
+.fan-hub { fill: rgba(220, 226, 236, 0.18); stroke: #dfe6f1; }
+.fan-hub-dot { fill: #e2c49c; }
+.twin-scanwrap { position: absolute; inset: 4%; border-radius: 50%; overflow: hidden; transform: translateZ(17px); } /* beam stays inside the casing */
+.twin-scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 16%;
+  background: linear-gradient(transparent, rgba(110, 170, 255, 0.4), transparent);
+  border-top: 1px solid transparent;
+  animation: twin-scan 3.2s ease-in-out infinite alternate;
+}
+.twin-hud {
+  position: absolute; right: 6%; top: 16%; display: grid; gap: 3px; padding: 8px 10px;
+  border: 1px solid rgba(201, 169, 127, 0.4); border-radius: 8px;
+  background: rgba(10, 8, 6, 0.6); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  font: 9px/1.3 "Geist Mono", ui-monospace, monospace; letter-spacing: 0.06em; color: rgba(226, 196, 156, 0.75);
+  animation: twin-float 5s ease-in-out -2.5s infinite;
+}
+.twin-hud b { font-weight: 400; color: #e2c49c; letter-spacing: 0.12em; }
+.twin-hud i { font-style: normal; color: #fff0d6; }
+.twin-bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; margin-top: 2px; }
+.twin-bars s { width: 5px; background: #c9a97f; border-radius: 1px; animation: twin-bar 1.6s ease-in-out infinite alternate; }
+.twin-bars s:nth-child(2) { animation-delay: -0.4s; } .twin-bars s:nth-child(3) { animation-delay: -0.8s; }
+.twin-bars s:nth-child(4) { animation-delay: -1.2s; } .twin-bars s:nth-child(5) { animation-delay: -0.2s; }
+@keyframes twin-float { 50% { translate: 0 -5px; } }
+@keyframes twin-scan { from { top: -8%; } to { top: 92%; } }
+@keyframes twin-bar { from { height: 25%; } to { height: 100%; } }
+@media (prefers-reduced-motion: reduce) { .fan-blades, .twin-engine, .twin-hud, .twin-scan, .twin-bars s { animation: none; } .twin-bars s { height: 60%; } }
 
 /* Design card: original wireframe gears that mesh and turn, on a tilted blueprint grid. */
 .step-gears { overflow: hidden; perspective: 700px; background: radial-gradient(60% 60% at 60% 45%, rgba(40, 110, 255, 0.16), transparent 70%), var(--bg); }
