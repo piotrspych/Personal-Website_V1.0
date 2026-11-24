@@ -1812,6 +1812,33 @@ button:hover .ico { transform: translate(2px, -2px); }
 /* brightness() lifts the text and pill (black stays black) so they read clearly. */
 .step-media video { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.25) brightness(1.2); }
 
+/* Design card: original wireframe gears that mesh and turn, on a tilted blueprint grid. */
+.step-gears { overflow: hidden; perspective: 700px; background: radial-gradient(60% 60% at 60% 45%, rgba(40, 110, 255, 0.16), transparent 70%), var(--bg); }
+.gears-plane {
+  position: absolute;
+  inset: -12% -8%;
+  transform: rotateX(50deg) rotateZ(-16deg);
+  background-image:
+    linear-gradient(rgba(120, 150, 200, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 150, 200, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 65%, transparent);
+  mask-image: radial-gradient(closest-side, #000 65%, transparent);
+}
+.gears-svg { position: absolute; inset: 6% 4%; width: 92%; height: 88%; overflow: visible; }
+.gears-svg path, .gears-svg circle, .gears-svg line { vector-effect: non-scaling-stroke; stroke-width: 1; }
+.g-silver path { fill: rgba(200, 208, 220, 0.1); stroke: #cfd6e0; }
+.g-silver circle, .g-silver line { fill: none; stroke: rgba(207, 214, 224, 0.35); }
+.g-blue path { fill: rgba(40, 110, 255, 0.22); stroke: #4d95ff; }
+.g-blue circle, .g-blue line { fill: none; stroke: rgba(77, 149, 255, 0.55); }
+.g-blue { filter: drop-shadow(0 0 6px rgba(59, 140, 255, 0.7)); }
+.gears-svg .hub { fill: rgba(220, 226, 236, 0.25); stroke: #e6ebf2; }
+.spin { animation: gear-spin 8s linear infinite; }
+.spin-b { animation-duration: 12s; animation-direction: reverse; } /* 24 teeth vs 16 → 1.5× slower, opposite way */
+.spin-c { animation-duration: 6s; animation-direction: reverse; }  /* 12 teeth → 0.75× */
+@keyframes gear-spin { from { transform: rotate(var(--off, 0deg)); } to { transform: rotate(calc(var(--off, 0deg) + 360deg)); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+
 .step h4 {
   margin-top: 28px;
   font-size: 24px;
