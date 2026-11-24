@@ -1892,8 +1892,8 @@ button:hover .ico { transform: translate(2px, -2px); }
 @keyframes twin-scan { from { top: -8%; } to { top: 92%; } }
 @media (prefers-reduced-motion: reduce) { .fan-blades, .twin-engine, .holo, .holo-screen, .holo-title b, .holo-scroll, .twin-scan, .twin-link path { animation: none; } }
 
-/* Development card: exploded single-cylinder engine (pan, crank, piston, block, flywheel, gasket, head, cover, plug).
-   Parts slide apart along the axis with numbered callouts, then back together, on a loop. */
+/* Development card: exploded drive-assembly drawing, recoloured to the blueprint theme.
+   The drawing floats gently while a soft light scans down it. */
 .step-explode { overflow: hidden; background: radial-gradient(55% 55% at 40% 60%, rgba(40, 110, 255, 0.14), transparent 70%), var(--bg); }
 .explode-floor {
   position: absolute; inset: 45% -20% -30%; transform: rotateX(62deg);
@@ -1903,27 +1903,22 @@ button:hover .ico { transform: translate(2px, -2px); }
 }
 .explode-floor { transform-origin: center; }
 .step-explode { perspective: 800px; }
-.explode-svg { position: absolute; inset: 4% 2% 2%; width: 96%; height: 94%; overflow: visible; }
-.explode-svg * { vector-effect: non-scaling-stroke; stroke-width: 1; }
-.x-axis { stroke: rgba(201, 169, 127, 0.55); stroke-dasharray: 6 3 1 3; fill: none; }
-.explode-svg .face { stroke-linejoin: round; }
-.explode-svg .side { fill: rgba(28, 32, 40, 0.94); stroke: #cfd6e0; }
-.explode-svg .top { fill: rgba(40, 46, 56, 0.96); stroke: #e3e8f0; }
-.explode-svg .blue { fill: rgba(16, 40, 92, 0.94); stroke: #6aa7ff; filter: drop-shadow(0 0 4px rgba(59, 140, 255, 0.7)); }
-.explode-svg .fin, .explode-svg .edge { fill: none; stroke: rgba(207, 214, 224, 0.5); }
-.explode-svg .rod { fill: none; stroke: #cfd6e0; stroke-width: 3; stroke-linecap: round; vector-effect: none; }
-.explode-svg .ring { fill: none; stroke: rgba(106, 167, 255, 0.8); }
-.explode-svg .bore { fill: #040507; stroke: rgba(207, 214, 224, 0.7); }
-.x-label path { fill: none; stroke: rgba(201, 169, 127, 0.8); }
-.x-label circle { fill: rgba(10, 8, 6, 0.85); stroke: #c9a97f; }
-.x-label text { fill: #e2c49c; font: 8.5px "Geist Mono", ui-monospace, monospace; letter-spacing: 0.05em; }
-.x-label .num { text-anchor: middle; font-size: 7.5px; }
-/* Parts sit at their exploded offset (--tx/--ty), slide home, hold, and come apart again. */
-.xpart { transform: translate(var(--tx), var(--ty)); animation: x-assemble 9s ease-in-out infinite; }
-.x-label { animation: x-labels 9s ease-in-out infinite; }
-@keyframes x-assemble { 0%, 15% { transform: translate(var(--tx), var(--ty)); } 42%, 66% { transform: translate(0, 0); } 92%, 100% { transform: translate(var(--tx), var(--ty)); } }
-@keyframes x-labels { 0%, 18% { opacity: 1; } 30%, 76% { opacity: 0; } 88%, 100% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .xpart, .x-label { animation: none; } }
+/* Drawing (blueprint-blue lines, gold balloons, transparent) floats gently while a light scans down it. */
+.drawing-img {
+  position: absolute; inset: 10% 6% 6%; width: 88%; height: 84%; object-fit: contain;
+  filter: drop-shadow(0 0 3px rgba(106, 167, 255, 0.55));
+  animation: twin-float 6s ease-in-out infinite;
+}
+.drawing-scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 18%;
+  background: linear-gradient(transparent, rgba(110, 170, 255, 0.16), transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  pointer-events: none;
+  animation: drawing-scan 4.5s ease-in-out infinite alternate;
+}
+@keyframes drawing-scan { from { top: 8%; } to { top: 80%; } }
+@media (prefers-reduced-motion: reduce) { .drawing-img, .drawing-scan { animation: none; } .drawing-scan { display: none; } }
 
 /* Design card: original wireframe gears that mesh and turn, on a tilted blueprint grid. */
 .step-gears { overflow: hidden; perspective: 700px; background: radial-gradient(60% 60% at 60% 45%, rgba(40, 110, 255, 0.16), transparent 70%), var(--bg); }
