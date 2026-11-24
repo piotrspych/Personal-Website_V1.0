@@ -616,3 +616,18 @@ document.querySelectorAll(".cases .exp-item").forEach((item) => {
   root.addEventListener("mouseleave", () => (paused = false));
   setInterval(() => { if (!paused && !document.hidden) show(i + 1); }, 3500);
 })();
+
+// Hero portrait: split into vertical strips that reveal the colour photo on hover.
+(() => {
+  const box = document.querySelector(".hero-portrait");
+  if (!box) return;
+  const n = 8;
+  box.style.setProperty("--n", n);
+  for (let i = 0; i < n; i++) {
+    const strip = document.createElement("div");
+    strip.className = "portrait-strip" + (i === 0 ? " is-first" : "");
+    strip.style.setProperty("--i", i);
+    strip.innerHTML = '<img src="piotr-color.png" alt="" aria-hidden="true" />';
+    box.append(strip);
+  }
+})();

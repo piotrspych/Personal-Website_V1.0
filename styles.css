@@ -377,6 +377,30 @@ button:hover .ico { transform: translate(2px, -2px); }
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 94%);
   mask-image: linear-gradient(to bottom, #000 78%, transparent 94%); }
 
+/* "Chopped" colour reveal: script.js splits the box into vertical strips, each holding a slice of the
+   colour photo (sized to the whole box, shifted left by its index) that fades in while hovered. */
+.portrait-strip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--i) * 100% / var(--n));
+  width: calc(100% / var(--n));
+  overflow: hidden;
+  border-left: 1px solid rgba(1, 0, 0, 0.55); /* thin cuts between strips */
+}
+.portrait-strip.is-first { border-left: 0; }
+.hero-portrait .portrait-strip img {
+  position: absolute;
+  top: 0;
+  left: calc(var(--i) * -100%);
+  width: calc(var(--n) * 100%);
+  max-width: none;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.25s; /* lingers a moment after the cursor leaves */
+}
+.portrait-strip:hover img { opacity: 1; transition-delay: 0s; transition-duration: 0.3s; }
+@media (hover: none) { .portrait-strip { display: none; } }
+
 /* White signature centred under the hero photo; transparent PNG so it sits straight on the page black. */
 .hero-signature {
   position: absolute;
