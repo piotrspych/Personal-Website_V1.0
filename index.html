@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/creato-display" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=89" />
+  <link rel="stylesheet" href="styles.css?v=90" />
   <script type="importmap">
   {
     "imports": {
@@ -473,7 +473,19 @@
 </svg></div>
                 <div class="twin-scanwrap"><div class="twin-scan"></div></div>
               </div>
-              <div class="twin-hud" aria-hidden="true"><b>DIGITAL TWIN</b><span>RPM <i>3,600</i></span><span>η <i>92.4%</i></span><span>ΔT <i>+0.3°C</i></span><em class="twin-bars"><s></s><s></s><s></s><s></s><s></s></em></div>
+              <div class="holo" aria-hidden="true">
+                <div class="holo-screen">
+                  <p class="holo-title"><span>TURBINE TELEMETRY</span><b>● LIVE</b></p>
+                  <svg class="holo-chart" viewBox="0 0 200 60" preserveAspectRatio="none">
+                    <path class="holo-grid" d="M0,15 H200 M0,30 H200 M0,45 H200 M50,0 V60 M100,0 V60 M150,0 V60"/>
+                    <g class="holo-scroll"><path class="holo-line" d="M0,35.7 L4,39.4 L8,39.7 L12,37.5 L16,34.8 L20,33.3 L24,33.1 L28,32.9 L32,30.9 L36,26.7 L40,21.5 L44,17.8 L48,17.4 L52,20.5 L56,25.4 L60,29.7 L64,31.7 L68,31.6 L72,31.1 L76,31.7 L80,33.7 L84,35.6 L88,35.4 L92,32.1 L96,26.2 L100,20.3 L104,16.6 L108,16.3 L112,18.5 L116,21.2 L120,22.7 L124,22.9 L128,23.1 L132,25.1 L136,29.3 L140,34.5 L144,38.2 L148,38.6 L152,35.5 L156,30.6 L160,26.3 L164,24.3 L168,24.4 L172,24.9 L176,24.3 L180,22.3 L184,20.4 L188,20.6 L192,23.9 L196,29.8 L200,35.7 L204,39.4 L208,39.7 L212,37.5 L216,34.8 L220,33.3 L224,33.1 L228,32.9 L232,30.9 L236,26.7 L240,21.5 L244,17.8 L248,17.4 L252,20.5 L256,25.4 L260,29.7 L264,31.7 L268,31.6 L272,31.1 L276,31.7 L280,33.7 L284,35.6 L288,35.4 L292,32.1 L296,26.2 L300,20.3 L304,16.6 L308,16.3 L312,18.5 L316,21.2 L320,22.7 L324,22.9 L328,23.1 L332,25.1 L336,29.3 L340,34.5 L344,38.2 L348,38.6 L352,35.5 L356,30.6 L360,26.3 L364,24.3 L368,24.4 L372,24.9 L376,24.3 L380,22.3 L384,20.4 L388,20.6 L392,23.9 L396,29.8 L400,35.7"/><path class="holo-line gold" d="M0,42.7 L4,41.4 L8,41.2 L12,41.2 L16,40.5 L20,38.4 L24,35.7 L28,33.8 L32,34.0 L36,36.4 L40,40.1 L44,43.3 L48,45.0 L52,45.1 L56,44.5 L60,44.4 L64,45.2 L68,46.1 L72,45.9 L76,43.8 L80,40.1 L84,36.2 L88,33.8 L92,33.6 L96,35.2 L100,37.3 L104,38.6 L108,38.8 L112,38.8 L116,39.5 L120,41.6 L124,44.3 L128,46.2 L132,46.0 L136,43.6 L140,39.9 L144,36.7 L148,35.0 L152,34.9 L156,35.5 L160,35.6 L164,34.8 L168,33.9 L172,34.1 L176,36.2 L180,39.9 L184,43.8 L188,46.2 L192,46.4 L196,44.8 L200,42.7 L204,41.4 L208,41.2 L212,41.2 L216,40.5 L220,38.4 L224,35.7 L228,33.8 L232,34.0 L236,36.4 L240,40.1 L244,43.3 L248,45.0 L252,45.1 L256,44.5 L260,44.4 L264,45.2 L268,46.1 L272,45.9 L276,43.8 L280,40.1 L284,36.2 L288,33.8 L292,33.6 L296,35.2 L300,37.3 L304,38.6 L308,38.8 L312,38.8 L316,39.5 L320,41.6 L324,44.3 L328,46.2 L332,46.0 L336,43.6 L340,39.9 L344,36.7 L348,35.0 L352,34.9 L356,35.5 L360,35.6 L364,34.8 L368,33.9 L372,34.1 L376,36.2 L380,39.9 L384,43.8 L388,46.2 L392,46.4 L396,44.8 L400,42.7"/></g>
+                  </svg>
+                  <div class="holo-stats"><span>RPM<i>3,600</i></span><span>η<i>92.4%</i></span><span>VIB<i>0.8 mm/s</i></span></div>
+                  <p class="holo-foot">RESEARCH · DIGITAL TWIN v2</p>
+                </div>
+                <div class="holo-beam"></div>
+              </div>
+              <svg class="twin-link" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M38,40 C50,30 52,52 60,44"/></svg>
             </div>
             <h4>Research</h4>
             <p>Understanding business goals, audience needs, and opportunities to build a strong strategic foundation.</p>
