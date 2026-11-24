@@ -20,6 +20,15 @@
     .model { position: relative; left: 50%; transform: translateX(-50%); margin: 48px 0 0; width: min(1000px, 92vw); }
     .model[hidden] { display: none; }
     .model iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 20px; background: #0b0a09; }
+    /* Slow zoom buttons (the viewer's own scroll-wheel zoom is switched off: it is too fast and has no speed setting). */
+    .zoom { position: absolute; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .zoom button {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(10, 10, 10, 0.55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      color: #fff; font: 500 20px/1 Inter, sans-serif; cursor: pointer; transition: border-color 0.3s, color 0.3s;
+    }
+    .zoom button:hover { border-color: #b08f6c; color: #b08f6c; }
+    .zoom button:disabled { opacity: 0.4; cursor: default; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="back-button.css" />
@@ -32,7 +41,11 @@
     <p class="label">Case Study <span id="num">01</span></p>
     <h1>Project <em>Title</em></h1>
     <div class="model" id="model" hidden>
-      <iframe id="modelFrame" title="HMCS Toronto — interactive 3D model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+      <iframe id="modelFrame" title="HMCS Toronto — interactive 3D model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+      <div class="zoom">
+        <button type="button" id="zoomIn" aria-label="Zoom in" disabled>+</button>
+        <button type="button" id="zoomOut" aria-label="Zoom out" disabled>−</button>
+      </div>
     </div>
     <p>Full case study coming soon.</p>
   </main>
@@ -43,8 +56,33 @@
 
     if (n === 1) {
       document.getElementById("model").hidden = false;
-      document.getElementById("modelFrame").src =
-        "https://sketchfab.com/models/e6c5ed1a9b2c471a954edcb8735f98f4/embed?autostart=1&autospin=0.2&ui_infos=0&ui_inspector=0&ui_settings=0&ui_annotations=0&ui_help=0&ui_vr=0&ui_ar=0&ui_theme=dark&dnt=1";
+      // Sketchfab Viewer API: same embed, scroll-wheel zoom off, plus our own slow zoom.
+      const s = document.createElement("script");
+      s.src = "https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js";
+      s.onload = () => {
+        new Sketchfab(document.getElementById("modelFrame")).init("e6c5ed1a9b2c471a954edcb8735f98f4", {
+          autostart: 1, autospin: 0.2, scrollwheel: 0, dnt: 1,
+          ui_infos: 0, ui_inspector: 0, ui_settings: 0, ui_annotations: 0, ui_help: 0, ui_vr: 0, ui_ar: 0, ui_theme: "dark",
+          success(api) {
+            api.start();
+            api.addEventListener("viewerready", () => {
+              const btnIn = document.getElementById("zoomIn"), btnOut = document.getElementById("zoomOut");
+              // Each click moves the camera 15% closer to / further from what it looks at, gliding over 1.2s.
+              const zoom = (factor) => api.getCameraLookAt((err, cam) => {
+                if (err) return;
+                const [p, t] = [cam.position, cam.target];
+                const pos = t.map((v, i) => v + (p[i] - v) * factor);
+                api.setCameraLookAt(pos, t, 1.2);
+              });
+              btnIn.onclick = () => zoom(0.85);
+              btnOut.onclick = () => zoom(1 / 0.85);
+              btnIn.disabled = btnOut.disabled = false;
+            });
+          },
+          error() {},
+        });
+      };
+      document.head.append(s);
     }
   </script>
 </body>
