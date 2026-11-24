@@ -1832,6 +1832,12 @@ button:hover .ico { transform: translate(2px, -2px); }
 .g-blue path { fill: rgba(40, 110, 255, 0.22); stroke: #4d95ff; }
 .g-blue circle, .g-blue line { fill: none; stroke: rgba(77, 149, 255, 0.55); }
 .g-blue { filter: drop-shadow(0 0 6px rgba(59, 140, 255, 0.7)); }
+/* Dimension callouts drawn on the blueprint (static; only the gears turn). */
+.gear-dims path { fill: none; stroke: rgba(201, 169, 127, 0.8); }
+.gear-dims .ext, .gear-dims .ctr { stroke: rgba(201, 169, 127, 0.45); stroke-dasharray: 3 3; }
+.gear-dims marker path { fill: #c9a97f; stroke: none; }
+.gear-dims text { fill: #e2c49c; font: 9px "Geist Mono", ui-monospace, monospace; letter-spacing: 0.06em; text-anchor: middle; }
+.gear-dims .note { fill: rgba(226, 196, 156, 0.7); font-size: 8px; }
 .gears-svg .hub { fill: rgba(220, 226, 236, 0.25); stroke: #e6ebf2; }
 .spin { animation: gear-spin 8s linear infinite; }
 .spin-b { animation-duration: 12s; animation-direction: reverse; } /* 24 teeth vs 16 → 1.5× slower, opposite way */
