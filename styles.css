@@ -386,9 +386,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   left: calc(var(--i) * 100% / var(--n));
   width: calc(100% / var(--n));
   overflow: hidden;
-  border-left: 1px solid rgba(1, 0, 0, 0.55); /* thin cuts between strips */
 }
-.portrait-strip.is-first { border-left: 0; }
 .hero-portrait .portrait-strip img {
   position: absolute;
   top: 0;

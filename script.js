@@ -625,7 +625,7 @@ document.querySelectorAll(".cases .exp-item").forEach((item) => {
   box.style.setProperty("--n", n);
   for (let i = 0; i < n; i++) {
     const strip = document.createElement("div");
-    strip.className = "portrait-strip" + (i === 0 ? " is-first" : "");
+    strip.className = "portrait-strip";
     strip.style.setProperty("--i", i);
     strip.innerHTML = '<img src="piotr-color.png" alt="" aria-hidden="true" />';
     box.append(strip);
