@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Study — Piotr Spychalski</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
   <style>
     html, body { min-height: 100%; margin: 0; background: #010000; color: #fff; font-family: Inter, system-ui, sans-serif; }
     header { height: 56px; display: flex; align-items: center; padding: 0 20px; }
@@ -29,6 +29,66 @@
     }
     .zoom button:hover { border-color: #b08f6c; color: #b08f6c; }
     .zoom button:disabled { opacity: 0.4; cursor: default; }
+
+    /* ===== Case study article (Project 1) ===== */
+    .study[hidden], .tags[hidden], .sub[hidden], #soon[hidden] { display: none; }
+    .study { max-width: 1000px; margin: 0 auto; padding: 0 24px 120px; text-align: left; color: rgba(255,255,255,0.86); }
+    .study p { margin: 0; color: #b9b9b9; font-size: 17px; line-height: 1.7; }
+    .tags { display: flex; justify-content: center; gap: 14px; margin-top: 18px !important; font: 12px/1 "Geist Mono", ui-monospace, monospace !important; letter-spacing: .14em; text-transform: uppercase; color: #c9a97f !important; }
+    .tags i { width: 1px; background: rgba(201,169,127,.45); }
+    .sub { max-width: 680px; margin: 18px auto 0 !important; text-align: center; font-size: 18px !important; color: #a8a8a8 !important; }
+    .fill { color: #e2c49c; border-bottom: 1px dashed rgba(226,196,156,.6); font-style: normal; }
+    .study .kicker { font: 12px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #987858; }
+    .study h2 { margin: 10px 0 18px; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; letter-spacing: -.025em; color: rgba(255,255,255,.92); }
+    .study h2 em { font-family: "DM Serif Display", serif; color: #b08f6c; }
+    .block { margin-top: 96px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 64px; border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .metrics div { padding: 30px 24px; text-align: center; }
+    .metrics div + div { border-left: 1px solid rgba(255,255,255,.08); }
+    .metrics b { display: block; font: 400 44px/1.1 "DM Serif Display", serif; color: #e2c49c; }
+    .metrics > div > span { display: block; margin-top: 8px; font-size: 14px; color: #9a9a9a; }
+    main:has(+ .study:not([hidden])) { padding-bottom: 0; }
+    .split { display: grid; grid-template-columns: 1.6fr 1fr; gap: 56px; align-items: start; }
+    .glance { position: sticky; top: 24px; padding: 26px; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; background: rgba(255,255,255,.02); }
+    .glance dl { margin: 14px 0 0; display: grid; gap: 14px; }
+    .glance dt { font: 11px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #8a8a8a; }
+    .glance dd { margin: 5px 0 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.88); }
+    .study p + p { margin-top: 16px; }
+    .study .question { margin-top: 22px; padding-left: 18px; border-left: 2px solid #b08f6c; font-family: "DM Serif Display", serif; font-style: italic; font-size: 22px; line-height: 1.4; color: rgba(255,255,255,.9); }
+    .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .phase { padding: 24px; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; background: linear-gradient(160deg, rgba(40,110,255,.07), rgba(255,255,255,.015)); }
+    .study .phase .n { font: 12px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; color: #c9a97f; }
+    .phase h3 { margin: 10px 0 4px; font-weight: 500; font-size: 20px; color: #fff; }
+    .study .phase .when { font: 12px/1.4 "Geist Mono", ui-monospace, monospace; color: #8a8a8a; }
+    .phase ul { margin: 14px 0 0; padding-left: 18px; color: #b9b9b9; font-size: 15px; line-height: 1.6; }
+    .phase li::marker { color: #b08f6c; }
+    table.impact { width: 100%; margin-top: 24px; border-collapse: collapse; font-size: 15px; }
+    .impact th { text-align: left; padding: 12px 14px; font: 11px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #8a8a8a; border-bottom: 1px solid rgba(255,255,255,.14); }
+    .impact td { padding: 16px 14px; border-bottom: 1px solid rgba(255,255,255,.07); color: rgba(255,255,255,.85); }
+    .lessons { margin: 26px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; counter-reset: l; }
+    .lessons li { position: relative; padding: 4px 0 0 64px; font-size: 17px; line-height: 1.6; color: #b9b9b9; counter-increment: l; }
+    .lessons li::before { content: "0" counter(l); position: absolute; left: 0; top: 0; font: 30px/1 "DM Serif Display", serif; color: #b08f6c; }
+    .lessons b { color: #fff; font-weight: 500; }
+    .person { display: flex; gap: 20px; align-items: center; margin-top: 22px; padding: 22px; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; max-width: 560px; }
+    .person img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center 12%; background: #111; }
+    .person b { display: block; color: #fff; font-weight: 500; font-size: 18px; }
+    .person span { display: block; margin-top: 3px; font-size: 14px; color: #9a9a9a; }
+    .person a { display: inline-block; margin-top: 8px; font-size: 14px; color: #e2c49c; text-decoration: none; }
+    .related { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+    .related a { display: block; padding: 22px; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; color: #fff; text-decoration: none; transition: border-color .3s, transform .3s; }
+    .related a:hover { border-color: rgba(176,143,108,.6); transform: translateY(-3px); }
+    .related small { display: block; font: 11px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #987858; margin-bottom: 10px; }
+    .cta { margin-top: 96px; padding: 56px 32px; text-align: center; border-radius: 24px; background: radial-gradient(70% 120% at 50% 100%, rgba(152,120,88,.35), transparent 70%), rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.07); }
+    .study .cta h2 { margin-top: 0; }
+    .study .cta p { text-align: center; }
+    .cta .btn { display: inline-flex; margin-top: 22px; padding: 14px 26px; border-radius: 999px; background: #fff; color: #000; font-weight: 500; text-decoration: none; }
+    .study .disclaimer { margin-top: 40px; text-align: center; font-size: 13px; color: #6f6f6f; }
+    @media (max-width: 800px) {
+      .metrics, .phases, .related, .split { grid-template-columns: 1fr; }
+      .metrics div + div { border-left: 0; border-top: 1px solid rgba(255,255,255,.08); }
+      .glance { position: static; }
+      .impact { font-size: 13px; }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="back-button.css" />
@@ -40,6 +100,8 @@
   <main>
     <p class="label">Case Study <span id="num">01</span></p>
     <h1 id="title">Project <em>Title</em></h1>
+    <p class="tags" id="tags" hidden>Naval engineering <i></i> Project management</p>
+    <p class="sub" id="sub" hidden>Planning and delivering a docking work period for a Halifax-class frigate, aligning the Navy, industry and engineering teams to return the ship to the fleet.</p>
     <div class="model" id="model" hidden>
       <iframe id="modelFrame" title="HMCS Toronto — interactive 3D model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
       <div class="zoom">
@@ -47,8 +109,103 @@
         <button type="button" id="zoomOut" aria-label="Zoom out" disabled>−</button>
       </div>
     </div>
-    <p>Full case study coming soon.</p>
+    <p id="soon">Full case study coming soon.</p>
   </main>
+  <article class="study" id="study" hidden>
+    <div class="metrics">
+      <div><b><span class="fill">[X]</span></b><span>Work packages delivered</span></div>
+      <div><b><span class="fill">$[X]M</span></b><span>Value of work managed</span></div>
+      <div><b><span class="fill">[X] wks</span></b><span>In dock, docking to undocking</span></div>
+    </div>
+
+    <div class="block split">
+      <div>
+        <p class="kicker">The challenge</p>
+        <h2>An aging frigate, a fixed dock window and <em>no room for slippage</em></h2>
+        <p>HMCS Toronto is one of the Royal Canadian Navy’s Halifax-class frigates, ships in service since the 1990s that must be periodically docked for hull, mechanical and systems maintenance to stay mission-ready. Each docking work period is planned years in advance and ties up dock space, contractor trades and naval resources for a fixed window.</p>
+        <p><span class="fill">[Describe what made this DWP difficult, e.g., growth work found once the ship was opened up, interferences between work items, long-lead parts or a compressed schedule, and quantify its impact.]</span></p>
+        <p class="question">Could the full scope be defined, sequenced and delivered inside the dock window without compromising quality or safety?</p>
+      </div>
+      <aside class="glance">
+        <p class="kicker">Project at a glance</p>
+        <dl>
+          <div><dt>Client</dt><dd>Department of National Defence · Royal Canadian Navy</dd></div>
+          <div><dt>Industry</dt><dd>Naval engineering · Ship maintenance &amp; repair</dd></div>
+          <div><dt>Location</dt><dd><span class="fill">[Shipyard, Province]</span></dd></div>
+          <div><dt>Duration</dt><dd><span class="fill">[X months planning + X weeks in dock]</span></dd></div>
+          <div><dt>Scope</dt><dd><span class="fill">[X work packages · hull, mechanical and marine systems]</span></dd></div>
+          <div><dt>My role</dt><dd><span class="fill">[Project Manager / Lead Mechanical Engineer]</span></dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="block">
+      <p class="kicker">Our approach</p>
+      <h2>A three-phase plan, <em>from scope to undocking</em></h2>
+      <p>We treated the docking period as one connected system: every work item, interference and dependency was mapped before the ship entered the dock, so decisions in the yard could be made quickly and with the full picture.</p>
+      <div class="phases">
+        <div class="phase"><p class="n">PHASE 01</p><h3>Define</h3><p class="when"><span class="fill">[Months X–Y]</span></p>
+          <ul><li>Scope work from condition surveys and engineering changes</li><li>Draft specifications (SSMRS) and contract documents</li><li>Build cost estimates for each work package</li></ul></div>
+        <div class="phase"><p class="n">PHASE 02</p><h3>Plan</h3><p class="when"><span class="fill">[Months X–Y]</span></p>
+          <ul><li>Map interference items between work packages</li><li>Sequence work and align with the shipyard and stakeholders</li><li>Set the baseline schedule and risk register</li></ul></div>
+        <div class="phase"><p class="n">PHASE 03</p><h3>Deliver</h3><p class="when"><span class="fill">[Weeks X–Y]</span></p>
+          <ul><li>Oversee execution in dock</li><li>Manage growth work and change requests</li><li>Track cost and schedule; verify and close out</li></ul></div>
+      </div>
+      <p style="margin-top:24px"><span class="fill">[What was distinctive about how you ran this DWP, e.g., the interference map, a cost-estimation model, or the stakeholder cadence between the Navy, PSPC and the shipyard. Name the methods in plain language.]</span></p>
+    </div>
+
+    <div class="block">
+      <p class="kicker">The impact</p>
+      <h2><span class="fill">[Outcome headline, e.g., “Returned to the fleet on schedule”]</span></h2>
+      <table class="impact">
+        <thead><tr><th>Metric</th><th>Baseline</th><th>Outcome</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>Schedule (weeks in dock)</td><td><span class="fill">[X]</span></td><td><span class="fill">[Y]</span></td><td><span class="fill">[±Z%]</span></td></tr>
+          <tr><td>Work packages completed</td><td><span class="fill">[X planned]</span></td><td><span class="fill">[Y delivered]</span></td><td><span class="fill">[Z%]</span></td></tr>
+          <tr><td>Growth work absorbed</td><td>—</td><td><span class="fill">[X items]</span></td><td><span class="fill">[n/a]</span></td></tr>
+          <tr><td>Cost vs. budget</td><td><span class="fill">$[X]M</span></td><td><span class="fill">$[Y]M</span></td><td><span class="fill">[±Z%]</span></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:22px"><span class="fill">[50–100 words on what the result meant for the Navy, e.g., the ship returned to operational availability, and what the team can now do on future docking periods.]</span></p>
+    </div>
+
+    <div class="block">
+      <p class="kicker">What made the difference</p>
+      <h2>Three lessons for <em>complex maintenance programs</em></h2>
+      <ol class="lessons">
+        <li><b>Map interferences before the ship docks.</b> Knowing where work items clash ahead of time prevents rework and idle trades once the clock is running.</li>
+        <li><b>One baseline, every stakeholder.</b> A single shared schedule between the Navy, procurement and the shipyard keeps decisions fast when conditions change.</li>
+        <li><b>Plan for growth work.</b> Building contingency into scope and schedule turns surprises into managed changes instead of delays.</li>
+      </ol>
+    </div>
+
+    <div class="block">
+      <p class="kicker">Team &amp; contact</p>
+      <h2>Talk to the <em>engineer</em></h2>
+      <div class="person">
+        <img src="piotr-color.png" alt="Piotr Spychalski" />
+        <div><b>Piotr Spychalski</b><span>Project Manager · Mechanical Engineer · Ottawa, ON</span>
+          <a href="mailto:piotr.spychalski12@gmail.com">piotr.spychalski12@gmail.com →</a></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <p class="kicker">Keep exploring</p>
+      <div class="related">
+        <a href="case-study.html?p=2"><small>Case study 02</small>Project Title</a>
+        <a href="case-study.html?p=3"><small>Case study 03</small>Project Title</a>
+        <a href="index.html?home=1#process"><small>Capability</small>My Process →</a>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>Facing a similar <em>engineering challenge?</em></h2>
+      <p>Let’s break down your toughest challenges and build solutions that deliver measurable results.</p>
+      <a class="btn" href="index.html?home=1#contact">Let’s talk ↗</a>
+    </div>
+    <p class="disclaimer">Details have been generalised and figures rounded to respect Department of National Defence confidentiality.</p>
+  </article>
+
   <script>
     // Which project: case-study.html?p=1 … p=6
     const n = parseInt(new URLSearchParams(location.search).get("p"), 10) || 1;
@@ -57,7 +214,8 @@
     if (n === 1) {
       document.getElementById("title").innerHTML = "HMCS TORONTO<br /><em>Docking‑Work Period (DWP)</em>"; // non-breaking hyphen keeps "Docking-Work" together
       document.title = "HMCS TORONTO Docking-Work Period (DWP) — Piotr Spychalski";
-      document.getElementById("model").hidden = false;
+      ["model", "tags", "sub", "study"].forEach((id) => (document.getElementById(id).hidden = false));
+      document.getElementById("soon").hidden = true;
       // Sketchfab Viewer API: same embed, scroll-wheel zoom off, plus our own slow zoom.
       const s = document.createElement("script");
       s.src = "https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js";
