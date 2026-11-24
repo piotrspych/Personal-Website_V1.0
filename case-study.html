@@ -16,6 +16,16 @@
     h1 { margin: 12px 0 0; font-weight: 400; font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.03em; color: rgba(255, 255, 255, 0.9); }
     h1 em { font-family: "DM Serif Display", serif; color: #b08f6c; }
     p { margin-top: 20px; color: #8a8a8a; font-size: 18px; }
+    /* Project 1: 2.5D ship model. A stack of cut-out layers gives the hull real thickness;
+       the stack tilts in 3D with the pointer and sways gently when idle. */
+    .model { position: relative; left: 50%; transform: translateX(-50%); margin: 48px 0 0; width: min(1000px, 92vw); perspective: 1600px; touch-action: pan-y; cursor: grab; }
+    .model[hidden] { display: none; }
+    .ship3d { position: relative; width: 100%; aspect-ratio: 2000 / 595; transform-style: preserve-3d; transition: transform 0.25s ease-out; }
+    .ship3d img { position: absolute; inset: 0; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+    .ship3d img.core { filter: brightness(0.45); }
+    .model-shadow { width: 70%; height: 28px; margin: 18px auto 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(152, 120, 88, 0.35), transparent); filter: blur(6px); }
+    .model-hint { margin-top: 10px; font-size: 13px; color: #6f6f6f; }
+    @media (prefers-reduced-motion: reduce) { .ship3d { transition: none; } }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="back-button.css" />
@@ -27,12 +37,51 @@
   <main>
     <p class="label">Case Study <span id="num">01</span></p>
     <h1>Project <em>Title</em></h1>
+    <div class="model" id="model" hidden aria-label="3D model of HMCS frigate 333 — move your pointer to rotate">
+      <div class="ship3d" id="ship3d"></div>
+      <div class="model-shadow" aria-hidden="true"></div>
+      <p class="model-hint">Move your cursor over the ship to rotate it</p>
+    </div>
     <p>Full case study coming soon.</p>
   </main>
   <script>
     // Which project: case-study.html?p=1 … p=6
     const n = parseInt(new URLSearchParams(location.search).get("p"), 10) || 1;
     document.getElementById("num").textContent = String(n).padStart(2, "0");
+
+    if (n === 1) {
+      const model = document.getElementById("model");
+      const ship = document.getElementById("ship3d");
+      model.hidden = false;
+      const layers = 15, depth = 3; // px between layers → ~42px thick hull
+      for (let k = 0; k < layers; k++) {
+        const img = document.createElement("img");
+        img.src = "ship-333.png";
+        img.alt = "";
+        if (k > 0 && k < layers - 1) img.className = "core";
+        img.style.transform = `translateZ(${(k - (layers - 1) / 2) * depth}px)`;
+        ship.append(img);
+      }
+      let ry = -18, rx = 6, active = false;
+      const apply = () => (ship.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`);
+      model.addEventListener("pointermove", (e) => {
+        active = true;
+        const r = model.getBoundingClientRect();
+        ry = ((e.clientX - r.left) / r.width - 0.5) * 70;   // ±35°
+        rx = -((e.clientY - r.top) / r.height - 0.5) * 24; // ±12°
+        apply();
+      });
+      model.addEventListener("pointerleave", () => (active = false));
+      apply();
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const t0 = performance.now();
+        const idle = (now) => {
+          if (!active) { ry = -18 + Math.sin((now - t0) / 1800) * 14; rx = 6; apply(); }
+          requestAnimationFrame(idle);
+        };
+        requestAnimationFrame(idle);
+      }
+    }
   </script>
 </body>
 </html>
