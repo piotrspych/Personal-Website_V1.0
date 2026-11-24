@@ -39,7 +39,7 @@
   </header>
   <main>
     <p class="label">Case Study <span id="num">01</span></p>
-    <h1>Project <em>Title</em></h1>
+    <h1 id="title">Project <em>Title</em></h1>
     <div class="model" id="model" hidden>
       <iframe id="modelFrame" title="HMCS Toronto — interactive 3D model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
       <div class="zoom">
@@ -55,6 +55,8 @@
     document.getElementById("num").textContent = String(n).padStart(2, "0");
 
     if (n === 1) {
+      document.getElementById("title").innerHTML = "HMCS TORONTO<br /><em>Docking‑Work Period (DWP)</em>"; // non-breaking hyphen keeps "Docking-Work" together
+      document.title = "HMCS TORONTO Docking-Work Period (DWP) — Piotr Spychalski";
       document.getElementById("model").hidden = false;
       // Sketchfab Viewer API: same embed, scroll-wheel zoom off, plus our own slow zoom.
       const s = document.createElement("script");
