@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>More About Me — Piotr Spychalski</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&family=Geist+Mono:wght@400&family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="back-button.css?v=2" />
+  <style>
+    html, body { min-height: 100%; margin: 0; background: #010000; color: #fff; font-family: Inter, system-ui, sans-serif; }
+    body { background: radial-gradient(60% 40% at 50% 0%, rgba(152, 120, 88, 0.22), transparent 70%), #010000; }
+    header { height: 56px; display: flex; align-items: center; padding: 0 20px; }
+    main { max-width: 1000px; margin: 0 auto; padding: 8vh 24px 120px; }
+    .kicker { margin: 0; font: 12px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #987858; }
+    h1 { margin: 14px 0 0; font-weight: 400; font-size: clamp(40px, 6vw, 72px); line-height: 1.1; letter-spacing: -.03em; color: rgba(255, 255, 255, .92); }
+    h1 em, h2 em { font-family: "DM Serif Display", serif; color: #b08f6c; }
+    .intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+    .intro p { margin: 22px 0 0; font-size: 18px; line-height: 1.7; color: #b9b9b9; }
+    .intro img { width: 100%; height: auto; -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
+    .fill { color: #e2c49c; border-bottom: 1px dashed rgba(226, 196, 156, .6); }
+    h2 { margin: 96px 0 0; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -.025em; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .card { border: 1px solid rgba(255, 255, 255, .08); border-radius: 18px; overflow: hidden; background: rgba(255, 255, 255, .02); transition: border-color .3s, transform .3s; }
+    .card:hover { border-color: rgba(176, 143, 108, .6); transform: translateY(-3px); }
+    .ph { aspect-ratio: 4 / 3; display: grid; place-items: center; background: linear-gradient(145deg, #1b1b1b, #0c0c0c); border-bottom: 1px dashed rgba(255, 255, 255, .12); color: rgba(255, 255, 255, .4); font-size: 13px; }
+    .card .body { padding: 20px; }
+    .card .n { margin: 0; font: 12px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .14em; color: #c9a97f; }
+    .card h3 { margin: 10px 0 6px; font-weight: 500; font-size: 20px; }
+    .card p { margin: 0; font-size: 15px; line-height: 1.6; color: #a8a8a8; }
+    .quote { margin: 96px 0 0; padding-left: 20px; border-left: 2px solid #b08f6c; font-family: "DM Serif Display", serif; font-style: italic; font-size: 26px; line-height: 1.45; color: rgba(255, 255, 255, .9); }
+    .cta { margin-top: 56px; display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 800px) { .intro, .grid { grid-template-columns: 1fr; } .intro img { max-width: 280px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="glass-back" href="index.html?home=1#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Back</a>
+  </header>
+  <main>
+    <section class="intro">
+      <div>
+        <p class="kicker">More about me</p>
+        <h1>Beyond the <em>engineering</em></h1>
+        <p><span class="fill">[A few sentences about who you are outside of work: what drives you, what you’re curious about, and what you do to recharge.]</span></p>
+      </div>
+      <img src="piotr-about.png?v=2" alt="Piotr Spychalski" />
+    </section>
+
+    <h2>Hobbies &amp; <em>interests</em></h2>
+    <div class="grid">
+      <article class="card"><div class="ph">Photo</div><div class="body"><p class="n">01</p><h3><span class="fill">[Hobby]</span></h3><p><span class="fill">[What it is and why you love it.]</span></p></div></article>
+      <article class="card"><div class="ph">Photo</div><div class="body"><p class="n">02</p><h3><span class="fill">[Hobby]</span></h3><p><span class="fill">[What it is and why you love it.]</span></p></div></article>
+      <article class="card"><div class="ph">Photo</div><div class="body"><p class="n">03</p><h3><span class="fill">[Hobby]</span></h3><p><span class="fill">[What it is and why you love it.]</span></p></div></article>
+      <article class="card"><div class="ph">Photo</div><div class="body"><p class="n">04</p><h3><span class="fill">[Interest]</span></h3><p><span class="fill">[What you’re learning or exploring.]</span></p></div></article>
+      <article class="card"><div class="ph">Photo</div><div class="body"><p class="n">05</p><h3><span class="fill">[Interest]</span></h3><p><span class="fill">[What you’re learning or exploring.]</span></p></div></article>
+      <article class="card"><div class="ph">Photo</div><div class="body"><p class="n">06</p><h3><span class="fill">[Interest]</span></h3><p><span class="fill">[What you’re learning or exploring.]</span></p></div></article>
+    </div>
+
+    <p class="quote"><span class="fill">[A personal motto or something you live by.]</span></p>
+
+    <div class="cta">
+      <a class="glass-back gold" href="index.html?home=1#contact">Let’s talk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a>
+      <a class="glass-back" href="resume.html">View résumé</a>
+    </div>
+  </main>
+</body>
+</html>

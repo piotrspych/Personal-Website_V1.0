@@ -682,6 +682,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   mask-image: linear-gradient(to bottom, #000 80%, transparent);
 }
 
+.about-more { margin: 18px 0 0 28px; } /* lines up under the shifted portrait */
 .about-main { padding-top: 22px; }
 
 .stats {
@@ -2594,6 +2595,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .about-photo { max-width: 260px; transform: none; }
+  .about-more { margin-left: 0; }
   .about-main { padding-top: 0; }
   .stats { margin-top: 48px; }
   .stat + .stat { padding-left: 24px; }

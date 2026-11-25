@@ -9,28 +9,17 @@
     header { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
     a { color: #b08f6c; text-decoration: none; }
     .back { height: 36px; padding: 0 16px; border-radius: 999px; display: grid; place-items: center; }
-    /* Download: same glass pill as Back, tinted with the site gold. */
-    .glass-back.dl {
-      padding: 0 18px 0 12px; gap: 6px; color: #fff;
-      background:
-        linear-gradient(225deg, rgba(255, 255, 255, 0.18) 0%, transparent 40%),
-        linear-gradient(315deg, rgba(255, 255, 255, 0.06) 0%, transparent 30%),
-        linear-gradient(360deg, rgba(152, 120, 88, 0.85) 0%, rgba(176, 143, 108, 0.9) 50%, rgba(152, 120, 88, 0.8) 100%),
-        linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.08) 100%);
-    }
-    .glass-back.dl:hover { background-color: transparent; color: #fff; filter: brightness(1.12); }
-    .glass-back.dl svg { width: 18px; height: 18px; }
     .back { border: 1px solid #987858; color: #fff; }
     .back:hover { background: rgba(152, 120, 88, 0.2); }
     iframe { display: block; width: 100%; height: calc(100% - 56px); border: 0; background: #fff; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="back-button.css" />
+  <link rel="stylesheet" href="back-button.css?v=2" />
 </head>
 <body>
   <header>
     <a class="glass-back" href="index.html?home=1" target="_top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Back</a>
-    <a class="glass-back dl" href="Piotr_Spychalski_Resume.pdf" download="Piotr_Spychalski_Resume.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg>Download PDF</a>
+    <a class="glass-back gold" href="Piotr_Spychalski_Resume.pdf" download="Piotr_Spychalski_Resume.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg>Download PDF</a>
   </header>
   <iframe src="Piotr_Spychalski_Resume.pdf" title="Piotr Spychalski resume"></iframe>
 </body>
