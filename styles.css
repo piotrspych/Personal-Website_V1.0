@@ -664,7 +664,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 .about-grid {
   display: grid;
   grid-template-columns: 197px 1fr;
-  gap: 78px;
+  gap: 40px;
 }
 
 .ph-about {
@@ -677,6 +677,7 @@ button:hover .ico { transform: translate(2px, -2px); }
 /* About portrait: cut-out on the page black, bottom fades out. */
 .about-photo {
   display: block; margin-top: 16px; width: 100%; height: auto;
+  transform: translateX(28px); /* sit closer to the headline */
   -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
   mask-image: linear-gradient(to bottom, #000 80%, transparent);
 }
@@ -2592,7 +2593,7 @@ button:hover .ico { transform: translate(2px, -2px); }
   .hero-signature { display: none; }
 
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
-  .about-photo { max-width: 260px; }
+  .about-photo { max-width: 260px; transform: none; }
   .about-main { padding-top: 0; }
   .stats { margin-top: 48px; }
   .stat + .stat { padding-left: 24px; }
